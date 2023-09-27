@@ -1,0 +1,61 @@
+% chktex-file 44
+
+\section{Parameter Descriptions}
+
+The parameters for \textbf{DynamicFifo} are shown below in
+Table~\ref{table:params}.
+
+\renewcommand*{\arraystretch}{1.4}
+\begin{longtable}[H]{
+    | p{0.25\textwidth}
+    | p{0.10\textwidth}
+    | p{0.05\textwidth}
+    | p{0.05\textwidth}
+    | p{0.47\textwidth} |
+  }
+  \hline
+  \textbf{Name} &
+  \textbf{Type} &
+  \textbf{Min}  &
+  \textbf{Max}  &
+  \textbf{Description}            \\ \hline \hline
+
+  externalRam   &
+  Boolean       &
+  false         &
+  true          &
+  Determines whether to build FIFO memory with flip-flops or provide and
+  an external interface to a SRAM \\ \hline
+
+  dataWidth     &
+  Int           &
+  1             &
+  $\ge$ 1       &
+  The data width of the FIFO      \\ \hline
+
+  fifoDepth     &
+  Int           &
+  2             &
+  $\ge$ 2       &
+  The depth of the FIRO           \\ \hline
+
+  \caption{Parameter Descriptions}\label{table:params}
+\end{longtable}
+
+The DynamicFifo is instantiated into a design as follows:
+
+\begin{lstlisting}[language=Scala]
+
+  // Instantiate small FIFO using internal flip-flops
+  val mySmallFifo = new DynamicFifo(
+    externalRAM = false, 
+    dataWidth = 8, 
+    fifoDepth = 16) 
+
+  // Instantiate large FIFO using external SRAM
+  val myLargeFifo = new DynamicFifo(
+    externalRAM = true, 
+    dataWidth = 32, 
+    fifoDepth = 512) 
+
+  \end{lstlisting}

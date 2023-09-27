@@ -1,0 +1,84 @@
+\documentclass{article}
+
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage[dvipsnames,table]{xcolor}
+\usepackage{fancyhdr}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{parskip}
+
+% Choose paper size
+\geometry{letterpaper, top=25.4mm, bottom=25.4mm, left=25.4mm, right=25.4mm}
+%\geometry{a4paper, top=25.4mm, bottom=25.4mm, left=25.4mm, right=25.4mm}
+
+\color{black}
+\fancyhf{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{1pt}
+
+% Define standard IPF color palette
+\definecolor{soft-sky-blue}{HTML}{B7DAEB}
+\definecolor{orange}{HTML}{FF6633}
+\definecolor{cool-grey}{HTML}{91A1B0}
+\definecolor{black}{HTML}{000000}
+\definecolor{space-blue}{HTML}{003366}
+\definecolor{pigeon-blue}{HTML}{5F8396}
+\definecolor{sage-green}{HTML}{95A077}
+\definecolor{fire-yellow}{HTML}{F9A651}
+\definecolor{apple-red}{HTML}{CC4200}
+\definecolor{crockadile-green}{HTML}{718944}
+\definecolor{slate-grey}{HTML}{607587}
+\definecolor{fog-grey}{HTML}{E5E6E9}
+
+% Define certification colors
+\definecolor{cert-level-0}{HTML}{CC4200} % apple-red
+\definecolor{cert-level-1}{HTML}{FF6633} % orange
+\definecolor{cert-level-2}{HTML}{F9A651} % fire-yellow
+\definecolor{cert-level-3}{HTML}{B7DAEB} % soft-sky-blue
+\definecolor{cert-level-4}{HTML}{5F8396} % pigeon-blue
+\definecolor{cert-level-5}{HTML}{718944} % sage-green
+
+\hypersetup{hidelinks}
+\pagestyle{fancy}
+\pagenumbering{arabic}
+
+\title{
+\includegraphics[width=8cm] {images/Rocksavage_Tech_RGB_300.png}\vspace{50pt}
+\vspace{10pt} \\
+\textbf{DynamicFifo \\
+  Product User Guide} \\
+{\small{\textcolor{slate-grey}{rocksavagetech.chiselWare.DynamicFifo}}} \\
+\vspace{20pt} IPF certified to level:
+\textbf{\textcolor{cert-level-0}{0} }of 5 \\
+\vspace{5pt}
+\includegraphics[width=4cm] {images/cert.png}
+}
+
+\author{Warren Savage}
+
+\fancyhead[L]{DynamicFifo Users Guide}
+\fancyhead[R]{\leftmark}
+\fancyfoot[C]{Rocksavage Technology, Inc.\copyright}
+\fancyfoot[R]{Page \thepage}
+
+\begin{document}
+
+\maketitle
+\newpage
+\tableofcontents
+
+\include{./errata.tex}
+\include{./ports.tex}
+\include{./params.tex}
+\include{./tops.tex}
+\include{./sim.tex}
+\include{./syn.tex}
+
+\end{document}

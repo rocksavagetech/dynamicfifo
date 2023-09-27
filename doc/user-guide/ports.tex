@@ -1,0 +1,117 @@
+% chktex-file 44
+\section{Port Descriptions}
+
+The ports for \textbf{DynamicFifo} are shown below in 
+Table\ref{table:ports}. The width of several ports is controlled 
+by the following input parameters:
+
+\begin{itemize}[noitemsep]
+  \item \textit{dataWidth} is the width the dataIn and dataOut ports in bits
+  \item \textit{fifoDepth} controls the width of the external RAM addresses
+  \item \textit{externalRam} controls whether the ports (below, in gray) are 
+    generated for an external dual-port SRAM
+\end{itemize}
+ 
+\renewcommand*{\arraystretch}{1.4}
+\begin{longtable}[H]{
+  | p{0.20\textwidth}
+  | p{0.20\textwidth}
+  | p{0.12\textwidth}
+  | p{0.43\textwidth} |
+  }
+  \hline
+  \textbf{Port Name} &   
+  \textbf{Width} &   
+  \textbf{Direction} &   
+  \textbf{Description} \\ \hline \hline
+
+  clock &       
+  1 &       
+  Input &       
+  Positive edge clock \\ \hline
+
+  reset &       
+  1 &       
+  Input &       
+  Active high reset \\ \hline
+
+  push &       
+  1 &       
+  Input &       
+  Push a word into the FIFO \\ \hline
+
+  pop &        
+  1 &       
+  Input &       
+  Pop a word from the FIFO \\ \hline
+
+  dataIn &      
+  \textit{dataWidth} & 
+  Input &     
+  Data to be pushed into the FIFO \\ \hline
+
+  dataOut &     
+  \textit{dataWidth} & 
+  Output &    
+  Data popped from the FIFO \\ \hline
+
+  empty &       
+  1 &       
+  Output &      
+  Indicates the FIFO is empty \\ \hline
+
+  full &        
+  1 &       
+  Output &      
+  Indicates the FIFO is full \\ \hline
+
+  almostEmptyLevel & 
+  log2Ceil(\textit{fifoDepth}) & %chktex 36 
+  Input &       
+  Sets the threshold for the almostEmpty port.\ almostEmpty will be active 
+  when the FIFO is at or below this level.\\ \hline
+
+  almostFullLevel & 
+  log2Ceil(\textit{fifoDepth}) & %chktex 36 
+  Input &        
+  Sets the threshold for the almostFull port.\ almostFull will be active 
+  when the FIFO is at or above this level.\\ \hline
+
+  \rowcolor{fog-grey}
+  ramWriteEnable &     
+  1 &      
+  Output &        
+  Write enable to the external FIFO RAM \\ \hline
+ 
+  \rowcolor{fog-grey}
+  ramWriteAddress & 
+  log2Ceil(\textit{fifoDepth}) & %chktex 36 
+  Output &    
+  Write address to the external FIFO RAM \\ \hline
+
+  \rowcolor{fog-grey}
+  ramDataIn &    
+  \textit{dataWidth} & 
+  Output &    
+  Data to the external FIFO RAM \\ \hline
+ 
+  \rowcolor{fog-grey}
+  ramReadEnable &
+  1 &      
+  Input &        
+  Read enable to the external FIFO RAM \\ \hline
+ 
+  \rowcolor{fog-grey}
+  ramReadAddress & 
+  log2Ceil(\textit{fifoDepth}) & %chktex 36 
+  Output &    
+  Read address to the external FIFO RAM \\ \hline
+ 
+  \rowcolor{fog-grey}
+  ramDataOut &   
+  \textit{dataWidth} & 
+  Input &     
+  Data from the external FIFO RAM \\ \hline
+ 
+  \caption{Port Descriptions}\label{table:ports}
+\end{longtable}
