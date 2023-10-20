@@ -1,0 +1,8 @@
+read_verilog ../generated/DynamicFifo.sv
+hierarchy -check -top DynamicFifo
+proc; opt; fsm; opt;
+techmap; opt
+dfflibmap -liberty /home/tws/drive/Fault/Tech/nangate/NangateOpenCellLibrary_typical.lib
+abc -liberty /home/tws/drive/Fault/Tech/nangate/NangateOpenCellLibrary_typical.lib
+clean
+write_verilog DynamicFifo_net.v

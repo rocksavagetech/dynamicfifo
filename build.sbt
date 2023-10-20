@@ -6,7 +6,7 @@ ThisBuild / organization     := "rocksavage"
 
 Test / parallelExecution := false
 
-val chiselVersion = "3.5.4"
+val chiselVersion = "5.0.0"
 val scalafmtVersion = "2.5.0"
 
 lazy val root = (project in file("."))
@@ -14,15 +14,18 @@ lazy val root = (project in file("."))
     name := "DynamicFifo",
     Test / publishArtifact := true,
     libraryDependencies ++= Seq(
-      "edu.berkeley.cs" %% "chisel3" % chiselVersion,
-      "edu.berkeley.cs" %% "chiseltest" % "0.5.4" % "test",
+      "org.chipsalliance" %% "chisel" % chiselVersion,
+      "edu.berkeley.cs" %% "chiseltest" % "5.0.0" % "test",
       "org.scalameta" % "sbt-scalafmt_2.12_1.0" % scalafmtVersion
     ),
     scalacOptions ++= Seq(
-      "-Xsource:2.13",
       "-language:reflectiveCalls",
       "-deprecation",
       "-feature",
-      "-Xcheckinit"
+      "-Xcheckinit",
+      "-Ymacro-annotations",
     ),
+    addCompilerPlugin(
+      "org.chipsalliance" % 
+      "chisel-plugin" % chiselVersion cross CrossVersion.full),
   )
