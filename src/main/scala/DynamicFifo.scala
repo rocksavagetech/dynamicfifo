@@ -25,44 +25,59 @@ import chisel3._
 import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
-class DynamicFifo(
-    externalRam: Boolean,
-    dataWidth: Int,
-    fifoDepth: Int
-) extends Module {
+/** A synchronous FIFO and FIFO controller with dynamic flags
+  *
+  * @constructor
+  *   create a new FIFO or FIFO controller
+  * @param externalRam
+  *   creates just the FIFO controller (uses ext. SRAM)
+  * @param dataWidth
+  *   defines the data width of the FIFO
+  * @param fifoDepth
+  *   defines the depth of the FIFO (must be a power of 2)
+  * @author
+  *   Warren Savage
+  * @todo
+  *   external Ram, publish, emit license from FIRRTL
+  * @see
+  *   [[http://www.rocksavage.tech/Olympus.html]] for more information
+  *
+  * <img src="" />
+  */
+class DynamicFifo(p: BaseParams) extends Module {
 
   val io = IO(new Bundle {
     val push             = Input(Bool())
     val pop              = Input(Bool())
-    val dataIn           = Input(UInt(dataWidth.W))
-    val dataOut          = Output(UInt(dataWidth.W))
+    val dataIn           = Input(UInt(p.dataWidth.W))
+    val dataOut          = Output(UInt(p.dataWidth.W))
     val empty            = Output(Bool())
     val full             = Output(Bool())
     val almostEmpty      = Output(Bool())
     val almostFull       = Output(Bool())
-    val almostEmptyLevel = Input(UInt(log2Ceil(fifoDepth).W))
-    val almostFullLevel  = Input(UInt(log2Ceil(fifoDepth).W))
+    val almostEmptyLevel = Input(UInt(log2Ceil(p.fifoDepth).W))
+    val almostFullLevel  = Input(UInt(log2Ceil(p.fifoDepth).W))
     // Optional if External RAM is chosen
     val ramWriteEnable  = Output(Bool())
-    val ramWriteAddress = Output(UInt(log2Ceil(fifoDepth).W))
-    val ramDataIn       = Output(UInt(dataWidth.W))
+    val ramWriteAddress = Output(UInt(log2Ceil(p.fifoDepth).W))
+    val ramDataIn       = Output(UInt(p.dataWidth.W))
     val ramReadEnable   = Output(Bool())
-    val ramReadAddress  = Output(UInt(log2Ceil(fifoDepth).W))
-    val ramDataOut      = Input(UInt(dataWidth.W))
+    val ramReadAddress  = Output(UInt(log2Ceil(p.fifoDepth).W))
+    val ramDataOut      = Input(UInt(p.dataWidth.W))
   })
 
-  val fifoMemory = Reg(Vec(fifoDepth, UInt(dataWidth.W)))
+  val fifoMemory = Reg(Vec(p.fifoDepth, UInt(p.dataWidth.W)))
 
-  val tail  = RegInit(0.U(log2Ceil(fifoDepth + 1).W))
-  val head  = RegInit(0.U(log2Ceil(fifoDepth + 1).W))
-  val count = RegInit(0.U(log2Ceil(fifoDepth + 1).W))
+  val tail  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
+  val head  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
+  val count = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
 
   when(io.push === 1.U) { count := count + 1.U }
   when(io.pop === 1.U) { count := count - 1.U }
   when((io.pop === 1.U) && io.push === 1.U) { count := count }
 
   io.empty       := count === 0.U
-  io.full        := count === fifoDepth.U
+  io.full        := count === p.fifoDepth.U
   io.almostEmpty := count <= io.almostEmptyLevel
   io.almostFull  := count >= io.almostFullLevel
 
@@ -75,7 +90,7 @@ class DynamicFifo(
     head             := (head + 1.U)
   }
 
-  io.dataOut := Mux(externalRam.B, io.ramDataOut, fifoMemory(tail))
+  io.dataOut := Mux(p.externalRam.B, io.ramDataOut, fifoMemory(tail))
 
   // Outputs to the external RAM are irrelevant when externalRam is false, but
   // FIRRTL requires all IO to be fully specificed.
@@ -90,7 +105,7 @@ class DynamicFifo(
     */
 
   val tick = true.B
-  for (bit <- 0 to dataWidth - 1) {
+  for (bit <- 0 to p.dataWidth - 1) {
     cover(io.dataOut(bit)).suggestName(s"io_dataOut_$bit")
     cover(io.dataIn(bit)).suggestName(s"io_dataIn_$bit")
   }
@@ -100,7 +115,7 @@ class DynamicFifo(
     cover(io.almostFullLevel(bit)).suggestName(s"io_almostFullLevel_$bit")
   }
    */
-  
+
   cover(tick).suggestName("tick")
   cover(io.pop).suggestName("io__pop")
   cover(io.push).suggestName("io__push")
@@ -110,21 +125,21 @@ class DynamicFifo(
   cover(io.almostFull).suggestName("io__almostFull")
 
   // Only relevant when externamRAM is set to true
-  if (externalRam) {
+  if (p.externalRam) {
     cover(io.ramWriteEnable).suggestName("io__ramWriteEnable")
     cover(io.ramReadEnable).suggestName("io__ramReadEnable")
-    for (bit <- 0 to dataWidth - 1) {
+    for (bit <- 0 to p.dataWidth - 1) {
       cover(io.ramDataIn(bit)).suggestName(s"io_ramDataIn_$bit")
       cover(io.ramDataOut(bit)).suggestName(s"io_ramDataOut_$bit")
     }
-    for (bit <- 0 to log2Ceil(fifoDepth) - 1) {
+    for (bit <- 0 to log2Ceil(p.fifoDepth) - 1) {
       cover(io.ramReadAddress(bit)).suggestName(s"io_ramReadAddress_$bit")
       cover(io.ramWriteAddress(bit)).suggestName(s"io_ramWriteAddress_$bit")
     }
   }
 
-  require ((fifoDepth % 2) == 0, "Depth must be a power of 2")
-  require (dataWidth >= 4, "Width must be greater than equal 4")
+  require((p.fifoDepth % 2) == 0, "Depth must be a power of 2")
+  require(p.dataWidth >= 4, "Width must be greater than equal 4")
 
 }
 
@@ -133,13 +148,14 @@ class DynamicFifo(
   */
 
 object Main extends App {
+  val myParams = BaseParams(
+    externalRam = false,
+    dataWidth = 16,
+    fifoDepth = 8
+  )
   println(
     ChiselStage.emitSystemVerilog(
-      new DynamicFifo(
-        externalRam = false,
-        dataWidth = 16,
-        fifoDepth = 5
-      ),
+      new DynamicFifo(myParams),
       firtoolOpts = Array(
         "--disable-all-randomization",
         "--strip-debug-info",
