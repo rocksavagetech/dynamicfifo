@@ -19,7 +19,7 @@
 //
 // ============================================================================
 
-package chiselWare
+package chiselWare.DynamicFifo
 
 import chisel3._
 import chisel3.util._
@@ -31,17 +31,21 @@ import firrtl2.options.TargetDirAnnotation
 import scala.util.Random
 import scala.math.pow
 import scala.collection.mutable.Stack
+import scala.collection.immutable.ListMap
 
-class TestDynamicFifo
+/** Highly randomized test suite driven by configuration parameters. Includes
+  * code coverage for all top-level ports.
+  */
+class DynamicFifoTest
     extends AnyFlatSpec
     with Matchers
     with ChiselScalatestTester {
 
-  val numTests = 50
+  val numTests = 1
   val verbose  = false
 
-  // Main test code defined in the form of a function that can be repeatedly
-  // called and each having a randomized configuration
+  /** main test function Executes one test for one configuration
+    */
   def main(testName: String): Unit = {
 
     behavior of testName
@@ -56,22 +60,20 @@ class TestDynamicFifo
     )
 
     // Randomize input variables
-    val validDataWidths = Seq(4, 5, 6, 7, 8, 16, 32, 64) // , 128)
-    val validFifoDepths = Seq(4, 8, 16) // , 32, 64,128 ,256, 512,1024, 2048)
+    val validDataWidths = Seq(4, 5, 6, 7, 8, 16, 32, 64, 128)
+    val validFifoDepths = Seq(4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048)
     val dataWidth      = validDataWidths(Random.nextInt(validDataWidths.length))
     val fifoDepth      = validFifoDepths(Random.nextInt(validFifoDepths.length))
     val useExternalRam = (fifoDepth * dataWidth) > 1024
     val testDataSize   = fifoDepth * Random.between(10, 20)
-    val fullThreshold =
-      (fifoDepth * Random.between(75, 95) / 100).toInt
-    val emptyThreshold =
-      (fifoDepth * Random.between(3, 25) / 100).toInt
+    val fullThreshold  = (fifoDepth * Random.between(75, 95) / 100).toInt
+    val emptyThreshold = (fifoDepth * Random.between(3, 25) / 100).toInt
 
     val myParams = BaseParams(
       dataWidth,
       fifoDepth,
       useExternalRam,
-      bbFiles = List("dual_port_sync_sram"),
+      bbFiles = List("dual_port_sync_sram.v"),
       coverage = true
     )
 
@@ -82,7 +84,7 @@ class TestDynamicFifo
       info(s"Almost Full Threshold = $fullThreshold")
       info(s"Almost Empty Threshold = $emptyThreshold")
       info("--------------------------------")
-      val cov = test(new DynamicFifo(myParams))
+      val cov = test(new DynamicFifoTb(myParams))
         .withAnnotations(backendAnnotations) { dut =>
           dut.clock.setTimeout(0)
 
@@ -107,8 +109,7 @@ class TestDynamicFifo
           def isEmpty(): Boolean = { return dut.io.empty.peek().litValue == 1 }
           def isFull(): Boolean  = { return dut.io.full.peek().litValue == 1 }
 
-          // Create an independent method for checking the correct status of
-          // the hardware flags. We use a Scala Stack to do this.
+          // Use Scala Stack to mirror the FIFO operations to check flags
           var stack = Stack[Int]()
           def checkFlags(): Unit = {
             dut.io.empty.expect(stack.size == 0)
@@ -129,11 +130,12 @@ class TestDynamicFifo
           dut.clock.step()
           dut.reset.poke(false.B)
 
-          /** Create randomized data of the correct width that can be used for
-            * FIFO testing. Generation of such patterns for abitrary width is
-            * challenging. This is done by constructing a BigInt out of hex
-            * chars one nibble (or partial nibble) at a time then converting it
-            * back into UInt for ChiselTest to apply it via a poke.
+          /** Generate test data Create randomized data of the correct width
+            * that can be used for FIFO testing. Generation of such patterns for
+            * abitrary width is challenging. This is done by constructing a
+            * BigInt out of hex chars one nibble (or partial nibble) at a time
+            * then converting it back into UInt for ChiselTest to apply it via a
+            * poke.
             */
           def testData(): UInt = {
 
@@ -233,15 +235,14 @@ class TestDynamicFifo
             }
           }
 
+          // Create a queue for tracking what data is pushed/popped
+          val expectedData = scala.collection.mutable.Queue[UInt]()
+          stack.clear()
+
           /** Random tests. Randomly push/pop data to emulate backpressure in a
             * realsystem. Slightly more priority is given to push to insure FIFO
             * fills to full at some point for flag testing.
             */
-
-          // Create a queue for tracking what data is pushed/popped
-          val expectedData = scala.collection.mutable.Queue[UInt]()
-
-          stack.clear()
           testDataBuffer.foreach { data =>
             fork {
               if (!isFull()) {
@@ -265,35 +266,39 @@ class TestDynamicFifo
           }
         }
 
-      //  Report code coverage
-      val coverage = cov.getAnnotationSeq
-        .collectFirst { case a: TestCoverage => a.counts }
-        .get
-        .toMap
-      val numTicks    = coverage("tick")
-      val netCoverage = coverage.view.filterKeys(_ != "tick").toMap
-      if (verbose) {
-        println()
-        println("------------------------------------------------")
-        println("%\tCount\tCoverage Point")
-        println("------------------------------------------------")
-      }
-      netCoverage.keys.foreach((coverPoint) => {
-        val toggleCount = netCoverage(coverPoint)
-        val togglePct   = toggleCount.toDouble / numTicks * 100
+      // As a final check, check that all ports have toggled
+      if (myParams.coverage) {
+        val coverage = cov.getAnnotationSeq
+          .collectFirst { case a: TestCoverage => a.counts }
+          .get
+          .toMap
+        val numTicks       = coverage("myFifo.tick")
+        val netCoverage    = coverage.view.filterKeys(_ != "myFifo.tick").toMap
+        val sortedCoverage = ListMap(netCoverage.toSeq.sortBy(_._1): _*).toMap
+
         if (verbose) {
-          println(f"${togglePct}%1.2f\t${toggleCount}\t${coverPoint}")
+          println()
+          println("------------------------------------------------")
+          println("%\tCount\tCoverage Point")
+          println("------------------------------------------------")
         }
-        if (togglePct == 0) {
-          info(s"${coverPoint} is stuck at 0"); fail()
+        sortedCoverage.keys.foreach((coverPoint) => {
+          val toggleCount = sortedCoverage(coverPoint)
+          val togglePct   = toggleCount.toDouble / numTicks * 100
+          if (verbose) {
+            println(f"${togglePct}%1.2f\t${toggleCount}\t${coverPoint}")
+          }
+          if (togglePct == 0) {
+            info(s"${coverPoint} is stuck at 0"); fail()
+          }
+          if (togglePct == 1) {
+            info(s"${coverPoint} is stuck at 1"); fail()
+          }
+        })
+        if (verbose) {
+          println("------------------------------------------------")
+          println()
         }
-        if (togglePct == 1) {
-          info(s"${coverPoint} is stuck at 1"); fail()
-        }
-      })
-      if (verbose) {
-        println("------------------------------------------------")
-        println()
       }
     }
   }

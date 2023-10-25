@@ -5,23 +5,23 @@
 // (C) COPYRIGHT 2023 ROCKSAVAGE TECHNOLOGY, INC.
 // ALL RIGHTS RESERVED
 
-package chiselWare
+package chiselWare.DynamicFifo
 
 import chisel3._
 import chisel3.util._
 
 /** Default parameter settings for Dynamic FIFO
-  *
   * @constructor
   *   default parameter settings
   * @param dataWidth
+  * 
   *   specifies the width of the FIFO data
   * @param fifoDepth
   *   specifices the depth of the FIFO
-  * @param externalRAM
-  *   specifies whether to use an external SRAM or internal FFs
+  * @param externalRam
+  *   specifies whether to use an external SRAM or generate internal FFs
   * @param coverage
-  *   specifies whether to calculate port coverage during sim
+  *   specifies whether to calculate port coverage during simulation
   * @author
   *   Warren Savage
   * @version 1.0
@@ -31,7 +31,6 @@ import chisel3.util._
   *
   * <img src="" />
   */
-
 case class BaseParams(
     dataWidth: Int = 8,
     fifoDepth: Int = 8,

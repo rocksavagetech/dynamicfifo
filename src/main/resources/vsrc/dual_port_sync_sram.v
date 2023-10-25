@@ -1,29 +1,30 @@
-
-module simple_dual_one_clock (
-  clk,
-  read_enable,
-  write_enable,
-  read_address,
-  write_address,
-  read_data,
-  write_data;
+module simple_dual_one_clock #(
+    parameter DATA_WIDTH = 8,
+    parameter ADDR_WIDTH = 4
+) (
+    clk,
+    read_enable,
+    write_enable,
+    read_address,
+    write_address,
+    read_data,
+    write_data
 );
 
-input clk;
-input read_enable;
-input write_enable;
-input [ADDR_SIZE-1:0] read_address;
-input [ADDR_SIZE-1:0] write_address;
-input [DATA_SIZE-1:0] read_data;
-input [DATA_SIZE-1:0] write_data;
+  input clk;
+  input read_enable;
+  input [(ADDR_WIDTH-1):0] read_address;
+  output [(DATA_WIDTH-1):0] read_data;
+  input write_enable;
+  input [(ADDR_WIDTH-1):0] write_address;
+  input [(DATA_WIDTH-1):0] write_data;
 
-reg [SIZE-1:0];
+  reg [(DATA_WIDTH-1):0] ram[2**ADDR_WIDTH];
 
-always @(posedge clk) begin
-  if (write_enable)
-    ram[write_address] <= data_in;
+  always @(posedge clk) begin
+    if (write_enable) ram[write_address] <= write_data;
   end
 
-assign data_out = ram[read_address]
+  assign read_data = ram[read_address];
 
 endmodule

@@ -19,22 +19,26 @@
 //
 // ============================================================================
 
-package chiselWare
+package chiselWare.DynamicFifo
 
 import chisel3._
 import chisel3.util._
-//import chisel3.experimental._
 
-class SramBb (p: BaseParams) extends BlackBox with HasBlackBoxResource {
+/** Blackbox to hold Verilog simulation model */
+class SramBb(p: BaseParams)
+    extends BlackBox(
+      Map("ADDR_WIDTH" -> log2Ceil(p.fifoDepth), "DATA_WIDTH" -> p.dataWidth)
+    )
+    with HasBlackBoxResource {
+  override val desiredName = "simple_dual_one_clock"
   val io = IO(new Bundle {
-    val clock = Input(Clock())
-    val reset = Input(Bool())
-    val read_enable = Input(Bool())
-    val write_enable = Input(Bool())
-    val read_address = Input(UInt(log2Ceil(p.fifoDepth).W))
+    val clk           = Input(Clock())
+    val read_enable   = Input(Bool())
+    val write_enable  = Input(Bool())
+    val read_address  = Input(UInt(log2Ceil(p.fifoDepth).W))
     val write_address = Input(UInt(log2Ceil(p.fifoDepth).W))
-    val data_in = Input(UInt(p.dataWidth.W))
-    val data_out = Output(UInt(p.dataWidth.W))
+    val write_data    = Input(UInt(p.dataWidth.W))
+    val read_data     = Output(UInt(p.dataWidth.W))
 
     for (file <- p.bbFiles) addResource(s"vsrc/${file}")
 

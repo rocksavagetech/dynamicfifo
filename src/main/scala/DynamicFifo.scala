@@ -19,7 +19,7 @@
 //
 // ============================================================================
 
-package chiselWare
+package chiselWare.DynamicFifo
 
 import chisel3._
 import chisel3.util._
@@ -38,7 +38,7 @@ import _root_.circt.stage.ChiselStage
   * @author
   *   Warren Savage
   * @todo
-  *   external Ram, publish, emit license from FIRRTL
+  *   emit license from FIRRTL
   * @see
   *   [[http://www.rocksavage.tech/Olympus.html]] for more information
   *
@@ -91,50 +91,45 @@ class DynamicFifo(p: BaseParams) extends Module {
   }
 
   io.dataOut := Mux(p.externalRam.B, io.ramDataOut, fifoMemory(tail))
-
-  // Outputs to the external RAM are irrelevant when externalRam is false, but
-  // FIRRTL requires all IO to be fully specificed.
   io.ramDataIn       := io.dataIn
   io.ramReadAddress  := tail
   io.ramWriteAddress := head
   io.ramReadEnable   := io.pop
   io.ramWriteEnable  := io.push
 
-  /** ***************************************************************************
-    * Collect code coverage points
-    */
-
-  val tick = true.B
-  for (bit <- 0 to p.dataWidth - 1) {
-    cover(io.dataOut(bit)).suggestName(s"io_dataOut_$bit")
-    cover(io.dataIn(bit)).suggestName(s"io_dataIn_$bit")
-  }
-  /* Ignore static inputs
+  // Collect code coverage points
+  if (p.coverage) {
+    val tick = true.B
+    for (bit <- 0 to p.dataWidth - 1) {
+      cover(io.dataOut(bit)).suggestName(s"io_dataOut_$bit")
+      cover(io.dataIn(bit)).suggestName(s"io_dataIn_$bit")
+    }
+    /* Ignore intentionally static inputs
   for (bit <- 0 to log2Ceil(fifoDepth) - 1) {
     cover(io.almostEmptyLevel(bit)).suggestName(s"io_almostEmptyLevel_$bit")
     cover(io.almostFullLevel(bit)).suggestName(s"io_almostFullLevel_$bit")
   }
-   */
+     */
 
-  cover(tick).suggestName("tick")
-  cover(io.pop).suggestName("io__pop")
-  cover(io.push).suggestName("io__push")
-  cover(io.almostEmpty).suggestName("io__empty")
-  cover(io.almostFull).suggestName("io__full")
-  cover(io.almostEmpty).suggestName("io__almostEmpty")
-  cover(io.almostFull).suggestName("io__almostFull")
+    cover(tick).suggestName("tick")
+    cover(io.pop).suggestName("io__pop")
+    cover(io.push).suggestName("io__push")
+    cover(io.almostEmpty).suggestName("io__empty")
+    cover(io.almostFull).suggestName("io__full")
+    cover(io.almostEmpty).suggestName("io__almostEmpty")
+    cover(io.almostFull).suggestName("io__almostFull")
 
-  // Only relevant when externamRAM is set to true
-  if (p.externalRam) {
-    cover(io.ramWriteEnable).suggestName("io__ramWriteEnable")
-    cover(io.ramReadEnable).suggestName("io__ramReadEnable")
-    for (bit <- 0 to p.dataWidth - 1) {
-      cover(io.ramDataIn(bit)).suggestName(s"io_ramDataIn_$bit")
-      cover(io.ramDataOut(bit)).suggestName(s"io_ramDataOut_$bit")
-    }
-    for (bit <- 0 to log2Ceil(p.fifoDepth) - 1) {
-      cover(io.ramReadAddress(bit)).suggestName(s"io_ramReadAddress_$bit")
-      cover(io.ramWriteAddress(bit)).suggestName(s"io_ramWriteAddress_$bit")
+    if (p.externalRam) {
+      cover(io.ramWriteEnable).suggestName("io__ramWriteEnable")
+      cover(io.ramReadEnable).suggestName("io__ramReadEnable")
+      for (bit <- 0 to p.dataWidth - 1) {
+        cover(io.ramDataIn(bit)).suggestName(s"io_ramDataIn_$bit")
+        cover(io.ramDataOut(bit)).suggestName(s"io_ramDataOut_$bit")
+      }
+      for (bit <- 0 to log2Ceil(p.fifoDepth) - 1) {
+        cover(io.ramReadAddress(bit)).suggestName(s"io_ramReadAddress_$bit")
+        cover(io.ramWriteAddress(bit)).suggestName(s"io_ramWriteAddress_$bit")
+      }
     }
   }
 
@@ -143,15 +138,12 @@ class DynamicFifo(p: BaseParams) extends Module {
 
 }
 
-/** *****************************************************************************
-  * Example application to generate verilog RTL
-  */
-
-object Main extends App {
+/** Generate Verilog */
+object DynamicFifo extends App {
   val myParams = BaseParams(
-    externalRam = false,
-    dataWidth = 16,
-    fifoDepth = 8
+    externalRam = true,
+    dataWidth = 128,
+    fifoDepth = 32
   )
   println(
     ChiselStage.emitSystemVerilog(
