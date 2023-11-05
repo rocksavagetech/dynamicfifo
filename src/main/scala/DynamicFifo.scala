@@ -19,7 +19,7 @@
 //
 // ============================================================================
 
-package chiselWare.DynamicFifo
+package DynamicFifo
 
 import chisel3._
 import chisel3.util._
@@ -57,7 +57,6 @@ class DynamicFifo(p: BaseParams) extends Module {
     val almostFull       = Output(Bool())
     val almostEmptyLevel = Input(UInt(log2Ceil(p.fifoDepth).W))
     val almostFullLevel  = Input(UInt(log2Ceil(p.fifoDepth).W))
-    // Optional if External RAM is chosen
     val ramWriteEnable  = Output(Bool())
     val ramWriteAddress = Output(UInt(log2Ceil(p.fifoDepth).W))
     val ramDataIn       = Output(UInt(p.dataWidth.W))
@@ -104,12 +103,13 @@ class DynamicFifo(p: BaseParams) extends Module {
       cover(io.dataOut(bit)).suggestName(s"io_dataOut_$bit")
       cover(io.dataIn(bit)).suggestName(s"io_dataIn_$bit")
     }
+
     /* Ignore intentionally static inputs
-  for (bit <- 0 to log2Ceil(fifoDepth) - 1) {
-    cover(io.almostEmptyLevel(bit)).suggestName(s"io_almostEmptyLevel_$bit")
-    cover(io.almostFullLevel(bit)).suggestName(s"io_almostFullLevel_$bit")
-  }
-     */
+    for (bit <- 0 to log2Ceil(fifoDepth) - 1) {
+      cover(io.almostEmptyLevel(bit)).suggestName(s"io_almostEmptyLevel_$bit")
+      cover(io.almostFullLevel(bit)).suggestName(s"io_almostFullLevel_$bit")
+    }
+    */
 
     cover(tick).suggestName("tick")
     cover(io.pop).suggestName("io__pop")
@@ -133,9 +133,6 @@ class DynamicFifo(p: BaseParams) extends Module {
     }
   }
 
-  require((p.fifoDepth % 2) == 0, "Depth must be a power of 2")
-  require(p.dataWidth >= 4, "Width must be greater than equal 4")
-
 }
 
 /** Generate Verilog */
@@ -145,7 +142,6 @@ object DynamicFifo extends App {
     dataWidth = 128,
     fifoDepth = 32
   )
-  println(
     ChiselStage.emitSystemVerilog(
       new DynamicFifo(myParams),
       firtoolOpts = Array(
@@ -155,5 +151,4 @@ object DynamicFifo extends App {
         "-o=generated"
       )
     )
-  )
 }

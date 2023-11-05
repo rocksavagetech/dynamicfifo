@@ -19,7 +19,7 @@
 //
 // ============================================================================
 
-package chiselWare.DynamicFifo
+package DynamicFifo
 
 import chisel3._
 import chisel3.util._
@@ -32,6 +32,9 @@ import scala.util.Random
 import scala.math.pow
 import scala.collection.mutable.Stack
 import scala.collection.immutable.ListMap
+//import chiselWare.util.TestUtils
+//import chiselWare.util._
+import chiselware._
 
 /** Highly randomized test suite driven by configuration parameters. Includes
   * code coverage for all top-level ports.
@@ -41,11 +44,10 @@ class DynamicFifoTest
     with Matchers
     with ChiselScalatestTester {
 
-  val numTests = 1
+  val numTests = 50
   val verbose  = false
 
-  /** main test function Executes one test for one configuration
-    */
+  /** main test function Executes one test for one configuration */
   def main(testName: String): Unit = {
 
     behavior of testName
@@ -130,12 +132,11 @@ class DynamicFifoTest
           dut.clock.step()
           dut.reset.poke(false.B)
 
-          /** Generate test data Create randomized data of the correct width
-            * that can be used for FIFO testing. Generation of such patterns for
-            * abitrary width is challenging. This is done by constructing a
-            * BigInt out of hex chars one nibble (or partial nibble) at a time
-            * then converting it back into UInt for ChiselTest to apply it via a
-            * poke.
+          /** Create randomized data of the correct width. Generation of such
+            * patterns for abitrary width is challenging. This is done by
+            * constructing a BigInt out of hex chars one nibble (or partial
+            * nibble) at a time then converting it back into UInt for ChiselTest
+            * to apply it via a poke.
             */
           def testData(): UInt = {
 
@@ -266,46 +267,25 @@ class DynamicFifoTest
           }
         }
 
-      // As a final check, check that all ports have toggled
+      // Check that all ports have toggled and print report
       if (myParams.coverage) {
         val coverage = cov.getAnnotationSeq
           .collectFirst { case a: TestCoverage => a.counts }
           .get
           .toMap
-        val numTicks       = coverage("myFifo.tick")
-        val netCoverage    = coverage.view.filterKeys(_ != "myFifo.tick").toMap
-        val sortedCoverage = ListMap(netCoverage.toSeq.sortBy(_._1): _*).toMap
 
-        if (verbose) {
-          println()
-          println("------------------------------------------------")
-          println("%\tCount\tCoverage Point")
-          println("------------------------------------------------")
-        }
-        sortedCoverage.keys.foreach((coverPoint) => {
-          val toggleCount = sortedCoverage(coverPoint)
-          val togglePct   = toggleCount.toDouble / numTicks * 100
-          if (verbose) {
-            println(f"${togglePct}%1.2f\t${toggleCount}\t${coverPoint}")
-          }
-          if (togglePct == 0) {
-            info(s"${coverPoint} is stuck at 0"); fail()
-          }
-          if (togglePct == 1) {
-            info(s"${coverPoint} is stuck at 1"); fail()
-          }
-        })
-        if (verbose) {
-          println("------------------------------------------------")
-          println()
-        }
+        val coverageFile = "generated/" + testName + ".cov"
+        val stuckAtFault = TestUtils.CheckCoverage(coverage, coverageFile)
+        if (stuckAtFault)
+          fail("At least one IO port did not toggle -- see coverage file")
+        info("Coverage report generated")
       }
     }
   }
 
   // Execute the regression across a randomized range of configurations
   (1 to numTests).foreach { config =>
-    main(s"DynamicFifo regression test - configuration $config")
+    main(s"DynamicFifo-test-config-$config")
   }
 
 }

@@ -1,4 +1,4 @@
-package chiselWare.DynamicFifo
+package DynamicFifo
 
 import chisel3._
 import chisel3.util._
@@ -18,26 +18,26 @@ class DynamicFifoTb(p: BaseParams) extends Module {
     val almostFullLevel  = Input(UInt(log2Ceil(p.fifoDepth).W))
   })
 
-  val myFifo = Module(new DynamicFifo(p))
-  myFifo.io.push             := io.push
-  myFifo.io.pop              := io.pop
-  myFifo.io.dataIn           := io.dataIn
-  myFifo.io.almostEmptyLevel := io.almostEmptyLevel
-  myFifo.io.almostFullLevel  := io.almostFullLevel
-  io.dataOut                 := myFifo.io.dataOut
-  io.empty                   := myFifo.io.empty
-  io.full                    := myFifo.io.full
-  io.almostEmpty             := myFifo.io.almostEmpty
-  io.almostFull              := myFifo.io.almostFull
+  val dut = Module(new DynamicFifo(p))
+  dut.io.push             := io.push
+  dut.io.pop              := io.pop
+  dut.io.dataIn           := io.dataIn
+  dut.io.almostEmptyLevel := io.almostEmptyLevel
+  dut.io.almostFullLevel  := io.almostFullLevel
+  io.dataOut                 := dut.io.dataOut
+  io.empty                   := dut.io.empty
+  io.full                    := dut.io.full
+  io.almostEmpty             := dut.io.almostEmpty
+  io.almostFull              := dut.io.almostFull
 
-  val myRam = Module(new SramBb(p))
-  myRam.io.clk         := clock
-  myRam.io.write_enable  := myFifo.io.ramWriteEnable
-  myRam.io.write_address := myFifo.io.ramWriteAddress
-  myRam.io.read_enable   := myFifo.io.ramReadEnable
-  myRam.io.read_address  := myFifo.io.ramReadAddress
-  myRam.io.write_data := myFifo.io.ramDataIn
-  myFifo.io.ramDataOut   := myRam.io.read_data
+  val ram = Module(new SramBb(p))
+  ram.io.clk         := clock
+  ram.io.write_enable  := dut.io.ramWriteEnable
+  ram.io.write_address := dut.io.ramWriteAddress
+  ram.io.read_enable   := dut.io.ramReadEnable
+  ram.io.read_address  := dut.io.ramReadAddress
+  ram.io.write_data := dut.io.ramDataIn
+  dut.io.ramDataOut   := ram.io.read_data
 
 }
 
