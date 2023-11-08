@@ -12,7 +12,7 @@ val scalafmtVersion = "2.5.0"
 
 lazy val root = (project in file("."))
   .settings(
-    name                   := "DynamicFifo",
+    name                   := "dynamicfifo",
     Test / publishArtifact := true,
     libraryDependencies ++= Seq(
       "org.chipsalliance" %% "chisel"     % chiselVersion,

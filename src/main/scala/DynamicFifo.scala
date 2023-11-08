@@ -19,7 +19,7 @@
 //
 // ============================================================================
 
-package DynamicFifo
+package tech.rocksavage.chiselware.DynamicFifo
 
 import chisel3._
 import chisel3.util._

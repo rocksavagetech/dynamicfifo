@@ -5,7 +5,7 @@
 // (C) COPYRIGHT 2023 ROCKSAVAGE TECHNOLOGY, INC.
 // ALL RIGHTS RESERVED
 
-package DynamicFifo
+package tech.rocksavage.chiselware.DynamicFifo
 
 import chisel3._
 import chisel3.util._

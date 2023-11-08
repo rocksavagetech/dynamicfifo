@@ -19,7 +19,7 @@
 //
 // ============================================================================
 
-package DynamicFifo
+package tech.rocksavage.chiselware.DynamicFifo
 
 import chisel3._
 import chisel3.util._
@@ -32,9 +32,7 @@ import scala.util.Random
 import scala.math.pow
 import scala.collection.mutable.Stack
 import scala.collection.immutable.ListMap
-//import chiselWare.util.TestUtils
-//import chiselWare.util._
-import chiselware._
+import tech.rocksavage.chiselware.util.TestUtils.{randData,checkCoverage}
 
 /** Highly randomized test suite driven by configuration parameters. Includes
   * code coverage for all top-level ports.
@@ -44,10 +42,10 @@ class DynamicFifoTest
     with Matchers
     with ChiselScalatestTester {
 
-  val numTests = 50
+  val numTests = 10000
   val verbose  = false
 
-  /** main test function Executes one test for one configuration */
+  /** main test function executes one test for one configuration */
   def main(testName: String): Unit = {
 
     behavior of testName
@@ -132,91 +130,9 @@ class DynamicFifoTest
           dut.clock.step()
           dut.reset.poke(false.B)
 
-          /** Create randomized data of the correct width. Generation of such
-            * patterns for abitrary width is challenging. This is done by
-            * constructing a BigInt out of hex chars one nibble (or partial
-            * nibble) at a time then converting it back into UInt for ChiselTest
-            * to apply it via a poke.
-            */
-          def testData(): UInt = {
-
-          // format: off
-          /** Generate hex choices that can be randomized for creating data
-            * patterns. The function returns fewer choices when there is data is
-            * less than a full nibble as in the example below with dataWidth =
-            * 13
-            *
-            *                 12 11 10  9  8  7  6  5  4  3  2  1  0  
-            * full nibbles       ----------- ----------- ----------- 
-            * 1 extra bit     --
-            *
-            * In this case, bit 12 can only take a 0/1 value because it is not
-            * large enough to hold any other hex value.
-            */
-            // format: on
-            def getHexString(x: Int): String = {
-              val hexStringRem0 = "0123456789abcdef" // no extra bits
-              val hexStringRem1 = "01"               // one extra bit
-              val hexStringRem2 = "0123"             // two extra bits
-              val hexStringRem3 = "01234567"         // three extra bits
-              return x match {
-                case 0 => hexStringRem0
-                case 1 => hexStringRem1
-                case 2 => hexStringRem2
-                case 3 => hexStringRem3
-              }
-            }
-
-            /** Determine whether a partial nibble should be generated */
-            def partialNibble(x: Int): Int = {
-              if (x == 0) { return 0 }
-              else { return 1 }
-            }
-
-            val numNibbles      = myParams.dataWidth / 4
-            val numLeftOverBits = myParams.dataWidth % 4
-
-          // format: off
-          /** Generate two sets of random strings used for generation of the
-            * randomized data. One used for full nibbles the other for partial
-            * nibbles.
-            * 
-            * datawidth = 13
-            * randFullNibble = "abc"
-            * randPartialNibble = "1"
-            */
-            // format: on
-
-            val randFullNibble    = getHexString(0)
-            val randPartialNibble = getHexString(numLeftOverBits)
-
-          // format: off
-          /** Assemble the test data word by creating two Seqs. One consists of
-            * full nibbles, the second is for the last partial nibble. The
-            * partial nibble value is prepended to the full list of nibbles.
-            * 
-            * fullNibbleSeq = Seq[List[String]] = List(List(a, b, c))
-            * partialNibbleSeq = Seq[List[String]] = List(List(1))
-            * assembleSeq = Seq[List[String]] = List(List(1,a,b,c))
-            */
-          // format: on
-
-            val fullNibbleSeq = Seq.fill(myParams.dataWidth / 4) {
-              Random.shuffle(randFullNibble).head
-            }
-            val partialNibbleSeq = Seq.fill(partialNibble(numLeftOverBits)) {
-              Random.shuffle(randPartialNibble).head
-            }
-            val assembledSeq = partialNibbleSeq ++ fullNibbleSeq
-
-            // Create a hex BigInt and cast it to UInt
-            val randData = BigInt(assembledSeq.mkString, 16).U
-
-            return randData
-          }
-
           // Create a buffer of randomized test data to apply in the test
-          val testDataBuffer = Seq.fill(testDataSize)(testData())
+          val testDataBuffer =
+            Seq.fill(testDataSize)(randData(myParams.dataWidth))
 
           // Directed tests.  Fill up the FIFO then read it back
           stack.clear()
@@ -275,7 +191,7 @@ class DynamicFifoTest
           .toMap
 
         val coverageFile = "generated/" + testName + ".cov"
-        val stuckAtFault = TestUtils.CheckCoverage(coverage, coverageFile)
+        val stuckAtFault = checkCoverage(coverage, coverageFile)
         if (stuckAtFault)
           fail("At least one IO port did not toggle -- see coverage file")
         info("Coverage report generated")
