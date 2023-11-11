@@ -4,9 +4,9 @@ A highly configurable FIFO or FIFO controller with dynamic status flags.
 
 ## Description
 
-The DynamicFifo can be configured to generate either standalone FIFO's built
+The DynamicFifo can be configured to generate either standalone FIFOs built
 from flip-flops or a FIFO controller that can be connected to an external 
-dual-port synchronous SRAM. The standalone configuration is a appropriate for 
+dual-port synchronous SRAM. The standalone configuration is appropriate for 
 small FIFOs whereas larger FIFOs are more efficiently implemented with an 
 external memory.
 
@@ -16,17 +16,29 @@ Four status flags are provided:
 * almostEmpty
 * almostFull
 
-The latter two can be programmed on-the-fly to arbitrary values providing the 
-ability for dynamic flow control.
+The latter two can be programmed to arbitrary values during operation providing 
+the ability for dynamic flow control.
 
 ## Getting Started
 
-It is recommended that the user reads the DynamicFiFo Users Guide that can be 
+It is recommended that the user reads the DynamicFiFo Users Guide can be 
 found in the ```./doc/pdf``` directory.
 
 ### Dependencies
 
-None. 
+Testing requires several utilities in the chiselWare util package.
+
+The following should be added to the user's ```build.sbt``` file:
+
+```
+"tech.rocksavage"   %% "chiselware" % "0.1.0",
+"tech.rocksavage"   %% "chiselware" % "0.1.0" % "test" classifier "tests"```
+```
+The utilities are imported to the test program as follows:
+
+```
+import tech.rocksavage.chiselware.util.TestUtils.{randData, checkCoverage}
+```
 
 ### Installation
 
@@ -41,8 +53,8 @@ file (DynamicFifo.scala) and executed as follows:
 
 ```
 $ sbt
-sbt:DynamicFifo>
-sbt:DynamicFifo> runMain chiselWare.DynamicFifo
+sbt:dynamicfifo>
+sbt:dynamicfifo> runMain chiselWare.DynamicFifo
 ```
 
 The RTL will be generated in the ```./generated``` directory.
@@ -60,14 +72,14 @@ To run all the tests:
 ```
 $ sbt
 sbt:DynamicFifo>
-sbt:DynamicFifo> testOnly chiselWare.TestDynamicFifo*
+sbt:DynamicFifo> testOnly chiselWare.DynamicFifoTest
 ```
 
 ### Synthesis
 
-DynamicFifo is a DFT-clean, fully synthesizable core. An ```.sdc``` file and synthesis 
-scripts for Yosys is included in the ```./syn``` directory and can be easily 
-ported to commercial synthesis tools.
+DynamicFifo is a DFT-clean, fully synthesizable core. An ```.sdc``` file and
+synthesis scripts for Yosys are included in the ```./syn``` directory and can be
+easily ported to commercial synthesis tools.
 
 ## Authors
 
@@ -78,4 +90,3 @@ Warren Savage
 
 * 0.1
     * Initial Release
-
