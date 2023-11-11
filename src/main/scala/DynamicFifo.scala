@@ -4,21 +4,6 @@
 //
 // (C) COPYRIGHT 2023 ROCKSAVAGE TECHNOLOGY, INC.
 // ALL RIGHTS RESERVED
-//
-// The entire notice must be reproduced on all authorized copies.
-//
-// File         : DynamicFifo.scala
-// Author       : Warren Savage
-// Abstract     : FIFO and FIFO controller with dynamic thresholds
-//
-// MODIFICATION HISTORY
-// ============================================================================
-// Date         Version   By                Description
-// ----------------------------------------------------------------------------
-// 2023-09-09   x.x       Warren Savage     Initial version
-//
-// ============================================================================
-
 package tech.rocksavage.chiselware.DynamicFifo
 
 import chisel3._
@@ -40,9 +25,9 @@ import _root_.circt.stage.ChiselStage
   * @todo
   *   emit license from FIRRTL
   * @see
-  *   [[http://www.rocksavage.tech/Olympus.html]] for more information
+  *   [[http://www.rocksavage.tech/]] for more information
   *
-  * <img src="" />
+  * <img src="doc/images/user-guide/block-diagram.png" />
   */
 class DynamicFifo(p: BaseParams) extends Module {
 
@@ -57,12 +42,12 @@ class DynamicFifo(p: BaseParams) extends Module {
     val almostFull       = Output(Bool())
     val almostEmptyLevel = Input(UInt(log2Ceil(p.fifoDepth).W))
     val almostFullLevel  = Input(UInt(log2Ceil(p.fifoDepth).W))
-    val ramWriteEnable  = Output(Bool())
-    val ramWriteAddress = Output(UInt(log2Ceil(p.fifoDepth).W))
-    val ramDataIn       = Output(UInt(p.dataWidth.W))
-    val ramReadEnable   = Output(Bool())
-    val ramReadAddress  = Output(UInt(log2Ceil(p.fifoDepth).W))
-    val ramDataOut      = Input(UInt(p.dataWidth.W))
+    val ramWriteEnable   = Output(Bool())
+    val ramWriteAddress  = Output(UInt(log2Ceil(p.fifoDepth).W))
+    val ramDataIn        = Output(UInt(p.dataWidth.W))
+    val ramReadEnable    = Output(Bool())
+    val ramReadAddress   = Output(UInt(log2Ceil(p.fifoDepth).W))
+    val ramDataOut       = Input(UInt(p.dataWidth.W))
   })
 
   val fifoMemory = Reg(Vec(p.fifoDepth, UInt(p.dataWidth.W)))
@@ -89,7 +74,7 @@ class DynamicFifo(p: BaseParams) extends Module {
     head             := (head + 1.U)
   }
 
-  io.dataOut := Mux(p.externalRam.B, io.ramDataOut, fifoMemory(tail))
+  io.dataOut         := Mux(p.externalRam.B, io.ramDataOut, fifoMemory(tail))
   io.ramDataIn       := io.dataIn
   io.ramReadAddress  := tail
   io.ramWriteAddress := head
@@ -109,7 +94,7 @@ class DynamicFifo(p: BaseParams) extends Module {
       cover(io.almostEmptyLevel(bit)).suggestName(s"io_almostEmptyLevel_$bit")
       cover(io.almostFullLevel(bit)).suggestName(s"io_almostFullLevel_$bit")
     }
-    */
+     */
 
     cover(tick).suggestName("tick")
     cover(io.pop).suggestName("io__pop")
@@ -142,13 +127,13 @@ object DynamicFifo extends App {
     dataWidth = 128,
     fifoDepth = 32
   )
-    ChiselStage.emitSystemVerilog(
-      new DynamicFifo(myParams),
-      firtoolOpts = Array(
-        "--disable-all-randomization",
-        "--strip-debug-info",
-        "--split-verilog",
-        "-o=generated"
-      )
+  ChiselStage.emitSystemVerilog(
+    new DynamicFifo(myParams),
+    firtoolOpts = Array(
+      "--disable-all-randomization",
+      "--strip-debug-info",
+      "--split-verilog",
+      "-o=generated"
     )
+  )
 }

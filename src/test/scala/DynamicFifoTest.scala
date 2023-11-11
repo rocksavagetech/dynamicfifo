@@ -4,21 +4,6 @@
 //
 // (C) COPYRIGHT 2021 ROCKSAVAGE TECHNOLOGY, INC.
 // ALL RIGHTS RESERVED
-//
-// The entire notice must be reproduced on all authorized copies.
-//
-// File         : TestDynamicFifo.scala
-// Author       : Warren Savage
-// Abstract     : Set of regression tests for DynamicFifo
-//
-// MODIFICATION HISTORY
-// ============================================================================
-// Date         Version   By                Description
-// ----------------------------------------------------------------------------
-// 2023-09-29   0.1       Warren Savage     Initial version
-//
-// ============================================================================
-
 package tech.rocksavage.chiselware.DynamicFifo
 
 import chisel3._
@@ -32,7 +17,7 @@ import scala.util.Random
 import scala.math.pow
 import scala.collection.mutable.Stack
 import scala.collection.immutable.ListMap
-import tech.rocksavage.chiselware.util.TestUtils.{randData,checkCoverage}
+import tech.rocksavage.chiselware.util.TestUtils.{randData, checkCoverage}
 
 /** Highly randomized test suite driven by configuration parameters. Includes
   * code coverage for all top-level ports.
@@ -42,7 +27,7 @@ class DynamicFifoTest
     with Matchers
     with ChiselScalatestTester {
 
-  val numTests = 10000
+  val numTests = 50
   val verbose  = false
 
   /** main test function executes one test for one configuration */

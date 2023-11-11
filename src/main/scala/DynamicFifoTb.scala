@@ -1,3 +1,9 @@
+// This confidential and proprietary software may be used only as authorized by
+// Rocksavage Technology, Inc. In the event of publication the following
+// notice is applicable:
+//
+// (C) COPYRIGHT 2023 ROCKSAVAGE TECHNOLOGY, INC.
+// ALL RIGHTS RESERVED
 package tech.rocksavage.chiselware.DynamicFifo
 
 import chisel3._
@@ -24,38 +30,19 @@ class DynamicFifoTb(p: BaseParams) extends Module {
   dut.io.dataIn           := io.dataIn
   dut.io.almostEmptyLevel := io.almostEmptyLevel
   dut.io.almostFullLevel  := io.almostFullLevel
-  io.dataOut                 := dut.io.dataOut
-  io.empty                   := dut.io.empty
-  io.full                    := dut.io.full
-  io.almostEmpty             := dut.io.almostEmpty
-  io.almostFull              := dut.io.almostFull
+  io.dataOut              := dut.io.dataOut
+  io.empty                := dut.io.empty
+  io.full                 := dut.io.full
+  io.almostEmpty          := dut.io.almostEmpty
+  io.almostFull           := dut.io.almostFull
 
   val ram = Module(new SramBb(p))
-  ram.io.clk         := clock
+  ram.io.clk           := clock
   ram.io.write_enable  := dut.io.ramWriteEnable
   ram.io.write_address := dut.io.ramWriteAddress
   ram.io.read_enable   := dut.io.ramReadEnable
   ram.io.read_address  := dut.io.ramReadAddress
-  ram.io.write_data := dut.io.ramDataIn
-  dut.io.ramDataOut   := ram.io.read_data
+  ram.io.write_data    := dut.io.ramDataIn
+  dut.io.ramDataOut    := ram.io.read_data
 
-}
-
-object DynamicFifoTb extends App {
-  val myParams = BaseParams(
-    externalRam = true,
-    dataWidth = 128,
-    fifoDepth = 32
-  )
-  println(
-    ChiselStage.emitSystemVerilog(
-      new DynamicFifoTb(myParams),
-      firtoolOpts = Array(
-        "--disable-all-randomization",
-        "--strip-debug-info",
-        "--split-verilog",
-        "-o=generated"
-      )
-    )
-  )
 }

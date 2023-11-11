@@ -4,21 +4,6 @@
 //
 // (C) COPYRIGHT 2023 ROCKSAVAGE TECHNOLOGY, INC.
 // ALL RIGHTS RESERVED
-//
-// The entire notice must be reproduced on all authorized copies.
-//
-// File         : SramBb.scala
-// Author       : Warren Savage
-// Abstract     : Blackbox for synchronous dual-port SRAM
-//
-// MODIFICATION HISTORY
-// ============================================================================
-// Date         Version   By                Description
-// ----------------------------------------------------------------------------
-// 2023-09-09   x.x       Warren Savage     Initial version
-//
-// ============================================================================
-
 package tech.rocksavage.chiselware.DynamicFifo
 
 import chisel3._

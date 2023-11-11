@@ -11,6 +11,7 @@ import chisel3._
 import chisel3.util._
 
 /** Default parameter settings for Dynamic FIFO
+  * 
   * @constructor
   *   default parameter settings
   * @param dataWidth
@@ -27,9 +28,8 @@ import chisel3.util._
   * @version 1.0
   * @todaseParamso
   * @see
-  *   [[http://www.rocksavage.tech/DynamicFifo.html]] for more information
+  *   [[http://www.rocksavage.tech]] for more information
   *
-  * <img src="" />
   */
 case class BaseParams(
     dataWidth: Int = 8,
