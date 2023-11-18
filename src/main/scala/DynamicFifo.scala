@@ -130,10 +130,12 @@ object DynamicFifo extends App {
   ChiselStage.emitSystemVerilog(
     new DynamicFifo(myParams),
     firtoolOpts = Array(
+      "--lowering-options=disallowLocalVariables,disallowPackedArrays",
       "--disable-all-randomization",
       "--strip-debug-info",
+      "--verilog",
       "--split-verilog",
-      "-o=generated"
-    )
+      "-o=generated",
+    ),
   )
 }

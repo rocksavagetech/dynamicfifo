@@ -26,7 +26,7 @@ import chisel3.util._
   * @author
   *   Warren Savage
   * @version 1.0
-  * @todaseParamso
+  *
   * @see
   *   [[http://www.rocksavage.tech]] for more information
   *
@@ -36,7 +36,7 @@ case class BaseParams(
     fifoDepth: Int = 8,
     externalRam: Boolean = false,
     coverage: Boolean = false,
-    bbFiles: List[String] = List("dual_port_sync_sram.v")
+    bbFiles: List[String] = List("your_sram.v")
 ) {
 
   require((fifoDepth % 2) == 0, "Depth must be a power of 2")
