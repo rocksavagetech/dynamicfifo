@@ -12,7 +12,6 @@ import _root_.circt.stage.ChiselStage
 
 // Generate some Verilog test cases for synthesis
 object GenVerilog extends App {
-
   // Create a map with configurations to generate
   val config = Map(
     // name  -> externalRam, dataWidth, fifoDepth
@@ -41,6 +40,7 @@ object GenVerilog extends App {
         s"fifoDepth = $thisFifoDepth"
     )
 
+    // Generate basic Verilog (suppress SV features with lowering, etc)
     ChiselStage.emitSystemVerilog(
       new DynamicFifo(myParams),
       firtoolOpts = Array(

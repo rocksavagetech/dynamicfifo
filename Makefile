@@ -32,7 +32,7 @@ test:
 	@echo Running tests
 	$(SBT) "test"
 
-# Run synthesis on generated Verilog
+# Run synthesis on generated Verilog; generate timing and area reports
 yosys:
 	rm -rf generated/small* generated/medium* generated/large*
 	$(SBT) "runMain tech.rocksavage.chiselware.DynamicFifo.GenVerilog"
