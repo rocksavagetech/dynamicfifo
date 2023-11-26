@@ -1,11 +1,32 @@
 \section{Simulation}
 
-This section is under construction and will be completed as the code is
-completed. But will include the following subsections:
+\subsection{Tests}
+The test bench generates a nummber (default is 50) configurations of the
+DynamicFifo that are highly randomized. There are two flavors of tests:
 
 \begin{itemize}
-  \item How to configure test operations
-  \item How to run tests
-  \item List of tests with description of each test
-  \item Code coverage results
+  \item {Directed tests that fill the FIFO with random data and then read back
+        the results to verify that the read data matches the writted data.}
+  \item {Lengthy random tests that are used to check odd combinations of
+        configurations and to compile code coverage data.}
 \end{itemize}
+
+\subsection{Code coverage}
+All inputs and outputs are checked to insure each toggle at least once. An error
+will be thrown in case any port fails to toggle.
+
+The only exception are the \emph{almostEmptyLevel} and \emph{almostFullLevel}
+which are intended to be static during each simulation. These signals are
+excluded from coverage checks.
+
+\subsection{Running simulation}
+
+Simulations can be run directly from the command prompt as follows:
+
+\begin{verbatim}
+  $ sbt "test"
+\end{verbatim}
+
+or from make as follows:
+
+\texttt{\$ make test}

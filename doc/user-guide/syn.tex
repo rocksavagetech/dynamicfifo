@@ -1,10 +1,138 @@
+% chktex-file 44
 \section{Synthesis}
 
-This section is under construction and will be completed as the code is
-completed. But will include the following subsections:
+\subsection{Area}
 
-\begin{itemize}
-  \item Explanation of the .sdc file % chktex 26 
-  \item List of false or multicycle paths
-  \item Expected synthesis results
-\end{itemize}
+The DynamicFifo has been tested in a number of configurations and the following
+results should be representative of what a user should see in their own
+technology.
+
+\renewcommand*{\arraystretch}{1.4}
+\begin{longtable}[H]{
+    | p{0.20\textwidth}
+    | p{0.15\textwidth}
+    | p{0.15\textwidth}
+    | p{0.15\textwidth}
+    | p{0.15\textwidth} |
+  }
+  \hline
+  \textbf{Config Name}   &
+  \textbf{externalRAM}   &
+  \textbf{dataWidth}     &
+  \textbf{fifoDepth}     &
+  \textbf{Gates}           \\ \hline \hline
+
+  small\_false\_8\_8     &
+  false                  &
+  8                      &
+  8                      &
+  769                      \\ \hline
+
+  medium\_false\_32\_64  &
+  false                  &
+  32                     &
+  64                     &
+  19,283                   \\ \hline
+
+  large\_false\_64\_256  &
+  false                  &
+  64                     &
+  256                    &
+  152,808                  \\ \hline
+
+  small\_true\_64\_256   &
+  true                   &
+  64                     &
+  256                    &
+  355                      \\ \hline
+
+  medium\_true\_128\_128 &
+  true                   &
+  128                    &
+  128                    &
+  477                      \\ \hline
+
+  large\_true\_256\_2048 &
+  true                   &
+  256                    &
+  2048                   &
+  502                      \\ \hline
+  \caption{Synthesis results}\label{table:area}
+\end{longtable}
+
+\subsection{SDC File}
+An \texttt{.sdc} file is used to provide synthesis and static timing analysis
+tools guidance for synthesis.
+
+A \texttt{DynamicFifo.sdc} file is generated for each configuration of
+the SystemVerilog code that is emitted and is found in the
+\texttt{./generated/<config~name>} directory.
+
+\subsection{Timing}
+
+The following timing was extracted using the generated~.sdc files using the
+Nangate 45nm free library.
+
+\renewcommand*{\arraystretch}{1.4}
+\begin{longtable}[H]{
+    | p{0.20\textwidth}
+    | p{0.08\textwidth}
+    | p{0.12\textwidth}
+    | p{0.13\textwidth}
+    | p{0.15\textwidth}
+    | p{0.15\textwidth} |
+  }
+  \hline
+  \textbf{Config Name}   &
+  \textbf{Period}        &
+  \textbf{Duty Cycle}    &
+  \textbf{Input Delay}   &
+  \textbf{Output Delay}  &
+  \textbf{Slack}           \\ \hline \hline
+
+  small\_false\_8\_8     &
+  5ns                    &
+  50\%                   &
+  20\%                   &
+  20\%                   &
+  4.53 (MET)               \\ \hline
+
+  medium\_false\_32\_64  &
+  5ns                    &
+  50\%                   &
+  20\%                   &
+  20\%                   &
+  4.29 (MET)               \\ \hline
+
+  large\_false\_64\_256  &
+  5ns                    &
+  50\%                   &
+  20\%                   &
+  20\%                   &
+  4.40 (MET)               \\ \hline
+
+  small\_true\_64\_256   &
+  5ns                    &
+  50\%                   &
+  20\%                   &
+  20\%                   &
+  4.40 (MET)               \\ \hline
+
+  medium\_true\_128\_128 &
+  5ns                    &
+  50\%                   &
+  20\%                   &
+  20\%                   &
+  4.30 (MET)               \\ \hline
+
+  large\_true\_256\_2048 &
+  5ns                    &
+  50\%                   &
+  20\%                   &
+  20\%                   &
+  4.37 (MET)               \\ \hline
+  \caption{Staic Timing Analysis results}\label{table:timing}
+\end{longtable}
+
+\subsection{Multicycle Paths}
+None.

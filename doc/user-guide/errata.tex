@@ -3,16 +3,17 @@
 \subsection{Errata}
 \begin{itemize}
       \item{
-            Care should be taken in creating instances of \textbf{DynamicFifo} 
-            with internal very large memory (hundreds or thousands of memory 
-            cells) as this can generate very large designs. There is currently 
+            Care should be taken in creating instances of \textbf{DynamicFifo}
+            with internal very large memory (hundreds or thousands of memory
+            cells) as this can generate very large designs. There is currently
             no checks or constraints on users from doing this.
             }
+
       \item{
-            Care should be taken regarding dynamically changing the values on 
-            the \textit{almostEmptyLevel} and \textit{almostFullLevel} ports 
-            when the FIFO is not empty as that may result in unpredictable 
-            behaviors on the four empty and full flags.
+            Care should be taken regarding dynamically changing the values on
+            the \textit{almostEmptyLevel} and \textit{almostFullLevel} ports
+            when the FIFO is not empty as that may result in unpredictable
+            behaviors on the \textit{almostEmpty} and \textit{almostFull} flags.
             }
 \end{itemize}
 
