@@ -8,6 +8,7 @@ package tech.rocksavage.chiselware.DynamicFifo
 
 import chisel3._
 import chisel3.util._
+import java.io.{File, PrintWriter}
 import _root_.circt.stage.ChiselStage
 
 /** A synchronous FIFO and FIFO controller with dynamic flags
@@ -83,7 +84,9 @@ class DynamicFifo(p: BaseParams) extends Module {
 
   // Collect code coverage points
   if (p.coverage) {
+    // count clock ticks to allow for coverage computation
     val tick = true.B
+
     for (bit <- 0 to p.dataWidth - 1) {
       cover(io.dataOut(bit)).suggestName(s"io_dataOut_$bit")
       cover(io.dataIn(bit)).suggestName(s"io_dataIn_$bit")
@@ -118,6 +121,58 @@ class DynamicFifo(p: BaseParams) extends Module {
     }
   }
 
+  /** Generate a basic SDC file for use with post-synthesis static timing
+    * analysis
+    *
+    * The illustration below shows the basic elements captured in an SDC file.
+    * The follow variables are as follows:
+    *
+    * period inverse of the expected operating frequency dutyCycle ratio of time
+    * when the clock is high and low (typ. 50%) inputDelay time when the data is
+    * valid from the last rising clock edge outputDelay time when the data is
+    * valid to the next rising clock edge
+    *
+    * \+-------+ a-| | \| and |--> c b-| | \+-------+
+    *
+    * \|<--------->| Period \|<--->|<--->| Duty Cycle _____ _____ _____ clock
+    * _____| |_____| |_____| \|_____
+    *
+    * \|<->| |<->| Input Delay _______________________________ a ________ |
+    * ___________________ b _____________________| \|<->| Output Delay
+    * _______________ c _________________________|
+    */
+
+// Basic constraints
+  val period      = 5.000 // ns
+  val dutyCycle   = 0.50
+  val inputDelay  = 0.2
+  val outputDelay = 0.2
+  val fallingEdge = period * dutyCycle
+  val sdc         = new File("./syn/DynamicFifo.sdc")
+  val sdcFile     = new PrintWriter(sdc)
+
+  val sdcFileData = s"""
+    create_clock -period $period -waveform {0 $fallingEdge} -name clock
+    set_input_delay -clock clock $inputDelay {reset}
+    set_input_delay -clock clock $inputDelay {io_pop}
+    set_input_delay -clock clock $inputDelay {io_push}
+    set_input_delay -clock clock $inputDelay {io_dataIn}
+    set_input_delay -clock clock $inputDelay {io_almostFullLevel}
+    set_input_delay -clock clock $inputDelay {io_almostEmptyLevel}
+    set_input_delay -clock clock $inputDelay {io_ramDataOut}
+    set_output_delay -clock clock $outputDelay {io_dataOut}
+    set_output_delay -clock clock $outputDelay {io_empty}
+    set_output_delay -clock clock $outputDelay {io_full}
+    set_output_delay -clock clock $outputDelay {io_almostEmpty}
+    set_output_delay -clock clock $outputDelay {io_almostFull}
+    set_output_delay -clock clock $outputDelay {io_ramDataIn}
+    set_output_delay -clock clock $outputDelay {io_ramWriteEnable}
+    set_output_delay -clock clock $outputDelay {io_ramReadEnable}
+  """.stripMargin
+
+  sdcFile.write(s"${sdcFileData}")
+  sdcFile.close()
+
 }
 
 /** Generate Verilog */
@@ -135,7 +190,7 @@ object DynamicFifo extends App {
       "--strip-debug-info",
       "--verilog",
       "--split-verilog",
-      "-o=generated",
-    ),
+      "-o=generated"
+    )
   )
 }
