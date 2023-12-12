@@ -52,4 +52,8 @@ do
   echo -e "$testCase = \t $timing" >> ../../syn/timing.rpt 
   cd ../../syn
 done
+
 echo ""
+cat area.rpt
+echo ""
+cat timing.rpt

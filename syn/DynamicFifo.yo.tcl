@@ -13,6 +13,7 @@ close $f
 # Synthesize, optimize, write out netlist and report
 hierarchy -check -top $top
 synth -top $top
+flatten
 dfflibmap -liberty $techLib
 abc -liberty $techLib
 opt_clean -purge

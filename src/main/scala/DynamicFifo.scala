@@ -121,32 +121,51 @@ class DynamicFifo(p: BaseParams) extends Module {
     }
   }
 
+  //format: off
   /** Generate a basic SDC file for use with post-synthesis static timing
     * analysis
     *
     * The illustration below shows the basic elements captured in an SDC file.
+    * 
     * The follow variables are as follows:
+    *   period: inverse of the expected operating frequency 
+    *   dutyCycle: ratio of time when the clock is high and low (typ. 50%) 
+    *   inputDelay: time when the data is valid from the last rising clock edge 
+    *   outputDelay: time when the data is valid to the next rising clock edge
     *
-    * period inverse of the expected operating frequency dutyCycle ratio of time
-    * when the clock is high and low (typ. 50%) inputDelay time when the data is
-    * valid from the last rising clock edge outputDelay time when the data is
-    * valid to the next rising clock edge
+    *   +-------+ 
+    * a-|       |
+    *   |  and  |--> c 
+    * b-|       | 
+    *   +-------+
     *
-    * \+-------+ a-| | \| and |--> c b-| | \+-------+
+    *            |<--------->| Period 
+    *            |<--->|<--->| Duty Cycle 
+    *             _____       _____       _____ 
+    * clock _____|     |_____|     |_____|     |_____
     *
-    * \|<--------->| Period \|<--->|<--->| Duty Cycle _____ _____ _____ clock
-    * _____| |_____| |_____| \|_____
+    *            |<->|       |<->| Input Delay 
+    *                 _______________________________
+    *     a _________|
+    *                             ___________________ 
+    *     b _____________________| 
+    * 
+    *                                |<->| Output Delay
+    *                                ________________ 
+    * c ____________________________|
     *
-    * \|<->| |<->| Input Delay _______________________________ a ________ |
-    * ___________________ b _____________________| \|<->| Output Delay
-    * _______________ c _________________________|
     */
+  //format:on 
 
-// Basic constraints
+  // Basic constraints
   val period      = 5.000 // ns
   val dutyCycle   = 0.50
-  val inputDelay  = 0.2
-  val outputDelay = 0.2
+  val inputDelayPct = 0.2
+  val outputDelayPct = 0.2
+
+  // Calculated constraints, override as needed below
+  val inputDelay  = period * inputDelayPct
+  val outputDelay = period * outputDelayPct
   val fallingEdge = period * dutyCycle
   val sdc         = new File("./syn/DynamicFifo.sdc")
   val sdcFile     = new PrintWriter(sdc)
