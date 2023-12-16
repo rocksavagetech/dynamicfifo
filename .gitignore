@@ -1,0 +1,22 @@
+# General
+*.swp
+
+# Chisel
+generated/*
+project/*
+target/*
+
+# Visual Studio
+.vscode
+.metals
+.bloop
+.bsp
+
+# DynamicFifo specific
+!*.rpt
+!generated/test.rpt
+!generated/*.cov
+!generated/*/*.rpt
+!generated/*/yosys.log
+#!syn/*.rpt
+

@@ -61,12 +61,11 @@ technology.
 \end{longtable}
 
 \subsection{SDC File}
-An \texttt{.sdc} file is used to provide synthesis and static timing analysis
-tools guidance for synthesis.
+An \texttt{.sdc} file is generated to provide synthesis and static timing
+analysis tools guidance for synthesis.
 
-A \texttt{DynamicFifo.sdc} file is generated for each configuration of
-the SystemVerilog code that is emitted and is found in the
-\texttt{./generated/<config~name>} directory.
+The \texttt{DynamicFifo.sdc} file is emitted and found in the
+\texttt{./syn} directory.
 
 \subsection{Timing}
 
@@ -131,7 +130,7 @@ Nangate 45nm free library.
   20\%                   &
   20\%                   &
   2.77 (MET)               \\ \hline
-  \caption{Staic Timing Analysis results}\label{table:timing}
+  \caption{Static Timing Analysis results}\label{table:timing}
 \end{longtable}
 
 \subsection{Multicycle Paths}

@@ -175,7 +175,11 @@ class DynamicFifoTest
           .get
           .toMap
 
-        val coverageFile = "generated/" + testName + ".cov"
+        val testConfig =
+          myParams.externalRam.toString + "_" +
+            myParams.dataWidth.toString + "_" +
+            myParams.fifoDepth.toString
+        val coverageFile = "generated/" + testName + "_" + testConfig + ".cov"
         val stuckAtFault = checkCoverage(coverage, coverageFile)
         if (stuckAtFault)
           fail("At least one IO port did not toggle -- see coverage file")
@@ -186,7 +190,7 @@ class DynamicFifoTest
 
   // Execute the regression across a randomized range of configurations
   (1 to numTests).foreach { config =>
-    main(s"DynamicFifo-test-config-$config")
+    main(s"DynamicFifo_test_config_$config")
   }
 
 }

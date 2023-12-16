@@ -22,7 +22,7 @@ the ability for dynamic flow control.
 ## Getting Started
 
 It is recommended that the user reads the DynamicFiFo Users Guide can be 
-found in the ```./doc/pdf``` directory.
+found in the ```./doc/user-guide``` directory.
 
 ### Dependencies
 
@@ -39,6 +39,11 @@ The utilities are imported to the test program as follows:
 ```
 import tech.rocksavage.chiselware.util.TestUtils.{randData, checkCoverage}
 ```
+Other non-Chisel-related dependencies are for two other open-source tools 
+that are needed (only) for running the included synthesis regression tests:
+
+* **[Yosys](https://yosyshq.net/yosys/)** (version 0.9) A synthesis and optimization (using ABC) tool
+* **[OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA)** (version 2.4.0) A static timing analysis tool
 
 ### Installation
 
@@ -48,13 +53,13 @@ directory for standalone use.
 
 ### Generating Verilog RTL
 
-To generate the System Verilog RTL, a helper app can be found in the main class 
-file (DynamicFifo.scala) and executed as follows:
+To generate an example configuration of SystemVerilog RTL, a helper app can be 
+found in the main class file (DynamicFifo.scala) and executed as follows:
 
 ```
 $ sbt
 sbt:dynamicfifo>
-sbt:dynamicfifo> runMain chiselWare.DynamicFifo
+sbt:dynamicfifo> runMain tech.rocksavage.chiselware.DynamicFifo.Main
 ```
 
 The RTL will be generated in the ```./generated``` directory.
@@ -63,23 +68,31 @@ The RTL will be generated in the ```./generated``` directory.
 
 Multiple options are available for running simulations:
 
-* iVerilog (open source Verilog simulator)
+* iVerilog (open-source Verilog simulator)
 * VCS (commercial simulator from Synopsys)
 * Verilator (open source compiled Verilog simulator) 
 
-To run all the tests:
+An exhaustive constrained-random verilog test is included and can be executed 
+as follows:
 
 ```
 $ sbt
 sbt:DynamicFifo>
-sbt:DynamicFifo> testOnly chiselWare.DynamicFifoTest
+sbt:DynamicFifo> test
 ```
 
 ### Synthesis
 
-DynamicFifo is a DFT-clean, fully synthesizable core. An ```.sdc``` file and
-synthesis scripts for Yosys are included in the ```./syn``` directory and can be
-easily ported to commercial synthesis tools.
+DynamicFifo is a DFT-clean, fully synthesizable core. 
+
+A ```.sdc``` file is generated together with the RTL code.  Synthesis scripts 
+for Yosys are included in the ```./syn``` directory and can be easily ported to 
+commercial synthesis tools. Static timing analysis is also performed using 
+OpenSTA.
+
+Included also is the Nangate 45nm technology library to allow users to run
+included synthesis regressions out-of-the-box and later change to their 
+technology library of choice.
 
 ## Authors
 

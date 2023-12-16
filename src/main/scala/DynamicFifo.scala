@@ -195,7 +195,7 @@ class DynamicFifo(p: BaseParams) extends Module {
 }
 
 /** Generate Verilog */
-object DynamicFifo extends App {
+object Main extends App {
   val myParams = BaseParams(
     externalRam = true,
     dataWidth = 128,

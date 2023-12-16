@@ -1,0 +1,461 @@
+[info] welcome to sbt 1.4.9 (Ubuntu Java 11.0.21)
+[info] loading project definition from /home/system76/drive/projects/chiselWare/dynamicfifo/project
+[info] loading settings for project root from build.sbt ...
+[info] set current project to dynamicfifo (in build file:/home/system76/drive/projects/chiselWare/dynamicfifo/)
+[info] DynamicFifoTest:
+[info] DynamicFifo_test_config_1
+[info] - should test this configuration
+[info]   + Test Data Size = 1792 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 128 
+[info]   + Almost Full Threshold = 101 
+[info]   + Almost Empty Threshold = 6 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_2
+[info] - should test this configuration
+[info]   + Test Data Size = 448 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 32 
+[info]   + Almost Full Threshold = 24 
+[info]   + Almost Empty Threshold = 5 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_3
+[info] - should test this configuration
+[info]   + Test Data Size = 64 
+[info]   + Data Width = 6 
+[info]   + FIFO Depth = 4 
+[info]   + Almost Full Threshold = 3 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_4
+[info] - should test this configuration
+[info]   + Test Data Size = 4608 
+[info]   + Data Width = 128 
+[info]   + FIFO Depth = 256 
+[info]   + Almost Full Threshold = 232 
+[info]   + Almost Empty Threshold = 40 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_5
+[info] - should test this configuration
+[info]   + Test Data Size = 5120 
+[info]   + Data Width = 32 
+[info]   + FIFO Depth = 512 
+[info]   + Almost Full Threshold = 465 
+[info]   + Almost Empty Threshold = 102 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_6
+[info] - should test this configuration
+[info]   + Test Data Size = 3328 
+[info]   + Data Width = 16 
+[info]   + FIFO Depth = 256 
+[info]   + Almost Full Threshold = 197 
+[info]   + Almost Empty Threshold = 38 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_7
+[info] - should test this configuration
+[info]   + Test Data Size = 272 
+[info]   + Data Width = 4 
+[info]   + FIFO Depth = 16 
+[info]   + Almost Full Threshold = 12 
+[info]   + Almost Empty Threshold = 1 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_8
+[info] - should test this configuration
+[info]   + Test Data Size = 128 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 6 
+[info]   + Almost Empty Threshold = 1 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_9
+[info] - should test this configuration
+[info]   + Test Data Size = 3584 
+[info]   + Data Width = 64 
+[info]   + FIFO Depth = 256 
+[info]   + Almost Full Threshold = 222 
+[info]   + Almost Empty Threshold = 7 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_10
+[info] - should test this configuration
+[info]   + Test Data Size = 28672 
+[info]   + Data Width = 16 
+[info]   + FIFO Depth = 2048 
+[info]   + Almost Full Threshold = 1761 
+[info]   + Almost Empty Threshold = 143 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_11
+[info] - should test this configuration
+[info]   + Test Data Size = 2560 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 256 
+[info]   + Almost Full Threshold = 199 
+[info]   + Almost Empty Threshold = 53 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_12
+[info] - should test this configuration
+[info]   + Test Data Size = 26624 
+[info]   + Data Width = 6 
+[info]   + FIFO Depth = 2048 
+[info]   + Almost Full Threshold = 1863 
+[info]   + Almost Empty Threshold = 389 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_13
+[info] - should test this configuration
+[info]   + Test Data Size = 704 
+[info]   + Data Width = 6 
+[info]   + FIFO Depth = 64 
+[info]   + Almost Full Threshold = 51 
+[info]   + Almost Empty Threshold = 6 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_14
+[info] - should test this configuration
+[info]   + Test Data Size = 7680 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 512 
+[info]   + Almost Full Threshold = 481 
+[info]   + Almost Empty Threshold = 66 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_15
+[info] - should test this configuration
+[info]   + Test Data Size = 112 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 7 
+[info]   + Almost Empty Threshold = 1 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_16
+[info] - should test this configuration
+[info]   + Test Data Size = 3840 
+[info]   + Data Width = 32 
+[info]   + FIFO Depth = 256 
+[info]   + Almost Full Threshold = 232 
+[info]   + Almost Empty Threshold = 25 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_17
+[info] - should test this configuration
+[info]   + Test Data Size = 1216 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 64 
+[info]   + Almost Full Threshold = 56 
+[info]   + Almost Empty Threshold = 6 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_18
+[info] - should test this configuration
+[info]   + Test Data Size = 38912 
+[info]   + Data Width = 64 
+[info]   + FIFO Depth = 2048 
+[info]   + Almost Full Threshold = 1802 
+[info]   + Almost Empty Threshold = 225 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_19
+[info] - should test this configuration
+[info]   + Test Data Size = 208 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 16 
+[info]   + Almost Full Threshold = 12 
+[info]   + Almost Empty Threshold = 2 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_20
+[info] - should test this configuration
+[info]   + Test Data Size = 2816 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 256 
+[info]   + Almost Full Threshold = 232 
+[info]   + Almost Empty Threshold = 38 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_21
+[info] - should test this configuration
+[info]   + Test Data Size = 272 
+[info]   + Data Width = 6 
+[info]   + FIFO Depth = 16 
+[info]   + Almost Full Threshold = 12 
+[info]   + Almost Empty Threshold = 1 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_22
+[info] - should test this configuration
+[info]   + Test Data Size = 5120 
+[info]   + Data Width = 64 
+[info]   + FIFO Depth = 512 
+[info]   + Almost Full Threshold = 481 
+[info]   + Almost Empty Threshold = 40 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_23
+[info] - should test this configuration
+[info]   + Test Data Size = 352 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 32 
+[info]   + Almost Full Threshold = 25 
+[info]   + Almost Empty Threshold = 1 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_24
+[info] - should test this configuration
+[info]   + Test Data Size = 60 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 4 
+[info]   + Almost Full Threshold = 3 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_25
+[info] - should test this configuration
+[info]   + Test Data Size = 608 
+[info]   + Data Width = 32 
+[info]   + FIFO Depth = 32 
+[info]   + Almost Full Threshold = 24 
+[info]   + Almost Empty Threshold = 7 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_26
+[info] - should test this configuration
+[info]   + Test Data Size = 896 
+[info]   + Data Width = 5 
+[info]   + FIFO Depth = 64 
+[info]   + Almost Full Threshold = 55 
+[info]   + Almost Empty Threshold = 12 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_27
+[info] - should test this configuration
+[info]   + Test Data Size = 1280 
+[info]   + Data Width = 64 
+[info]   + FIFO Depth = 128 
+[info]   + Almost Full Threshold = 97 
+[info]   + Almost Empty Threshold = 11 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_28
+[info] - should test this configuration
+[info]   + Test Data Size = 288 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 16 
+[info]   + Almost Full Threshold = 14 
+[info]   + Almost Empty Threshold = 2 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_29
+[info] - should test this configuration
+[info]   + Test Data Size = 15360 
+[info]   + Data Width = 64 
+[info]   + FIFO Depth = 1024 
+[info]   + Almost Full Threshold = 808 
+[info]   + Almost Empty Threshold = 40 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_30
+[info] - should test this configuration
+[info]   + Test Data Size = 512 
+[info]   + Data Width = 16 
+[info]   + FIFO Depth = 32 
+[info]   + Almost Full Threshold = 27 
+[info]   + Almost Empty Threshold = 4 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_31
+[info] - should test this configuration
+[info]   + Test Data Size = 112 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 7 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_32
+[info] - should test this configuration
+[info]   + Test Data Size = 20480 
+[info]   + Data Width = 64 
+[info]   + FIFO Depth = 2048 
+[info]   + Almost Full Threshold = 1843 
+[info]   + Almost Empty Threshold = 409 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_33
+[info] - should test this configuration
+[info]   + Test Data Size = 48 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 4 
+[info]   + Almost Full Threshold = 3 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_34
+[info] - should test this configuration
+[info]   + Test Data Size = 128 
+[info]   + Data Width = 32 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 6 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_35
+[info] - should test this configuration
+[info]   + Test Data Size = 4096 
+[info]   + Data Width = 4 
+[info]   + FIFO Depth = 256 
+[info]   + Almost Full Threshold = 209 
+[info]   + Almost Empty Threshold = 15 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_36
+[info] - should test this configuration
+[info]   + Test Data Size = 30720 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 2048 
+[info]   + Almost Full Threshold = 1679 
+[info]   + Almost Empty Threshold = 368 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_37
+[info] - should test this configuration
+[info]   + Test Data Size = 6656 
+[info]   + Data Width = 16 
+[info]   + FIFO Depth = 512 
+[info]   + Almost Full Threshold = 471 
+[info]   + Almost Empty Threshold = 35 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_38
+[info] - should test this configuration
+[info]   + Test Data Size = 80 
+[info]   + Data Width = 5 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 7 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_39
+[info] - should test this configuration
+[info]   + Test Data Size = 19456 
+[info]   + Data Width = 6 
+[info]   + FIFO Depth = 1024 
+[info]   + Almost Full Threshold = 890 
+[info]   + Almost Empty Threshold = 30 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_40
+[info] - should test this configuration
+[info]   + Test Data Size = 768 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 64 
+[info]   + Almost Full Threshold = 56 
+[info]   + Almost Empty Threshold = 15 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_41
+[info] - should test this configuration
+[info]   + Test Data Size = 19456 
+[info]   + Data Width = 128 
+[info]   + FIFO Depth = 1024 
+[info]   + Almost Full Threshold = 839 
+[info]   + Almost Empty Threshold = 245 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_42
+[info] - should test this configuration
+[info]   + Test Data Size = 7680 
+[info]   + Data Width = 16 
+[info]   + FIFO Depth = 512 
+[info]   + Almost Full Threshold = 445 
+[info]   + Almost Empty Threshold = 30 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_43
+[info] - should test this configuration
+[info]   + Test Data Size = 52 
+[info]   + Data Width = 128 
+[info]   + FIFO Depth = 4 
+[info]   + Almost Full Threshold = 3 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_44
+[info] - should test this configuration
+[info]   + Test Data Size = 7680 
+[info]   + Data Width = 64 
+[info]   + FIFO Depth = 512 
+[info]   + Almost Full Threshold = 440 
+[info]   + Almost Empty Threshold = 76 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_45
+[info] - should test this configuration
+[info]   + Test Data Size = 88 
+[info]   + Data Width = 4 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 6 
+[info]   + Almost Empty Threshold = 1 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_46
+[info] - should test this configuration
+[info]   + Test Data Size = 1664 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 128 
+[info]   + Almost Full Threshold = 101 
+[info]   + Almost Empty Threshold = 12 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_47
+[info] - should test this configuration
+[info]   + Test Data Size = 288 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 16 
+[info]   + Almost Full Threshold = 12 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_48
+[info] - should test this configuration
+[info]   + Test Data Size = 56 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 4 
+[info]   + Almost Full Threshold = 3 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_49
+[info] - should test this configuration
+[info]   + Test Data Size = 8192 
+[info]   + Data Width = 4 
+[info]   + FIFO Depth = 512 
+[info]   + Almost Full Threshold = 481 
+[info]   + Almost Empty Threshold = 61 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] DynamicFifo_test_config_50
+[info] - should test this configuration
+[info]   + Test Data Size = 28672 
+[info]   + Data Width = 64 
+[info]   + FIFO Depth = 2048 
+[info]   + Almost Full Threshold = 1658 
+[info]   + Almost Empty Threshold = 184 
+[info]   + -------------------------------- 
+[info]   + Coverage report generated 
+[info] Run completed in 4 minutes, 4 seconds.
+[info] Total number of tests run: 50
+[info] Suites: completed 1, aborted 0
+[info] Tests: succeeded 50, failed 0, canceled 0, ignored 0, pending 0
+[info] All tests passed.
+[success] Total time: 246 s (04:06), completed Dec 16, 2023, 11:34:09 AM

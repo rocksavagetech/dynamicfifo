@@ -2,8 +2,8 @@
 
 \subsection{Introduction}
 The \textbf{DynamicFifo} is a highly parameterized FIFO and FIFO controller. It
-is configurable as a full self-contained FIFO with internal memory being 
-constructed from flip-flops, or a FIFO controller that uses an external SRAM 
+is configurable as a full self-contained FIFO with internal memory being
+constructed from flip-flops, or a FIFO controller that uses an external SRAM
 for memory.
 
 \begin{figure}[h]
@@ -23,8 +23,8 @@ Table~\ref{table:ports}.
 
 When \textit{push} is asserted, the data on the \textit{dataIn} port is enqued
 on the next rising edge of \textit{clock}. When \textit{pop} is asserted, the
-top of the FIFO is dequed on the next rising edge of \textit{clock} Pop and Push
-operations can be simulataneous.
+top of the FIFO is dequed and immediately available on the \textit{dataOut}
+port. Pop and Push operations can be simulataneous.
 
 There are two error conditions which produce the following effects:
 \begin{itemize}
@@ -44,7 +44,7 @@ levels of these flags can be programmed dynamically through the
 \subsection{Interface Timing}
 
 DynamicFifo has a simple, synchronous interface. The timing diagram shown below
-in Figure~\ref{fig:timing} represents an instantiation with the following 
+in Figure~\ref{fig:timing} represents an instantiation with the following
 parameters.
 
 \begin{lstlisting}[language=Scala]
@@ -59,10 +59,10 @@ val myFifo = new DynamicFifo(
   \caption{Timing Diagram}\label{fig:timing}
 \end{figure}
 
-The \textit{almostEmptyLevel} port is driven by external logic to a static value 
+The \textit{almostEmptyLevel} port is driven by external logic to a static value
 of 1 after reset and the \textit{almostFull} port is driven to 3.
 
-Beginning in the third clock cycle, 5 words of data are pushed into the 
+Beginning in the third clock cycle, 5 words of data are pushed into the
 FIFO.\ The status flags show the FIFO going from empty to full.
 
 The FIFO is then fully emptied when the \textit{pop} port is help high for
