@@ -1,0 +1,6 @@
+small_false_8_8 = 	            2.93   slack (MET)
+medium_false_32_64 = 	            2.69   slack (MET)
+large_false_64_256 = 	            2.80   slack (MET)
+small_true_64_256 = 	            2.80   slack (MET)
+medium_true_128_128 = 	            2.70   slack (MET)
+large_true_256_2048 = 	            2.77   slack (MET)

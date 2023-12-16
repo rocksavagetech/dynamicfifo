@@ -18,5 +18,4 @@ target/*
 !generated/*.cov
 !generated/*/*.rpt
 !generated/*/yosys.log
-#!syn/*.rpt
 
