@@ -15,12 +15,12 @@ object GenVerilog extends App {
   // Create a map with configurations to generate
   val config = Map(
     // name  -> externalRam, dataWidth, fifoDepth
-    "small_false_8_8"  -> Vector(false, 8, 8),
-    "medium_false_32_64" -> Vector(false, 32, 64),
+    "small_false_8_8"     -> Vector(false, 8, 8),
+    "medium_false_32_64"  -> Vector(false, 32, 64),
     "large_false_64_256"  -> Vector(false, 64, 256),
-    "small_true_64_256"  -> Vector(true, 64, 256),
+    "small_true_64_256"   -> Vector(true, 64, 256),
     "medium_true_128_128" -> Vector(true, 128, 1028),
-    "large_true_256_2048"  -> Vector(true, 256, 2048)
+    "large_true_256_2048" -> Vector(true, 256, 2048)
   )
 
   config.foreach { case (testName, paramVec) =>
@@ -48,7 +48,7 @@ object GenVerilog extends App {
         "--disable-all-randomization",
         "--strip-debug-info",
         "--split-verilog",
-        s"-o=generated/$testName"
+        s"-o=generated/synTestCases/$testName"
       )
     )
   }

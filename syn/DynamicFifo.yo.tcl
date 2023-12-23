@@ -1,5 +1,5 @@
 set top "DynamicFifo"
-set techLib "../../syn/stdcells.lib"
+set techLib "../../../syn/stdcells.lib"
 
 yosys -import
 

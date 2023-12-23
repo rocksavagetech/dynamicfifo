@@ -12,11 +12,13 @@ import chiseltest._
 import chiseltest.coverage._
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
+import org.scalatest.Assertions._
 import firrtl2.options.TargetDirAnnotation
 import scala.util.Random
 import scala.math.pow
 import scala.collection.mutable.Stack
 import scala.collection.immutable.ListMap
+import java.io.{File, FileWriter, PrintWriter, BufferedWriter}
 import tech.rocksavage.chiselware.util.TestUtils.{randData, checkCoverage}
 
 /** Highly randomized test suite driven by configuration parameters. Includes
@@ -179,18 +181,46 @@ class DynamicFifoTest
           myParams.externalRam.toString + "_" +
             myParams.dataWidth.toString + "_" +
             myParams.fifoDepth.toString
-        val coverageFile = "generated/" + testName + "_" + testConfig + ".cov"
+
+        val verCoverageDir = new File("generated/verilogCoverage")
+        verCoverageDir.mkdir()
+        val coverageFile =
+          verCoverageDir.toString + "/" + testName + "_" + testConfig + ".cov"
+
         val stuckAtFault = checkCoverage(coverage, coverageFile)
         if (stuckAtFault)
-          fail("At least one IO port did not toggle -- see coverage file")
-        info("Coverage report generated")
+          fail(s"At least one IO port did not toggle -- see $coverageFile")
+        info(s"Verilog Coverage report written to $coverageFile")
       }
     }
   }
 
+  // Create a directory for storing coverage reportsG
+  val scalaCoverageDir = new File("generated/scalaCoverage")
+  scalaCoverageDir.mkdir()
+
   // Execute the regression across a randomized range of configurations
   (1 to numTests).foreach { config =>
     main(s"DynamicFifo_test_config_$config")
+  }
+
+  // Test that illegal combinations are caught
+  it should "throw an assertion when dataWidth parameter is less than 4" in {
+    val myParams = assertThrows[IllegalArgumentException] {
+      BaseParams(
+        dataWidth = 3,
+        bbFiles = List("dual_port_sync_sram.v")
+      )
+    }
+  }
+
+  it should "throw an assertion when fifoDepth parameter is not a power of 2" in {
+    val myParams = assertThrows[IllegalArgumentException] {
+      BaseParams(
+        fifoDepth = 7,
+        bbFiles = List("dual_port_sync_sram.v")
+      )
+    }
   }
 
 }

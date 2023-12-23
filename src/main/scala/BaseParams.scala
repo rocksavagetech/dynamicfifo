@@ -11,12 +11,12 @@ import chisel3._
 import chisel3.util._
 
 /** Default parameter settings for Dynamic FIFO
-  * 
+  *
   * @constructor
   *   default parameter settings
   * @param dataWidth
-  * 
-  *   specifies the width of the FIFO data
+  *
+  * specifies the width of the FIFO data
   * @param fifoDepth
   *   specifices the depth of the FIFO
   * @param externalRam
@@ -29,7 +29,6 @@ import chisel3.util._
   *
   * @see
   *   [[http://www.rocksavage.tech]] for more information
-  *
   */
 case class BaseParams(
     dataWidth: Int = 8,
@@ -39,6 +38,6 @@ case class BaseParams(
     bbFiles: List[String] = List("your_sram.v")
 ) {
 
+  require(dataWidth >= 4, "Width must be greater than or equal 4")
   require((fifoDepth % 2) == 0, "Depth must be a power of 2")
-  require(dataWidth >= 4, "Width must be greater than equal 4")
 }

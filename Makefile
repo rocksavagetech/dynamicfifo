@@ -3,16 +3,26 @@ MAKEFLAGS += --silent
 SBT = sbt
 	
 # Run everything and scan for errors
-all: clean publish docs test yosys
+all: clean publish docs cov yosys check
+
+check: 
+	@echo 
 	@echo Checking for errors
-	grep error */*.rpt */*/*.rpt */*/*.log | tee error.rpt
-	grep Error */*.rpt */*/*.rpt */*/*.log | tee -a error.rpt
-	grep fail */*.rpt */*/*.rpt */*/*.log | grep -v "failed 0" | tee -a error.rpt
+	grep error */*.rpt */*/*/*.rpt */*/*/*.log | tee error.rpt
+	grep Error */*.rpt */*/*/*.rpt */*/*/*.log | tee -a error.rpt
+	grep fail */*.rpt */*/*/*.rpt */*/*/*.log | grep -v "failed 0" | tee -a error.rpt
+	@echo; 
+	if [ ! -s error.rpt ]; \
+	then echo "\e[1;32mALL TESTS PASSED WITH NO ERRORS \e[0m"; \
+	else echo "\e[1;31mTESTS COMPLETED WITH ERRORS \e[0m"; \
+	fi; 
+	@echo
 
 # Start with a fresh directory
 clean: 
 	@echo Cleaning
-	rm -rf generated project target *anno.json ./*.rpt doc/*.rpt syn/*.rpt
+	rm -rf generated target *anno.json ./*.rpt doc/*.rpt syn/*.rpt syn.log
+	rm -rf project/build.properties project/project project/target
 
 # Publish the documentation (locally)
 publish: 
@@ -44,6 +54,19 @@ test:
 	@echo Running tests
 	mkdir -p generated
 	$(SBT) "test" | tee generated/test.rpt
+
+# Run the tests with Scala code coverage enables
+cov:
+	@echo Running tests with coverage enabled
+	mkdir -p generated
+	mkdir -p generated/scalaCoverage
+	$(SBT) clean \
+	coverageOn \
+	test \
+	"runMain tech.rocksavage.chiselware.DynamicFifo.GenVerilog" \
+	"runMain tech.rocksavage.chiselware.DynamicFifo.Main" \
+	coverageReport | tee generated/test.rpt
+	google-chrome --new-window generated/scalaCoverage/scoverage-report/index.html &
 
 # Run synthesis on generated Verilog; generate timing and area reports
 yosys:
