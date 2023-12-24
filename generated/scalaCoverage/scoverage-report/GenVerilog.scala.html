@@ -1,0 +1,1078 @@
+<html>
+      <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title id="title">
+          GenVerilog.scala.html
+        </title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/css/theme.default.min.css" type="text/css"/><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.20.1/js/jquery.tablesorter.min.js"></script><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" type="text/css"/><script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {$(".tablesorter").tablesorter();});
+      </script>
+        <style>
+          table.codegrid { font-family: monospace; font-size: 12px; width: auto!important; }table.statementlist { width: auto!important; font-size: 13px; } table.codegrid td { padding: 0!important; border: 0!important } table td.linenumber { width: 40px!important; } 
+        </style>
+      </head>
+      <body style="font-family: monospace;">
+        <ul class="nav nav-tabs">
+          <li>
+            <a href="#codegrid" data-toggle="tab">Codegrid</a>
+          </li>
+          <li>
+            <a href="#statementlist" data-toggle="tab">Statement List</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="codegrid">
+            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>// This confidential and proprietary software may be used only as authorized by
+</span>2 <span style=''>// Rocksavage Technology, Inc. In the event of publication the following
+</span>3 <span style=''>// notice is applicable:
+</span>4 <span style=''>//
+</span>5 <span style=''>// (C) COPYRIGHT 2023 ROCKSAVAGE TECHNOLOGY, INC.
+</span>6 <span style=''>// ALL RIGHTS RESERVED
+</span>7 <span style=''>package tech.rocksavage.chiselware.DynamicFifo
+</span>8 <span style=''>
+</span>9 <span style=''>import chisel3._
+</span>10 <span style=''>import chisel3.util._
+</span>11 <span style=''>import _root_.circt.stage.ChiselStage
+</span>12 <span style=''>
+</span>13 <span style=''>// Generate some Verilog test cases for synthesis
+</span>14 <span style=''>object GenVerilog extends App {
+</span>15 <span style=''>  // Create a map with configurations to generate
+</span>16 <span style=''>  val config = </span><span style='background: #AEF1AE'>Map(
+</span>17 <span style=''></span><span style='background: #AEF1AE'>    // name  -&gt; externalRam, dataWidth, fifoDepth
+</span>18 <span style=''></span><span style='background: #AEF1AE'>    &quot;small_false_8_8&quot;     -&gt; Vector(false, 8, 8),
+</span>19 <span style=''></span><span style='background: #AEF1AE'>    &quot;medium_false_32_64&quot;  -&gt; Vector(false, 32, 64),
+</span>20 <span style=''></span><span style='background: #AEF1AE'>    &quot;large_false_64_256&quot;  -&gt; Vector(false, 64, 256),
+</span>21 <span style=''></span><span style='background: #AEF1AE'>    &quot;small_true_64_256&quot;   -&gt; Vector(true, 64, 256),
+</span>22 <span style=''></span><span style='background: #AEF1AE'>    &quot;medium_true_128_128&quot; -&gt; Vector(true, 128, 1028),
+</span>23 <span style=''></span><span style='background: #AEF1AE'>    &quot;large_true_256_2048&quot; -&gt; Vector(true, 256, 2048)
+</span>24 <span style=''></span><span style='background: #AEF1AE'>  )</span><span style=''>
+</span>25 <span style=''>
+</span>26 <span style=''>  </span><span style='background: #AEF1AE'>config.foreach { case (testName, paramVec) =&gt;
+</span>27 <span style=''></span><span style='background: #AEF1AE'>    val thisExternalRam = paramVec(0).asInstanceOf[Boolean]
+</span>28 <span style=''></span><span style='background: #AEF1AE'>    val thisDataWidth   = paramVec(1).asInstanceOf[Int]
+</span>29 <span style=''></span><span style='background: #AEF1AE'>    val thisFifoDepth   = paramVec(2).asInstanceOf[Int]
+</span>30 <span style=''></span><span style='background: #AEF1AE'>    val myParams = BaseParams(
+</span>31 <span style=''></span><span style='background: #AEF1AE'>      externalRam = thisExternalRam,
+</span>32 <span style=''></span><span style='background: #AEF1AE'>      dataWidth = thisDataWidth,
+</span>33 <span style=''></span><span style='background: #AEF1AE'>      fifoDepth = thisFifoDepth
+</span>34 <span style=''></span><span style='background: #AEF1AE'>    )
+</span>35 <span style=''></span><span style='background: #AEF1AE'>
+</span>36 <span style=''></span><span style='background: #AEF1AE'>    println(
+</span>37 <span style=''></span><span style='background: #AEF1AE'>      s&quot;Generating Verilog config: $testName\t&quot; +
+</span>38 <span style=''></span><span style='background: #AEF1AE'>        s&quot;externalRam = $thisExternalRam\t&quot; +
+</span>39 <span style=''></span><span style='background: #AEF1AE'>        s&quot;dataWidth = $thisDataWidth\t &quot; +
+</span>40 <span style=''></span><span style='background: #AEF1AE'>        s&quot;fifoDepth = $thisFifoDepth&quot;
+</span>41 <span style=''></span><span style='background: #AEF1AE'>    )
+</span>42 <span style=''></span><span style='background: #AEF1AE'>
+</span>43 <span style=''></span><span style='background: #AEF1AE'>    // Generate basic Verilog (suppress SV features with lowering, etc)
+</span>44 <span style=''></span><span style='background: #AEF1AE'>    ChiselStage.emitSystemVerilog(
+</span>45 <span style=''></span><span style='background: #AEF1AE'>      new DynamicFifo(myParams),
+</span>46 <span style=''></span><span style='background: #AEF1AE'>      firtoolOpts = Array(
+</span>47 <span style=''></span><span style='background: #AEF1AE'>        &quot;--lowering-options=disallowLocalVariables,disallowPackedArrays&quot;,
+</span>48 <span style=''></span><span style='background: #AEF1AE'>        &quot;--disable-all-randomization&quot;,
+</span>49 <span style=''></span><span style='background: #AEF1AE'>        &quot;--strip-debug-info&quot;,
+</span>50 <span style=''></span><span style='background: #AEF1AE'>        &quot;--split-verilog&quot;,
+</span>51 <span style=''></span><span style='background: #AEF1AE'>        s&quot;-o=generated/synTestCases/$testName&quot;
+</span>52 <span style=''></span><span style='background: #AEF1AE'>      )
+</span>53 <span style=''></span><span style='background: #AEF1AE'>    )
+</span>54 <span style=''></span><span style='background: #AEF1AE'>  }</span><span style=''>
+</span>55 <span style=''>}
+</span></pre>
+          </div>
+          <div class="tab-pane" id="statementlist">
+            <table cellspacing="0" cellpadding="0" class="table statementlist">
+      <tr>
+        <th>Line</th>
+        <th>Stmt Id</th>
+        <th>Pos</th>
+        <th>Tree</th>
+        <th>Symbol</th>
+        <th>Tests</th>
+        <th>Code</th>
+      </tr><tr>
+        <td>
+          16
+        </td>
+        <td>
+          356
+        </td>
+        <td>
+          527
+          -
+          899
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.MapFactory.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.Map.apply[String, scala.collection.immutable.Vector[AnyVal]](scala.Predef.ArrowAssoc[String](&quot;small_false_8_8&quot;).-&gt;[scala.collection.immutable.Vector[AnyVal]](scala.`package`.Vector.apply[AnyVal](false, 8, 8)), scala.Predef.ArrowAssoc[String](&quot;medium_false_32_64&quot;).-&gt;[scala.collection.immutable.Vector[AnyVal]](scala.`package`.Vector.apply[AnyVal](false, 32, 64)), scala.Predef.ArrowAssoc[String](&quot;large_false_64_256&quot;).-&gt;[scala.collection.immutable.Vector[AnyVal]](scala.`package`.Vector.apply[AnyVal](false, 64, 256)), scala.Predef.ArrowAssoc[String](&quot;small_true_64_256&quot;).-&gt;[scala.collection.immutable.Vector[AnyVal]](scala.`package`.Vector.apply[AnyVal](true, 64, 256)), scala.Predef.ArrowAssoc[String](&quot;medium_true_128_128&quot;).-&gt;[scala.collection.immutable.Vector[AnyVal]](scala.`package`.Vector.apply[AnyVal](true, 128, 1028)), scala.Predef.ArrowAssoc[String](&quot;large_true_256_2048&quot;).-&gt;[scala.collection.immutable.Vector[AnyVal]](scala.`package`.Vector.apply[AnyVal](true, 256, 2048)))
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          340
+        </td>
+        <td>
+          586
+          -
+          630
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.ArrowAssoc[String](&quot;small_false_8_8&quot;).-&gt;[scala.collection.immutable.Vector[AnyVal]](scala.`package`.Vector.apply[AnyVal](false, 8, 8))
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          339
+        </td>
+        <td>
+          611
+          -
+          630
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.IterableFactory.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.`package`.Vector.apply[AnyVal](false, 8, 8)
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          338
+        </td>
+        <td>
+          586
+          -
+          603
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;small_false_8_8&quot;
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          343
+        </td>
+        <td>
+          636
+          -
+          682
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.ArrowAssoc[String](&quot;medium_false_32_64&quot;).-&gt;[scala.collection.immutable.Vector[AnyVal]](scala.`package`.Vector.apply[AnyVal](false, 32, 64))
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          342
+        </td>
+        <td>
+          661
+          -
+          682
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.IterableFactory.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.`package`.Vector.apply[AnyVal](false, 32, 64)
+        </td>
+      </tr><tr>
+        <td>
+          19
+        </td>
+        <td>
+          341
+        </td>
+        <td>
+          636
+          -
+          656
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;medium_false_32_64&quot;
+        </td>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          346
+        </td>
+        <td>
+          688
+          -
+          735
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.ArrowAssoc[String](&quot;large_false_64_256&quot;).-&gt;[scala.collection.immutable.Vector[AnyVal]](scala.`package`.Vector.apply[AnyVal](false, 64, 256))
+        </td>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          345
+        </td>
+        <td>
+          713
+          -
+          735
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.IterableFactory.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.`package`.Vector.apply[AnyVal](false, 64, 256)
+        </td>
+      </tr><tr>
+        <td>
+          20
+        </td>
+        <td>
+          344
+        </td>
+        <td>
+          688
+          -
+          708
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;large_false_64_256&quot;
+        </td>
+      </tr><tr>
+        <td>
+          21
+        </td>
+        <td>
+          349
+        </td>
+        <td>
+          741
+          -
+          787
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.ArrowAssoc[String](&quot;small_true_64_256&quot;).-&gt;[scala.collection.immutable.Vector[AnyVal]](scala.`package`.Vector.apply[AnyVal](true, 64, 256))
+        </td>
+      </tr><tr>
+        <td>
+          21
+        </td>
+        <td>
+          348
+        </td>
+        <td>
+          766
+          -
+          787
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.IterableFactory.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.`package`.Vector.apply[AnyVal](true, 64, 256)
+        </td>
+      </tr><tr>
+        <td>
+          21
+        </td>
+        <td>
+          347
+        </td>
+        <td>
+          741
+          -
+          760
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;small_true_64_256&quot;
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          352
+        </td>
+        <td>
+          793
+          -
+          841
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.ArrowAssoc[String](&quot;medium_true_128_128&quot;).-&gt;[scala.collection.immutable.Vector[AnyVal]](scala.`package`.Vector.apply[AnyVal](true, 128, 1028))
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          351
+        </td>
+        <td>
+          818
+          -
+          841
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.IterableFactory.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.`package`.Vector.apply[AnyVal](true, 128, 1028)
+        </td>
+      </tr><tr>
+        <td>
+          22
+        </td>
+        <td>
+          350
+        </td>
+        <td>
+          793
+          -
+          814
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;medium_true_128_128&quot;
+        </td>
+      </tr><tr>
+        <td>
+          23
+        </td>
+        <td>
+          355
+        </td>
+        <td>
+          847
+          -
+          895
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.ArrowAssoc.-&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.ArrowAssoc[String](&quot;large_true_256_2048&quot;).-&gt;[scala.collection.immutable.Vector[AnyVal]](scala.`package`.Vector.apply[AnyVal](true, 256, 2048))
+        </td>
+      </tr><tr>
+        <td>
+          23
+        </td>
+        <td>
+          354
+        </td>
+        <td>
+          872
+          -
+          895
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.IterableFactory.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.`package`.Vector.apply[AnyVal](true, 256, 2048)
+        </td>
+      </tr><tr>
+        <td>
+          23
+        </td>
+        <td>
+          353
+        </td>
+        <td>
+          847
+          -
+          868
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;large_true_256_2048&quot;
+        </td>
+      </tr><tr>
+        <td>
+          26
+        </td>
+        <td>
+          377
+        </td>
+        <td>
+          903
+          -
+          1859
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.collection.IterableOnceOps.foreach
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          GenVerilog.this.config.foreach[String](((x0$1: (String, scala.collection.immutable.Vector[AnyVal])) =&gt; x0$1 match {
+  case (_1: String, _2: scala.collection.immutable.Vector[AnyVal]): (String, scala.collection.immutable.Vector[AnyVal])((testName @ _), (paramVec @ _)) =&gt; {
+    val thisExternalRam: Boolean = paramVec.apply(0).asInstanceOf[Boolean];
+    val thisDataWidth: Int = paramVec.apply(1).asInstanceOf[Int];
+    val thisFifoDepth: Int = paramVec.apply(2).asInstanceOf[Int];
+    val myParams: tech.rocksavage.chiselware.DynamicFifo.BaseParams = {
+      &lt;artifact&gt; val x$1: Boolean = thisExternalRam;
+      &lt;artifact&gt; val x$2: Int = thisDataWidth;
+      &lt;artifact&gt; val x$3: Int = thisFifoDepth;
+      &lt;artifact&gt; val x$4: Boolean = BaseParams.apply$default$4;
+      &lt;artifact&gt; val x$5: List[String] @scala.reflect.internal.annotations.uncheckedBounds = BaseParams.apply$default$5;
+      BaseParams.apply(x$2, x$3, x$1, x$4, x$5)
+    };
+    scala.Predef.println((&quot;Generating Verilog config: &quot;.+(testName).+(&quot;\t&quot;): String).+((&quot;externalRam = &quot;.+(thisExternalRam).+(&quot;\t&quot;): String)).+((&quot;dataWidth = &quot;.+(thisDataWidth).+(&quot;\t &quot;): String)).+((&quot;fifoDepth = &quot;.+(thisFifoDepth): String)));
+    {
+      &lt;artifact&gt; val x$6: () =&gt; tech.rocksavage.chiselware.DynamicFifo.DynamicFifo @scala.reflect.internal.annotations.uncheckedBounds = (() =&gt; new DynamicFifo(myParams));
+      &lt;artifact&gt; val x$7: Array[String] @scala.reflect.internal.annotations.uncheckedBounds = scala.Array.apply[String](&quot;--lowering-options=disallowLocalVariables,disallowPackedArrays&quot;, &quot;--disable-all-randomization&quot;, &quot;--strip-debug-info&quot;, &quot;--split-verilog&quot;, (&quot;-o=generated/synTestCases/&quot;.+(testName): String))((ClassTag.apply[String](classOf[java.lang.String]): scala.reflect.ClassTag[String]));
+      &lt;artifact&gt; val x$8: Array[String] @scala.reflect.internal.annotations.uncheckedBounds = circt.stage.ChiselStage.emitSystemVerilog$default$2;
+      circt.stage.ChiselStage.emitSystemVerilog(x$6.apply(), x$8, x$7)
+    }
+  }
+}))
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          358
+        </td>
+        <td>
+          975
+          -
+          1008
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.Any.asInstanceOf
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          paramVec.apply(0).asInstanceOf[Boolean]
+        </td>
+      </tr><tr>
+        <td>
+          27
+        </td>
+        <td>
+          357
+        </td>
+        <td>
+          984
+          -
+          985
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          0
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          360
+        </td>
+        <td>
+          1035
+          -
+          1064
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.Any.asInstanceOf
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          paramVec.apply(1).asInstanceOf[Int]
+        </td>
+      </tr><tr>
+        <td>
+          28
+        </td>
+        <td>
+          359
+        </td>
+        <td>
+          1044
+          -
+          1045
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          1
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          361
+        </td>
+        <td>
+          1100
+          -
+          1101
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          2
+        </td>
+      </tr><tr>
+        <td>
+          29
+        </td>
+        <td>
+          362
+        </td>
+        <td>
+          1091
+          -
+          1120
+        </td>
+        <td>
+          TypeApply
+        </td>
+        <td>
+          scala.Any.asInstanceOf
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          paramVec.apply(2).asInstanceOf[Int]
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          364
+        </td>
+        <td>
+          1140
+          -
+          1140
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          tech.rocksavage.chiselware.DynamicFifo.BaseParams.apply$default$5
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          BaseParams.apply$default$5
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          363
+        </td>
+        <td>
+          1140
+          -
+          1140
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          tech.rocksavage.chiselware.DynamicFifo.BaseParams.apply$default$4
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          BaseParams.apply$default$4
+        </td>
+      </tr><tr>
+        <td>
+          30
+        </td>
+        <td>
+          365
+        </td>
+        <td>
+          1140
+          -
+          1259
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          tech.rocksavage.chiselware.DynamicFifo.BaseParams.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          BaseParams.apply(x$2, x$3, x$1, x$4, x$5)
+        </td>
+      </tr><tr>
+        <td>
+          36
+        </td>
+        <td>
+          367
+        </td>
+        <td>
+          1265
+          -
+          1456
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Predef.println
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Predef.println((&quot;Generating Verilog config: &quot;.+(testName).+(&quot;\t&quot;): String).+((&quot;externalRam = &quot;.+(thisExternalRam).+(&quot;\t&quot;): String)).+((&quot;dataWidth = &quot;.+(thisDataWidth).+(&quot;\t &quot;): String)).+((&quot;fifoDepth = &quot;.+(thisFifoDepth): String)))
+        </td>
+      </tr><tr>
+        <td>
+          39
+        </td>
+        <td>
+          366
+        </td>
+        <td>
+          1280
+          -
+          1450
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          java.lang.String.+
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          (&quot;Generating Verilog config: &quot;.+(testName).+(&quot;\t&quot;): String).+((&quot;externalRam = &quot;.+(thisExternalRam).+(&quot;\t&quot;): String)).+((&quot;dataWidth = &quot;.+(thisDataWidth).+(&quot;\t &quot;): String)).+((&quot;fifoDepth = &quot;.+(thisFifoDepth): String))
+        </td>
+      </tr><tr>
+        <td>
+          44
+        </td>
+        <td>
+          376
+        </td>
+        <td>
+          1534
+          -
+          1855
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          circt.stage.ChiselStage.emitSystemVerilog
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          circt.stage.ChiselStage.emitSystemVerilog(x$6.apply(), x$8, x$7)
+        </td>
+      </tr><tr>
+        <td>
+          44
+        </td>
+        <td>
+          374
+        </td>
+        <td>
+          1546
+          -
+          1546
+        </td>
+        <td>
+          Select
+        </td>
+        <td>
+          circt.stage.ChiselStage.emitSystemVerilog$default$2
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          circt.stage.ChiselStage.emitSystemVerilog$default$2
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          375
+        </td>
+        <td>
+          1571
+          -
+          1571
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Function0.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          x$6.apply()
+        </td>
+      </tr><tr>
+        <td>
+          45
+        </td>
+        <td>
+          368
+        </td>
+        <td>
+          1571
+          -
+          1596
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          tech.rocksavage.chiselware.DynamicFifo.DynamicFifo.&lt;init&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          new DynamicFifo(myParams)
+        </td>
+      </tr><tr>
+        <td>
+          46
+        </td>
+        <td>
+          373
+        </td>
+        <td>
+          1618
+          -
+          1849
+        </td>
+        <td>
+          ApplyToImplicitArgs
+        </td>
+        <td>
+          scala.Array.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          scala.Array.apply[String](&quot;--lowering-options=disallowLocalVariables,disallowPackedArrays&quot;, &quot;--disable-all-randomization&quot;, &quot;--strip-debug-info&quot;, &quot;--split-verilog&quot;, (&quot;-o=generated/synTestCases/&quot;.+(testName): String))((ClassTag.apply[String](classOf[java.lang.String]): scala.reflect.ClassTag[String]))
+        </td>
+      </tr><tr>
+        <td>
+          47
+        </td>
+        <td>
+          369
+        </td>
+        <td>
+          1633
+          -
+          1697
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;--lowering-options=disallowLocalVariables,disallowPackedArrays&quot;
+        </td>
+      </tr><tr>
+        <td>
+          48
+        </td>
+        <td>
+          370
+        </td>
+        <td>
+          1707
+          -
+          1736
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;--disable-all-randomization&quot;
+        </td>
+      </tr><tr>
+        <td>
+          49
+        </td>
+        <td>
+          371
+        </td>
+        <td>
+          1746
+          -
+          1766
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;--strip-debug-info&quot;
+        </td>
+      </tr><tr>
+        <td>
+          50
+        </td>
+        <td>
+          372
+        </td>
+        <td>
+          1776
+          -
+          1793
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;--split-verilog&quot;
+        </td>
+      </tr>
+    </table>
+          </div>
+        </div>
+      </body>
+    </html>

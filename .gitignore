@@ -15,10 +15,10 @@ target/*
 # DynamicFifo specific
 !*.rpt
 !generated/*.rpt
-!generated/*/*/*.rpt
-!generated/*/*.cov
-!generated/*/*/yosys.log
-!generated/scalaCoverage/scoverage-report/*
-!project/plugins.sbt
-!project/.gitkeep
+!generated/verilogCoverage/
+!generated/synTestCases/
+!generated/scalaCoverage/
+generated/scalaCoverage/
+!generated/scalaCoverage/scoverage-report
+!/project/plugins.sbt
 

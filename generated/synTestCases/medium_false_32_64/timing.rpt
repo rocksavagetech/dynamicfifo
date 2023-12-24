@@ -1,0 +1,37 @@
+Warning: There are 80 input ports missing set_input_delay.
+Warning: There are 82 output ports missing set_output_delay.
+Warning: There are 2067 unclocked register/latch pins.
+Warning: There are 2149 unconstrained endpoints.
+Startpoint: io_almostFullLevel[5] (input port clocked by clock)
+Endpoint: io_almostFull (output port clocked by clock)
+Path Group: clock
+Path Type: max
+
+  Delay    Time   Description
+---------------------------------------------------------
+   0.00    0.00   clock clock (rise edge)
+   0.00    0.00   clock network delay (ideal)
+   1.00    1.00 v input external delay
+   0.00    1.00 v io_almostFullLevel[5] (in)
+   0.05    1.05 v _3792_/Z (XOR2_X1)
+   0.04    1.09 ^ _3795_/ZN (AOI21_X1)
+   0.02    1.12 v _3796_/ZN (OAI21_X1)
+   0.09    1.20 ^ _3798_/ZN (AOI221_X1)
+   0.02    1.22 v _3800_/ZN (AOI21_X1)
+   0.06    1.29 ^ _3804_/ZN (AOI211_X1)
+   0.03    1.31 ^ _3805_/ZN (OR2_X1)
+   0.00    1.31 ^ io_almostFull (out)
+           1.31   data arrival time
+
+   5.00    5.00   clock clock (rise edge)
+   0.00    5.00   clock network delay (ideal)
+   0.00    5.00   clock reconvergence pessimism
+  -1.00    4.00   output external delay
+           4.00   data required time
+---------------------------------------------------------
+           4.00   data required time
+          -1.31   data arrival time
+---------------------------------------------------------
+           2.69   slack (MET)
+
+
