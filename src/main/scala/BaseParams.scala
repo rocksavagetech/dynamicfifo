@@ -1,9 +1,5 @@
-// This confidential and proprietary software may be used only as authorized by
-// Rocksavage Technology, Inc. In the event of publication the following
-// notice is applicable:
-//
-// (C) COPYRIGHT 2023 ROCKSAVAGE TECHNOLOGY, INC.
-// ALL RIGHTS RESERVED
+// (c) 2024 Rocksavage Technology, Inc.
+// This code is licensed under MIT license (see LICENSE.MD for details)
 
 package tech.rocksavage.chiselware.DynamicFifo
 

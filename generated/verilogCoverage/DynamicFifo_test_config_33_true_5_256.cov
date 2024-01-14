@@ -1,0 +1,49 @@
+--------------------------------------------------------------------------------
+%									Count				Coverage Point 
+--------------------------------------------------------------------------------
+8.05					      311				dut.io__almostEmpty
+60.30					     2330				dut.io__almostFull
+8.05					      311				dut.io__empty
+60.30					     2330				dut.io__full
+63.85					     2467				dut.io__pop
+70.47					     2723				dut.io__push
+63.85					     2467				dut.io__ramReadEnable
+70.47					     2723				dut.io__ramWriteEnable
+35.92					     1388				dut.io_dataIn_0
+64.65					     2498				dut.io_dataIn_1
+65.14					     2517				dut.io_dataIn_2
+34.76					     1343				dut.io_dataIn_3
+64.70					     2500				dut.io_dataIn_4
+48.60					     1878				dut.io_dataOut_0
+53.39					     2063				dut.io_dataOut_1
+46.61					     1801				dut.io_dataOut_2
+51.37					     1985				dut.io_dataOut_3
+54.19					     2094				dut.io_dataOut_4
+35.92					     1388				dut.io_ramDataIn_0
+64.65					     2498				dut.io_ramDataIn_1
+65.14					     2517				dut.io_ramDataIn_2
+34.76					     1343				dut.io_ramDataIn_3
+64.70					     2500				dut.io_ramDataIn_4
+48.60					     1878				dut.io_ramDataOut_0
+53.39					     2063				dut.io_ramDataOut_1
+46.61					     1801				dut.io_ramDataOut_2
+51.37					     1985				dut.io_ramDataOut_3
+54.19					     2094				dut.io_ramDataOut_4
+46.27					     1788				dut.io_ramReadAddress_0
+46.64					     1802				dut.io_ramReadAddress_1
+46.66					     1803				dut.io_ramReadAddress_2
+46.61					     1801				dut.io_ramReadAddress_3
+45.99					     1777				dut.io_ramReadAddress_4
+45.99					     1777				dut.io_ramReadAddress_5
+45.68					     1765				dut.io_ramReadAddress_6
+44.57					     1722				dut.io_ramReadAddress_7
+46.79					     1808				dut.io_ramWriteAddress_0
+46.64					     1802				dut.io_ramWriteAddress_1
+47.05					     1818				dut.io_ramWriteAddress_2
+46.79					     1808				dut.io_ramWriteAddress_3
+47.44					     1833				dut.io_ramWriteAddress_4
+45.96					     1776				dut.io_ramWriteAddress_5
+46.22					     1786				dut.io_ramWriteAddress_6
+44.95					     1737				dut.io_ramWriteAddress_7
+--------------------------------------------------------------------------------
+2024-01-14T13:30:26.994397

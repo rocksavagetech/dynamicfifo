@@ -14,7 +14,7 @@
 [info] compiling 1 Scala source to /home/system76/drive/projects/chiselWare/dynamicfifo/target/scala-2.13/test-classes ...
 [info] Test Scala API documentation successful.
 [info] done compiling
-[info] :: delivering :: tech.rocksavage#dynamicfifo_2.13;0.1.0 :: 0.1.0 :: release :: Sat Dec 23 15:34:09 PST 2023
+[info] :: delivering :: tech.rocksavage#dynamicfifo_2.13;0.1.0 :: 0.1.0 :: release :: Sun Jan 14 13:28:00 PST 2024
 [info] 	delivering ivy file to /home/system76/drive/projects/chiselWare/dynamicfifo/target/scala-2.13/ivy-0.1.0.xml
 [info] 	published dynamicfifo_2.13 to /home/tws/.ivy2/local/tech.rocksavage/dynamicfifo_2.13/0.1.0/srcs/dynamicfifo_2.13-tests-sources.jar
 [info] 	published dynamicfifo_2.13 to /home/tws/.ivy2/local/tech.rocksavage/dynamicfifo_2.13/0.1.0/docs/dynamicfifo_2.13-tests-javadoc.jar
@@ -24,4 +24,4 @@
 [info] 	published dynamicfifo_2.13 to /home/tws/.ivy2/local/tech.rocksavage/dynamicfifo_2.13/0.1.0/jars/dynamicfifo_2.13-tests.jar
 [info] 	published dynamicfifo_2.13 to /home/tws/.ivy2/local/tech.rocksavage/dynamicfifo_2.13/0.1.0/poms/dynamicfifo_2.13.pom
 [info] 	published ivy to /home/tws/.ivy2/local/tech.rocksavage/dynamicfifo_2.13/0.1.0/ivys/ivy.xml
-[success] Total time: 9 s, completed Dec 23, 2023, 3:34:09 PM
+[success] Total time: 10 s, completed Jan 14, 2024, 1:28:00 PM

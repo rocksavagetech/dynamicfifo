@@ -102,4 +102,8 @@ Warren Savage
 ## Version History
 
 * 0.1
-    * Initial Release
+    * Initial Release with full functionality
+
+## License
+
+See the [LICENSE.MD](https://github.com/rocksavagetech/dynamicfifo/blob/main/LICENSE.MD) file for license rights and limitations (MIT).

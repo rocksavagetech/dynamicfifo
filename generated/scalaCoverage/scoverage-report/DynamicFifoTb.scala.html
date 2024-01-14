@@ -22,54 +22,51 @@
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="codegrid">
-            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>// This confidential and proprietary software may be used only as authorized by
-</span>2 <span style=''>// Rocksavage Technology, Inc. In the event of publication the following
-</span>3 <span style=''>// notice is applicable:
-</span>4 <span style=''>//
-</span>5 <span style=''>// (C) COPYRIGHT 2023 ROCKSAVAGE TECHNOLOGY, INC.
-</span>6 <span style=''>// ALL RIGHTS RESERVED
-</span>7 <span style=''>package tech.rocksavage.chiselware.DynamicFifo
-</span>8 <span style=''>
-</span>9 <span style=''>import chisel3._
-</span>10 <span style=''>import chisel3.util._
-</span>11 <span style=''>import _root_.circt.stage.ChiselStage
-</span>12 <span style=''>
-</span>13 <span style=''>class DynamicFifoTb(p: BaseParams) extends Module {
-</span>14 <span style=''>  val io = </span><span style='background: #AEF1AE'>IO(new Bundle {
-</span>15 <span style=''></span><span style='background: #AEF1AE'>    val push             = Input(Bool())
-</span>16 <span style=''></span><span style='background: #AEF1AE'>    val pop              = Input(Bool())
-</span>17 <span style=''></span><span style='background: #AEF1AE'>    val dataIn           = Input(UInt(p.dataWidth.W))
-</span>18 <span style=''></span><span style='background: #AEF1AE'>    val dataOut          = Output(UInt(p.dataWidth.W))
-</span>19 <span style=''></span><span style='background: #AEF1AE'>    val empty            = Output(Bool())
-</span>20 <span style=''></span><span style='background: #AEF1AE'>    val full             = Output(Bool())
-</span>21 <span style=''></span><span style='background: #AEF1AE'>    val almostEmpty      = Output(Bool())
-</span>22 <span style=''></span><span style='background: #AEF1AE'>    val almostFull       = Output(Bool())
-</span>23 <span style=''></span><span style='background: #AEF1AE'>    val almostEmptyLevel = Input(UInt(log2Ceil(p.fifoDepth).W))
-</span>24 <span style=''></span><span style='background: #AEF1AE'>    val almostFullLevel  = Input(UInt(log2Ceil(p.fifoDepth).W))
-</span>25 <span style=''></span><span style='background: #AEF1AE'>  })</span><span style=''>
-</span>26 <span style=''>
-</span>27 <span style=''>  val dut = Module(new DynamicFifo(p))
-</span>28 <span style=''>  </span><span style='background: #AEF1AE'>dut.io.push             := io.push</span><span style=''>
-</span>29 <span style=''>  </span><span style='background: #AEF1AE'>dut.io.pop              := io.pop</span><span style=''>
-</span>30 <span style=''>  </span><span style='background: #AEF1AE'>dut.io.dataIn           := io.dataIn</span><span style=''>
-</span>31 <span style=''>  </span><span style='background: #AEF1AE'>dut.io.almostEmptyLevel := io.almostEmptyLevel</span><span style=''>
-</span>32 <span style=''>  </span><span style='background: #AEF1AE'>dut.io.almostFullLevel  := io.almostFullLevel</span><span style=''>
-</span>33 <span style=''>  </span><span style='background: #AEF1AE'>io.dataOut              := dut.io.dataOut</span><span style=''>
-</span>34 <span style=''>  </span><span style='background: #AEF1AE'>io.empty                := dut.io.empty</span><span style=''>
-</span>35 <span style=''>  </span><span style='background: #AEF1AE'>io.full                 := dut.io.full</span><span style=''>
-</span>36 <span style=''>  </span><span style='background: #AEF1AE'>io.almostEmpty          := dut.io.almostEmpty</span><span style=''>
-</span>37 <span style=''>  </span><span style='background: #AEF1AE'>io.almostFull           := dut.io.almostFull</span><span style=''>
-</span>38 <span style=''>
-</span>39 <span style=''>  val ram = Module(new SramBb(p))
-</span>40 <span style=''>  </span><span style='background: #AEF1AE'>ram.io.clk           := clock</span><span style=''>
-</span>41 <span style=''>  </span><span style='background: #AEF1AE'>ram.io.write_enable  := dut.io.ramWriteEnable</span><span style=''>
-</span>42 <span style=''>  </span><span style='background: #AEF1AE'>ram.io.write_address := dut.io.ramWriteAddress</span><span style=''>
-</span>43 <span style=''>  </span><span style='background: #AEF1AE'>ram.io.read_enable   := dut.io.ramReadEnable</span><span style=''>
-</span>44 <span style=''>  </span><span style='background: #AEF1AE'>ram.io.read_address  := dut.io.ramReadAddress</span><span style=''>
-</span>45 <span style=''>  </span><span style='background: #AEF1AE'>ram.io.write_data    := dut.io.ramDataIn</span><span style=''>
-</span>46 <span style=''>  </span><span style='background: #AEF1AE'>dut.io.ramDataOut    := ram.io.read_data</span><span style=''>
-</span>47 <span style=''>
-</span>48 <span style=''>}
+            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>// (c) 2024 Rocksavage Technology, Inc.
+</span>2 <span style=''>// This code is licensed under MIT license (see LICENSE.MD for details)
+</span>3 <span style=''>
+</span>4 <span style=''>package tech.rocksavage.chiselware.DynamicFifo
+</span>5 <span style=''>
+</span>6 <span style=''>import chisel3._
+</span>7 <span style=''>import chisel3.util._
+</span>8 <span style=''>import _root_.circt.stage.ChiselStage
+</span>9 <span style=''>
+</span>10 <span style=''>class DynamicFifoTb(p: BaseParams) extends Module {
+</span>11 <span style=''>  val io = </span><span style='background: #AEF1AE'>IO(new Bundle {
+</span>12 <span style=''></span><span style='background: #AEF1AE'>    val push             = Input(Bool())
+</span>13 <span style=''></span><span style='background: #AEF1AE'>    val pop              = Input(Bool())
+</span>14 <span style=''></span><span style='background: #AEF1AE'>    val dataIn           = Input(UInt(p.dataWidth.W))
+</span>15 <span style=''></span><span style='background: #AEF1AE'>    val dataOut          = Output(UInt(p.dataWidth.W))
+</span>16 <span style=''></span><span style='background: #AEF1AE'>    val empty            = Output(Bool())
+</span>17 <span style=''></span><span style='background: #AEF1AE'>    val full             = Output(Bool())
+</span>18 <span style=''></span><span style='background: #AEF1AE'>    val almostEmpty      = Output(Bool())
+</span>19 <span style=''></span><span style='background: #AEF1AE'>    val almostFull       = Output(Bool())
+</span>20 <span style=''></span><span style='background: #AEF1AE'>    val almostEmptyLevel = Input(UInt(log2Ceil(p.fifoDepth).W))
+</span>21 <span style=''></span><span style='background: #AEF1AE'>    val almostFullLevel  = Input(UInt(log2Ceil(p.fifoDepth).W))
+</span>22 <span style=''></span><span style='background: #AEF1AE'>  })</span><span style=''>
+</span>23 <span style=''>
+</span>24 <span style=''>  val dut = Module(new DynamicFifo(p))
+</span>25 <span style=''>  </span><span style='background: #AEF1AE'>dut.io.push             := io.push</span><span style=''>
+</span>26 <span style=''>  </span><span style='background: #AEF1AE'>dut.io.pop              := io.pop</span><span style=''>
+</span>27 <span style=''>  </span><span style='background: #AEF1AE'>dut.io.dataIn           := io.dataIn</span><span style=''>
+</span>28 <span style=''>  </span><span style='background: #AEF1AE'>dut.io.almostEmptyLevel := io.almostEmptyLevel</span><span style=''>
+</span>29 <span style=''>  </span><span style='background: #AEF1AE'>dut.io.almostFullLevel  := io.almostFullLevel</span><span style=''>
+</span>30 <span style=''>  </span><span style='background: #AEF1AE'>io.dataOut              := dut.io.dataOut</span><span style=''>
+</span>31 <span style=''>  </span><span style='background: #AEF1AE'>io.empty                := dut.io.empty</span><span style=''>
+</span>32 <span style=''>  </span><span style='background: #AEF1AE'>io.full                 := dut.io.full</span><span style=''>
+</span>33 <span style=''>  </span><span style='background: #AEF1AE'>io.almostEmpty          := dut.io.almostEmpty</span><span style=''>
+</span>34 <span style=''>  </span><span style='background: #AEF1AE'>io.almostFull           := dut.io.almostFull</span><span style=''>
+</span>35 <span style=''>
+</span>36 <span style=''>  val ram = Module(new SramBb(p))
+</span>37 <span style=''>  </span><span style='background: #AEF1AE'>ram.io.clk           := clock</span><span style=''>
+</span>38 <span style=''>  </span><span style='background: #AEF1AE'>ram.io.write_enable  := dut.io.ramWriteEnable</span><span style=''>
+</span>39 <span style=''>  </span><span style='background: #AEF1AE'>ram.io.write_address := dut.io.ramWriteAddress</span><span style=''>
+</span>40 <span style=''>  </span><span style='background: #AEF1AE'>ram.io.read_enable   := dut.io.ramReadEnable</span><span style=''>
+</span>41 <span style=''>  </span><span style='background: #AEF1AE'>ram.io.read_address  := dut.io.ramReadAddress</span><span style=''>
+</span>42 <span style=''>  </span><span style='background: #AEF1AE'>ram.io.write_data    := dut.io.ramDataIn</span><span style=''>
+</span>43 <span style=''>  </span><span style='background: #AEF1AE'>dut.io.ramDataOut    := ram.io.read_data</span><span style=''>
+</span>44 <span style=''>
+</span>45 <span style=''>}
 </span></pre>
           </div>
           <div class="tab-pane" id="statementlist">
@@ -84,15 +81,15 @@
         <th>Code</th>
       </tr><tr>
         <td>
-          13
+          10
         </td>
         <td>
           334
         </td>
         <td>
-          386
+          245
           -
-          386
+          245
         </td>
         <td>
           Literal
@@ -108,15 +105,15 @@
         </td>
       </tr><tr>
         <td>
-          13
+          10
         </td>
         <td>
           337
         </td>
         <td>
-          386
+          245
           -
-          386
+          245
         </td>
         <td>
           Apply
@@ -132,15 +129,15 @@
         </td>
       </tr><tr>
         <td>
-          13
+          10
         </td>
         <td>
           336
         </td>
         <td>
-          386
+          245
           -
-          386
+          245
         </td>
         <td>
           Apply
@@ -156,15 +153,15 @@
         </td>
       </tr><tr>
         <td>
-          13
+          10
         </td>
         <td>
           335
         </td>
         <td>
-          386
+          245
           -
-          386
+          245
         </td>
         <td>
           Select
@@ -180,15 +177,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           286
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Select
@@ -204,15 +201,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           295
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Select
@@ -228,15 +225,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           298
         </td>
         <td>
-          446
+          305
           -
-          449
+          308
         </td>
         <td>
           Apply
@@ -252,15 +249,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           289
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Select
@@ -276,15 +273,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           271
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Select
@@ -300,15 +297,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           280
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Select
@@ -324,15 +321,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           283
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Select
@@ -348,15 +345,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           292
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Select
@@ -372,15 +369,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           274
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Select
@@ -396,15 +393,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           277
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Select
@@ -420,15 +417,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           268
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Select
@@ -444,15 +441,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           294
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Literal
@@ -468,15 +465,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           276
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Literal
@@ -492,15 +489,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           285
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Literal
@@ -516,15 +513,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           267
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Literal
@@ -540,15 +537,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           288
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Literal
@@ -564,15 +561,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           297
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Apply
@@ -588,15 +585,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           270
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Literal
@@ -612,15 +609,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           279
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Literal
@@ -636,15 +633,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           282
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Literal
@@ -660,15 +657,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           291
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Literal
@@ -684,15 +681,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           273
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Literal
@@ -708,15 +705,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           272
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Apply
@@ -732,15 +729,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           299
         </td>
         <td>
-          443
+          302
           -
-          950
+          809
         </td>
         <td>
           ApplyToImplicitArgs
@@ -783,19 +780,19 @@
     override protected def _elementsImpl: Iterable[(String, Any)] = scala.collection.immutable.Vector.apply[(String, Any)](scala.Tuple2.apply[String, chisel3.UInt](&quot;almostFullLevel&quot;, $anon.this.almostFullLevel), scala.Tuple2.apply[String, chisel3.UInt](&quot;almostEmptyLevel&quot;, $anon.this.almostEmptyLevel), scala.Tuple2.apply[String, chisel3.Bool](&quot;almostFull&quot;, $anon.this.almostFull), scala.Tuple2.apply[String, chisel3.Bool](&quot;almostEmpty&quot;, $anon.this.almostEmpty), scala.Tuple2.apply[String, chisel3.Bool](&quot;full&quot;, $anon.this.full), scala.Tuple2.apply[String, chisel3.Bool](&quot;empty&quot;, $anon.this.empty), scala.Tuple2.apply[String, chisel3.UInt](&quot;dataOut&quot;, $anon.this.dataOut), scala.Tuple2.apply[String, chisel3.UInt](&quot;dataIn&quot;, $anon.this.dataIn), scala.Tuple2.apply[String, chisel3.Bool](&quot;pop&quot;, $anon.this.pop), scala.Tuple2.apply[String, chisel3.Bool](&quot;push&quot;, $anon.this.push))
   };
   new $anon()
-})((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 14, 14): chisel3.experimental.SourceInfo))
+})((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 11, 14): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           281
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Apply
@@ -811,15 +808,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           290
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Apply
@@ -835,15 +832,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           275
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Apply
@@ -859,15 +856,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           284
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Apply
@@ -883,15 +880,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           293
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Apply
@@ -907,15 +904,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           266
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Apply
@@ -931,15 +928,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           269
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Apply
@@ -955,15 +952,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           287
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Apply
@@ -979,15 +976,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           296
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Apply
@@ -1003,15 +1000,15 @@
         </td>
       </tr><tr>
         <td>
-          14
+          11
         </td>
         <td>
           278
         </td>
         <td>
-          450
+          309
           -
-          450
+          309
         </td>
         <td>
           Apply
@@ -1027,15 +1024,15 @@
         </td>
       </tr><tr>
         <td>
-          15
+          12
         </td>
         <td>
           236
         </td>
         <td>
-          492
+          351
           -
-          498
+          357
         </td>
         <td>
           Apply
@@ -1051,15 +1048,15 @@
         </td>
       </tr><tr>
         <td>
-          15
+          12
         </td>
         <td>
           237
         </td>
         <td>
-          486
+          345
           -
-          499
+          358
         </td>
         <td>
           Apply
@@ -1075,15 +1072,15 @@
         </td>
       </tr><tr>
         <td>
-          16
+          13
         </td>
         <td>
           238
         </td>
         <td>
-          533
+          392
           -
-          539
+          398
         </td>
         <td>
           Apply
@@ -1099,15 +1096,15 @@
         </td>
       </tr><tr>
         <td>
-          16
+          13
         </td>
         <td>
           239
         </td>
         <td>
-          527
+          386
           -
-          540
+          399
         </td>
         <td>
           Apply
@@ -1123,15 +1120,15 @@
         </td>
       </tr><tr>
         <td>
-          17
+          14
         </td>
         <td>
           241
         </td>
         <td>
-          579
+          438
           -
-          592
+          451
         </td>
         <td>
           Select
@@ -1147,15 +1144,15 @@
         </td>
       </tr><tr>
         <td>
-          17
+          14
         </td>
         <td>
           240
         </td>
         <td>
-          579
+          438
           -
-          590
+          449
         </td>
         <td>
           Select
@@ -1171,15 +1168,15 @@
         </td>
       </tr><tr>
         <td>
-          17
+          14
         </td>
         <td>
           243
         </td>
         <td>
-          568
+          427
           -
-          594
+          453
         </td>
         <td>
           Apply
@@ -1195,15 +1192,15 @@
         </td>
       </tr><tr>
         <td>
-          17
+          14
         </td>
         <td>
           242
         </td>
         <td>
-          574
+          433
           -
-          593
+          452
         </td>
         <td>
           Apply
@@ -1219,15 +1216,15 @@
         </td>
       </tr><tr>
         <td>
-          18
+          15
         </td>
         <td>
           245
         </td>
         <td>
-          634
+          493
           -
-          647
+          506
         </td>
         <td>
           Select
@@ -1243,15 +1240,15 @@
         </td>
       </tr><tr>
         <td>
-          18
+          15
         </td>
         <td>
           244
         </td>
         <td>
-          634
+          493
           -
-          645
+          504
         </td>
         <td>
           Select
@@ -1267,15 +1264,15 @@
         </td>
       </tr><tr>
         <td>
-          18
+          15
         </td>
         <td>
           247
         </td>
         <td>
-          622
+          481
           -
-          649
+          508
         </td>
         <td>
           Apply
@@ -1291,15 +1288,15 @@
         </td>
       </tr><tr>
         <td>
-          18
+          15
         </td>
         <td>
           246
         </td>
         <td>
-          629
+          488
           -
-          648
+          507
         </td>
         <td>
           Apply
@@ -1315,15 +1312,15 @@
         </td>
       </tr><tr>
         <td>
-          19
+          16
         </td>
         <td>
           249
         </td>
         <td>
-          677
+          536
           -
-          691
+          550
         </td>
         <td>
           Apply
@@ -1336,138 +1333,138 @@
         </td>
         <td style="background: #AEF1AE">
           chisel3.Output.apply[chisel3.Bool](chisel3.`package`.Bool.apply())
+        </td>
+      </tr><tr>
+        <td>
+          16
+        </td>
+        <td>
+          248
+        </td>
+        <td>
+          543
+          -
+          549
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          chisel3.BoolFactory.apply
+        </td>
+        <td>
+          tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
+        </td>
+        <td style="background: #AEF1AE">
+          chisel3.`package`.Bool.apply()
+        </td>
+      </tr><tr>
+        <td>
+          17
+        </td>
+        <td>
+          250
+        </td>
+        <td>
+          585
+          -
+          591
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          chisel3.BoolFactory.apply
+        </td>
+        <td>
+          tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
+        </td>
+        <td style="background: #AEF1AE">
+          chisel3.`package`.Bool.apply()
+        </td>
+      </tr><tr>
+        <td>
+          17
+        </td>
+        <td>
+          251
+        </td>
+        <td>
+          578
+          -
+          592
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          chisel3.Output.apply
+        </td>
+        <td>
+          tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
+        </td>
+        <td style="background: #AEF1AE">
+          chisel3.Output.apply[chisel3.Bool](chisel3.`package`.Bool.apply())
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          253
+        </td>
+        <td>
+          620
+          -
+          634
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          chisel3.Output.apply
+        </td>
+        <td>
+          tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
+        </td>
+        <td style="background: #AEF1AE">
+          chisel3.Output.apply[chisel3.Bool](chisel3.`package`.Bool.apply())
+        </td>
+      </tr><tr>
+        <td>
+          18
+        </td>
+        <td>
+          252
+        </td>
+        <td>
+          627
+          -
+          633
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          chisel3.BoolFactory.apply
+        </td>
+        <td>
+          tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
+        </td>
+        <td style="background: #AEF1AE">
+          chisel3.`package`.Bool.apply()
         </td>
       </tr><tr>
         <td>
           19
         </td>
         <td>
-          248
-        </td>
-        <td>
-          684
-          -
-          690
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          chisel3.BoolFactory.apply
-        </td>
-        <td>
-          tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
-        </td>
-        <td style="background: #AEF1AE">
-          chisel3.`package`.Bool.apply()
-        </td>
-      </tr><tr>
-        <td>
-          20
-        </td>
-        <td>
-          250
-        </td>
-        <td>
-          726
-          -
-          732
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          chisel3.BoolFactory.apply
-        </td>
-        <td>
-          tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
-        </td>
-        <td style="background: #AEF1AE">
-          chisel3.`package`.Bool.apply()
-        </td>
-      </tr><tr>
-        <td>
-          20
-        </td>
-        <td>
-          251
-        </td>
-        <td>
-          719
-          -
-          733
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          chisel3.Output.apply
-        </td>
-        <td>
-          tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
-        </td>
-        <td style="background: #AEF1AE">
-          chisel3.Output.apply[chisel3.Bool](chisel3.`package`.Bool.apply())
-        </td>
-      </tr><tr>
-        <td>
-          21
-        </td>
-        <td>
-          253
-        </td>
-        <td>
-          761
-          -
-          775
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          chisel3.Output.apply
-        </td>
-        <td>
-          tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
-        </td>
-        <td style="background: #AEF1AE">
-          chisel3.Output.apply[chisel3.Bool](chisel3.`package`.Bool.apply())
-        </td>
-      </tr><tr>
-        <td>
-          21
-        </td>
-        <td>
-          252
-        </td>
-        <td>
-          768
-          -
-          774
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          chisel3.BoolFactory.apply
-        </td>
-        <td>
-          tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
-        </td>
-        <td style="background: #AEF1AE">
-          chisel3.`package`.Bool.apply()
-        </td>
-      </tr><tr>
-        <td>
-          22
-        </td>
-        <td>
           254
         </td>
         <td>
-          810
+          669
           -
-          816
+          675
         </td>
         <td>
           Apply
@@ -1483,15 +1480,15 @@
         </td>
       </tr><tr>
         <td>
-          22
+          19
         </td>
         <td>
           255
         </td>
         <td>
-          803
+          662
           -
-          817
+          676
         </td>
         <td>
           Apply
@@ -1507,15 +1504,15 @@
         </td>
       </tr><tr>
         <td>
-          23
+          20
         </td>
         <td>
           256
         </td>
         <td>
-          865
+          724
           -
-          876
+          735
         </td>
         <td>
           Select
@@ -1531,15 +1528,15 @@
         </td>
       </tr><tr>
         <td>
-          23
+          20
         </td>
         <td>
           259
         </td>
         <td>
-          851
+          710
           -
-          880
+          739
         </td>
         <td>
           Apply
@@ -1555,15 +1552,15 @@
         </td>
       </tr><tr>
         <td>
-          23
+          20
         </td>
         <td>
           258
         </td>
         <td>
-          856
+          715
           -
-          879
+          738
         </td>
         <td>
           Select
@@ -1579,15 +1576,15 @@
         </td>
       </tr><tr>
         <td>
-          23
+          20
         </td>
         <td>
           257
         </td>
         <td>
-          856
+          715
           -
-          877
+          736
         </td>
         <td>
           Apply
@@ -1603,15 +1600,15 @@
         </td>
       </tr><tr>
         <td>
-          23
+          20
         </td>
         <td>
           260
         </td>
         <td>
-          845
+          704
           -
-          881
+          740
         </td>
         <td>
           Apply
@@ -1627,15 +1624,15 @@
         </td>
       </tr><tr>
         <td>
-          24
+          21
         </td>
         <td>
           262
         </td>
         <td>
-          920
+          779
           -
-          941
+          800
         </td>
         <td>
           Apply
@@ -1651,15 +1648,15 @@
         </td>
       </tr><tr>
         <td>
-          24
+          21
         </td>
         <td>
           265
         </td>
         <td>
-          909
+          768
           -
-          945
+          804
         </td>
         <td>
           Apply
@@ -1675,15 +1672,15 @@
         </td>
       </tr><tr>
         <td>
-          24
+          21
         </td>
         <td>
           261
         </td>
         <td>
-          929
+          788
           -
-          940
+          799
         </td>
         <td>
           Select
@@ -1699,15 +1696,15 @@
         </td>
       </tr><tr>
         <td>
-          24
+          21
         </td>
         <td>
           264
         </td>
         <td>
-          915
+          774
           -
-          944
+          803
         </td>
         <td>
           Apply
@@ -1723,15 +1720,15 @@
         </td>
       </tr><tr>
         <td>
-          24
+          21
         </td>
         <td>
           263
         </td>
         <td>
-          920
+          779
           -
-          943
+          802
         </td>
         <td>
           Select
@@ -1747,15 +1744,15 @@
         </td>
       </tr><tr>
         <td>
-          28
+          25
         </td>
         <td>
           301
         </td>
         <td>
-          993
+          852
           -
-          1027
+          886
         </td>
         <td>
           ApplyToImplicitArgs
@@ -1767,19 +1764,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.dut.io.push.:=(DynamicFifoTb.this.io.push)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 28, 27): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.dut.io.push.:=(DynamicFifoTb.this.io.push)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 25, 27): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          28
+          25
         </td>
         <td>
           300
         </td>
         <td>
-          1020
+          879
           -
-          1027
+          886
         </td>
         <td>
           Select
@@ -1795,15 +1792,15 @@
         </td>
       </tr><tr>
         <td>
-          29
+          26
         </td>
         <td>
           303
         </td>
         <td>
-          1030
+          889
           -
-          1063
+          922
         </td>
         <td>
           ApplyToImplicitArgs
@@ -1815,19 +1812,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.dut.io.pop.:=(DynamicFifoTb.this.io.pop)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 29, 27): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.dut.io.pop.:=(DynamicFifoTb.this.io.pop)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 26, 27): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          29
+          26
         </td>
         <td>
           302
         </td>
         <td>
-          1057
+          916
           -
-          1063
+          922
         </td>
         <td>
           Select
@@ -1843,15 +1840,15 @@
         </td>
       </tr><tr>
         <td>
-          30
+          27
         </td>
         <td>
           304
         </td>
         <td>
-          1093
+          952
           -
-          1102
+          961
         </td>
         <td>
           Select
@@ -1867,15 +1864,15 @@
         </td>
       </tr><tr>
         <td>
-          30
+          27
         </td>
         <td>
           305
         </td>
         <td>
-          1066
+          925
           -
-          1102
+          961
         </td>
         <td>
           ApplyToImplicitArgs
@@ -1887,19 +1884,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.dut.io.dataIn.:=(DynamicFifoTb.this.io.dataIn)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 30, 27): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.dut.io.dataIn.:=(DynamicFifoTb.this.io.dataIn)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 27, 27): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          31
+          28
         </td>
         <td>
           307
         </td>
         <td>
-          1105
+          964
           -
-          1151
+          1010
         </td>
         <td>
           ApplyToImplicitArgs
@@ -1911,19 +1908,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.dut.io.almostEmptyLevel.:=(DynamicFifoTb.this.io.almostEmptyLevel)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 31, 27): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.dut.io.almostEmptyLevel.:=(DynamicFifoTb.this.io.almostEmptyLevel)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 28, 27): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          31
+          28
         </td>
         <td>
           306
         </td>
         <td>
-          1132
+          991
           -
-          1151
+          1010
         </td>
         <td>
           Select
@@ -1939,15 +1936,15 @@
         </td>
       </tr><tr>
         <td>
-          32
+          29
         </td>
         <td>
           309
         </td>
         <td>
-          1154
+          1013
           -
-          1199
+          1058
         </td>
         <td>
           ApplyToImplicitArgs
@@ -1959,19 +1956,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.dut.io.almostFullLevel.:=(DynamicFifoTb.this.io.almostFullLevel)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 32, 27): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.dut.io.almostFullLevel.:=(DynamicFifoTb.this.io.almostFullLevel)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 29, 27): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          32
+          29
         </td>
         <td>
           308
         </td>
         <td>
-          1181
+          1040
           -
-          1199
+          1058
         </td>
         <td>
           Select
@@ -1987,15 +1984,15 @@
         </td>
       </tr><tr>
         <td>
-          33
+          30
         </td>
         <td>
           310
         </td>
         <td>
-          1229
+          1088
           -
-          1243
+          1102
         </td>
         <td>
           Select
@@ -2011,15 +2008,15 @@
         </td>
       </tr><tr>
         <td>
-          33
+          30
         </td>
         <td>
           311
         </td>
         <td>
-          1202
+          1061
           -
-          1243
+          1102
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2031,19 +2028,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.io.dataOut.:=(DynamicFifoTb.this.dut.io.dataOut)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 33, 27): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.io.dataOut.:=(DynamicFifoTb.this.dut.io.dataOut)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 30, 27): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          34
+          31
         </td>
         <td>
           313
         </td>
         <td>
-          1246
+          1105
           -
-          1285
+          1144
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2055,19 +2052,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.io.empty.:=(DynamicFifoTb.this.dut.io.empty)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 34, 27): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.io.empty.:=(DynamicFifoTb.this.dut.io.empty)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 31, 27): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          34
+          31
         </td>
         <td>
           312
         </td>
         <td>
-          1273
+          1132
           -
-          1285
+          1144
         </td>
         <td>
           Select
@@ -2083,15 +2080,15 @@
         </td>
       </tr><tr>
         <td>
-          35
+          32
         </td>
         <td>
           315
         </td>
         <td>
-          1288
+          1147
           -
-          1326
+          1185
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2103,19 +2100,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.io.full.:=(DynamicFifoTb.this.dut.io.full)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 35, 27): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.io.full.:=(DynamicFifoTb.this.dut.io.full)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 32, 27): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          35
+          32
         </td>
         <td>
           314
         </td>
         <td>
-          1315
+          1174
           -
-          1326
+          1185
         </td>
         <td>
           Select
@@ -2131,15 +2128,15 @@
         </td>
       </tr><tr>
         <td>
-          36
+          33
         </td>
         <td>
           316
         </td>
         <td>
-          1356
+          1215
           -
-          1374
+          1233
         </td>
         <td>
           Select
@@ -2155,15 +2152,15 @@
         </td>
       </tr><tr>
         <td>
-          36
+          33
         </td>
         <td>
           317
         </td>
         <td>
-          1329
+          1188
           -
-          1374
+          1233
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2175,19 +2172,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.io.almostEmpty.:=(DynamicFifoTb.this.dut.io.almostEmpty)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 36, 27): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.io.almostEmpty.:=(DynamicFifoTb.this.dut.io.almostEmpty)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 33, 27): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          37
+          34
         </td>
         <td>
           319
         </td>
         <td>
-          1377
+          1236
           -
-          1421
+          1280
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2199,19 +2196,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.io.almostFull.:=(DynamicFifoTb.this.dut.io.almostFull)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 37, 27): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.io.almostFull.:=(DynamicFifoTb.this.dut.io.almostFull)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 34, 27): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          37
+          34
         </td>
         <td>
           318
         </td>
         <td>
-          1404
+          1263
           -
-          1421
+          1280
         </td>
         <td>
           Select
@@ -2227,15 +2224,15 @@
         </td>
       </tr><tr>
         <td>
-          40
+          37
         </td>
         <td>
           321
         </td>
         <td>
-          1459
+          1318
           -
-          1488
+          1347
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2247,19 +2244,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.ram.io.clk.:=(DynamicFifoTb.this.clock)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 40, 24): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.ram.io.clk.:=(DynamicFifoTb.this.clock)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 37, 24): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          40
+          37
         </td>
         <td>
           320
         </td>
         <td>
-          1483
+          1342
           -
-          1488
+          1347
         </td>
         <td>
           Select
@@ -2275,15 +2272,15 @@
         </td>
       </tr><tr>
         <td>
-          41
+          38
         </td>
         <td>
           322
         </td>
         <td>
-          1515
+          1374
           -
-          1536
+          1395
         </td>
         <td>
           Select
@@ -2299,15 +2296,15 @@
         </td>
       </tr><tr>
         <td>
-          41
+          38
         </td>
         <td>
           323
         </td>
         <td>
-          1491
+          1350
           -
-          1536
+          1395
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2319,19 +2316,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.ram.io.write_enable.:=(DynamicFifoTb.this.dut.io.ramWriteEnable)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 41, 24): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.ram.io.write_enable.:=(DynamicFifoTb.this.dut.io.ramWriteEnable)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 38, 24): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          42
+          39
         </td>
         <td>
           325
         </td>
         <td>
-          1539
+          1398
           -
-          1585
+          1444
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2343,19 +2340,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.ram.io.write_address.:=(DynamicFifoTb.this.dut.io.ramWriteAddress)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 42, 24): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.ram.io.write_address.:=(DynamicFifoTb.this.dut.io.ramWriteAddress)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 39, 24): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          42
+          39
         </td>
         <td>
           324
         </td>
         <td>
-          1563
+          1422
           -
-          1585
+          1444
         </td>
         <td>
           Select
@@ -2371,15 +2368,15 @@
         </td>
       </tr><tr>
         <td>
-          43
+          40
         </td>
         <td>
           327
         </td>
         <td>
-          1588
+          1447
           -
-          1632
+          1491
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2391,19 +2388,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.ram.io.read_enable.:=(DynamicFifoTb.this.dut.io.ramReadEnable)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 43, 24): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.ram.io.read_enable.:=(DynamicFifoTb.this.dut.io.ramReadEnable)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 40, 24): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          43
+          40
         </td>
         <td>
           326
         </td>
         <td>
-          1612
+          1471
           -
-          1632
+          1491
         </td>
         <td>
           Select
@@ -2419,15 +2416,15 @@
         </td>
       </tr><tr>
         <td>
-          44
+          41
         </td>
         <td>
           328
         </td>
         <td>
-          1659
+          1518
           -
-          1680
+          1539
         </td>
         <td>
           Select
@@ -2443,15 +2440,15 @@
         </td>
       </tr><tr>
         <td>
-          44
+          41
         </td>
         <td>
           329
         </td>
         <td>
-          1635
+          1494
           -
-          1680
+          1539
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2463,19 +2460,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.ram.io.read_address.:=(DynamicFifoTb.this.dut.io.ramReadAddress)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 44, 24): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.ram.io.read_address.:=(DynamicFifoTb.this.dut.io.ramReadAddress)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 41, 24): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          45
+          42
         </td>
         <td>
           331
         </td>
         <td>
-          1683
+          1542
           -
-          1723
+          1582
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2487,19 +2484,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.ram.io.write_data.:=(DynamicFifoTb.this.dut.io.ramDataIn)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 45, 24): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.ram.io.write_data.:=(DynamicFifoTb.this.dut.io.ramDataIn)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 42, 24): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          45
+          42
         </td>
         <td>
           330
         </td>
         <td>
-          1707
+          1566
           -
-          1723
+          1582
         </td>
         <td>
           Select
@@ -2515,15 +2512,15 @@
         </td>
       </tr><tr>
         <td>
-          46
+          43
         </td>
         <td>
           333
         </td>
         <td>
-          1726
+          1585
           -
-          1766
+          1625
         </td>
         <td>
           ApplyToImplicitArgs
@@ -2535,19 +2532,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifoTb.this.dut.io.ramDataOut.:=(DynamicFifoTb.this.ram.io.read_data)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 46, 24): chisel3.experimental.SourceInfo))
+          DynamicFifoTb.this.dut.io.ramDataOut.:=(DynamicFifoTb.this.ram.io.read_data)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifoTb.scala&quot;, 43, 24): chisel3.experimental.SourceInfo))
         </td>
       </tr><tr>
         <td>
-          46
+          43
         </td>
         <td>
           332
         </td>
         <td>
-          1750
+          1609
           -
-          1766
+          1625
         </td>
         <td>
           Select

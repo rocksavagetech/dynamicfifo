@@ -1,0 +1,111 @@
+#File: .github/workflows/checkin.ym
+name: run-check-in-simulation
+run-name: ${{ github.actor }} is running check-in tests on ${{ github.repository }}
+on:
+  push:
+    branches:
+      - check-in-regression
+
+env: 
+  VM_NAME: rst-runner-${{ github.run_id }}-${{ github.run_attempt }}
+  VM_IMAGE: /subscriptions/ad14f5b9-164c-4778-ab36-883e241a5cd5/resourceGroups/rstRG/providers/Microsoft.Compute/galleries/chisel_runner/images/chisel_sbt_gtkwave_azcli_runner
+  RESOURCE_GROUP: rstRG
+  VM_SIZE: Standard_D2s_v3 #small ($70/mo)
+#  VM_SIZE: Standard_E4s_v3 #medium ($90/mo)
+#  VM_SIZE: Standard_D4s_v3 #large ($140/mo)
+
+jobs:
+  create-vm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Azure login 
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.DYNAMICFIFO_SECRET }}
+
+      - name: Create VM
+        run: > 
+          az vm create -n $VM_NAME -g $RESOURCE_GROUP
+          --image $VM_IMAGE
+          --size $VM_SIZE
+          --generate-ssh-keys
+          --security-type TrustedLaunch
+          --public-ip-sku Standard
+          --nic-delete-option Delete
+          --os-disk-delete-option Delete
+          --data-disk-delete Delete
+#          --priority Spot
+      
+      - name: Get runner token
+        run: >
+          export RUNNER_TOKEN="$( curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }} " -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/orgs/rocksavagetech/actions/runners/generate-jitconfig | jq -r .token)";
+
+      - name: Configure runner
+        run: > 
+          az vm run-command invoke 
+          -g $RESOURCE_GROUP -n $VM_NAME 
+          --command-id RunShellScript 
+          --scripts 'su - tws 
+          --command "/data/actions-runner/config.sh 
+          --url https://github.com/rocksavagetech/newChiselProject 
+          --token $RUNNER_TOKEN 
+          --agent rst-runner 
+          --work _work"' 
+
+      - name: Start runner
+        run: >
+          az vm run-command invoke 
+          -g $RESOURCE_GROUP 
+          -n $VM_NAME 
+          --command-id RunShellScript 
+          --scripts 'su - tws 
+          --command "/data/actions-runner/run.sh 2>&1 >> ~tws/run-command.log &"'
+
+  build-and-test:
+    needs: create-vm
+    runs-on: self-hosted
+    steps:
+      - name: Azure login
+        uses: azure/login@v1 
+        with:
+          creds: ${{ secrets.DYNAMICFIFO_SECRET }}
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Build and run regression tests
+        run: sbt -v +test
+
+      - name: Display Github variables
+        run: |
+          echo "GitHub variables"
+          echo "----------------"
+          echo "Home: ${HOME}"
+          echo "GITHUB_RUNNER_NAME: $(basename $(dirname $(dirname $(dirname $(pwd)))))"
+          echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
+          echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
+          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+          echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
+          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+          echo "GITHUB_SHA: ${GITHUB_SHA}"
+
+  delete-vm:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    steps:
+    - name: Azure login
+      uses: azure/login@v1 
+      with:
+        creds: ${{ secrets.DYNAMICFIFO_SECRET}}
+
+    - name: Delete VM and all resources
+      run: |
+        # delete the vm
+        az vm delete -g $RESOURCE_GROUP -n $VM_NAME --force-deletion none --yes
+        # delete the network
+        az network nsg delete -g $RESOURCE_GROUP --name ${VM_NAME}NSG
+        az network public-ip delete -g $RESOURCE_GROUP --name ${VM_NAME}PublicIP
+        # clean up any unattached disks
+        unattachedDiskIds=$(az disk list --query '[?managedBy==`null`].[id]' -o tsv)
+        for id in ${unattachedDiskIds[@]}; do az disk delete --ids $id --yes; done

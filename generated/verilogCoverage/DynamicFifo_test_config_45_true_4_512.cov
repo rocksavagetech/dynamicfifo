@@ -1,0 +1,47 @@
+--------------------------------------------------------------------------------
+%									Count				Coverage Point 
+--------------------------------------------------------------------------------
+1.81					      156				dut.io__almostEmpty
+71.55					     6164				dut.io__almostFull
+1.81					      156				dut.io__empty
+71.55					     6164				dut.io__full
+64.91					     5592				dut.io__pop
+70.85					     6104				dut.io__push
+64.91					     5592				dut.io__ramReadEnable
+70.85					     6104				dut.io__ramWriteEnable
+64.98					     5598				dut.io_dataIn_0
+35.22					     3034				dut.io_dataIn_1
+35.09					     3023				dut.io_dataIn_2
+34.96					     3012				dut.io_dataIn_3
+47.25					     4071				dut.io_dataOut_0
+52.58					     4530				dut.io_dataOut_1
+53.05					     4570				dut.io_dataOut_2
+52.28					     4504				dut.io_dataOut_3
+64.98					     5598				dut.io_ramDataIn_0
+35.22					     3034				dut.io_ramDataIn_1
+35.09					     3023				dut.io_ramDataIn_2
+34.96					     3012				dut.io_ramDataIn_3
+47.25					     4071				dut.io_ramDataOut_0
+52.58					     4530				dut.io_ramDataOut_1
+53.05					     4570				dut.io_ramDataOut_2
+52.28					     4504				dut.io_ramDataOut_3
+47.14					     4061				dut.io_ramReadAddress_0
+47.19					     4065				dut.io_ramReadAddress_1
+47.07					     4055				dut.io_ramReadAddress_2
+47.15					     4062				dut.io_ramReadAddress_3
+47.15					     4062				dut.io_ramReadAddress_4
+47.12					     4059				dut.io_ramReadAddress_5
+46.80					     4032				dut.io_ramReadAddress_6
+47.03					     4052				dut.io_ramReadAddress_7
+46.67					     4021				dut.io_ramReadAddress_8
+46.93					     4043				dut.io_ramWriteAddress_0
+47.44					     4087				dut.io_ramWriteAddress_1
+46.83					     4034				dut.io_ramWriteAddress_2
+47.17					     4064				dut.io_ramWriteAddress_3
+46.83					     4034				dut.io_ramWriteAddress_4
+47.06					     4054				dut.io_ramWriteAddress_5
+47.09					     4057				dut.io_ramWriteAddress_6
+46.98					     4047				dut.io_ramWriteAddress_7
+47.44					     4087				dut.io_ramWriteAddress_8
+--------------------------------------------------------------------------------
+2024-01-14T13:31:19.541702

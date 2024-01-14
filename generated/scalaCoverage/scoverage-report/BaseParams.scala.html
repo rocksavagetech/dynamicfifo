@@ -22,49 +22,45 @@
         </ul>
         <div class="tab-content">
           <div class="tab-pane active" id="codegrid">
-            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>// This confidential and proprietary software may be used only as authorized by
-</span>2 <span style=''>// Rocksavage Technology, Inc. In the event of publication the following
-</span>3 <span style=''>// notice is applicable:
-</span>4 <span style=''>//
-</span>5 <span style=''>// (C) COPYRIGHT 2023 ROCKSAVAGE TECHNOLOGY, INC.
-</span>6 <span style=''>// ALL RIGHTS RESERVED
-</span>7 <span style=''>
-</span>8 <span style=''>package tech.rocksavage.chiselware.DynamicFifo
-</span>9 <span style=''>
-</span>10 <span style=''>import chisel3._
-</span>11 <span style=''>import chisel3.util._
-</span>12 <span style=''>
-</span>13 <span style=''>/** Default parameter settings for Dynamic FIFO
+            <pre style='font-size: 12pt; font-family: courier, monospace;'>1 <span style=''>// (c) 2024 Rocksavage Technology, Inc.
+</span>2 <span style=''>// This code is licensed under MIT license (see LICENSE.MD for details)
+</span>3 <span style=''>
+</span>4 <span style=''>package tech.rocksavage.chiselware.DynamicFifo
+</span>5 <span style=''>
+</span>6 <span style=''>import chisel3._
+</span>7 <span style=''>import chisel3.util._
+</span>8 <span style=''>
+</span>9 <span style=''>/** Default parameter settings for Dynamic FIFO
+</span>10 <span style=''>  *
+</span>11 <span style=''>  * @constructor
+</span>12 <span style=''>  *   default parameter settings
+</span>13 <span style=''>  * @param dataWidth
 </span>14 <span style=''>  *
-</span>15 <span style=''>  * @constructor
-</span>16 <span style=''>  *   default parameter settings
-</span>17 <span style=''>  * @param dataWidth
-</span>18 <span style=''>  *
-</span>19 <span style=''>  * specifies the width of the FIFO data
-</span>20 <span style=''>  * @param fifoDepth
-</span>21 <span style=''>  *   specifices the depth of the FIFO
-</span>22 <span style=''>  * @param externalRam
-</span>23 <span style=''>  *   specifies whether to use an external SRAM or generate internal FFs
-</span>24 <span style=''>  * @param coverage
-</span>25 <span style=''>  *   specifies whether to calculate port coverage during simulation
-</span>26 <span style=''>  * @author
-</span>27 <span style=''>  *   Warren Savage
-</span>28 <span style=''>  * @version 1.0
-</span>29 <span style=''>  *
-</span>30 <span style=''>  * @see
-</span>31 <span style=''>  *   [[http://www.rocksavage.tech]] for more information
-</span>32 <span style=''>  */
-</span>33 <span style=''>case class BaseParams(
-</span>34 <span style=''>    dataWidth: Int = 8,
-</span>35 <span style=''>    fifoDepth: Int = 8,
-</span>36 <span style=''>    externalRam: Boolean = false,
-</span>37 <span style=''>    coverage: Boolean = false,
-</span>38 <span style=''>    bbFiles: List[String] = List(&quot;your_sram.v&quot;)
-</span>39 <span style=''>) {
-</span>40 <span style=''>
-</span>41 <span style=''>  </span><span style='background: #AEF1AE'>require(dataWidth &gt;= 4, &quot;Width must be greater than or equal 4&quot;)</span><span style=''>
-</span>42 <span style=''>  </span><span style='background: #AEF1AE'>require((fifoDepth % 2) == 0, &quot;Depth must be a power of 2&quot;)</span><span style=''>
-</span>43 <span style=''>}
+</span>15 <span style=''>  * specifies the width of the FIFO data
+</span>16 <span style=''>  * @param fifoDepth
+</span>17 <span style=''>  *   specifices the depth of the FIFO
+</span>18 <span style=''>  * @param externalRam
+</span>19 <span style=''>  *   specifies whether to use an external SRAM or generate internal FFs
+</span>20 <span style=''>  * @param coverage
+</span>21 <span style=''>  *   specifies whether to calculate port coverage during simulation
+</span>22 <span style=''>  * @author
+</span>23 <span style=''>  *   Warren Savage
+</span>24 <span style=''>  * @version 1.0
+</span>25 <span style=''>  *
+</span>26 <span style=''>  * @see
+</span>27 <span style=''>  *   [[http://www.rocksavage.tech]] for more information
+</span>28 <span style=''>  */
+</span>29 <span style=''>case class BaseParams(
+</span>30 <span style=''>    dataWidth: Int = 8,
+</span>31 <span style=''>    fifoDepth: Int = 8,
+</span>32 <span style=''>    externalRam: Boolean = false,
+</span>33 <span style=''>    coverage: Boolean = false,
+</span>34 <span style=''>    bbFiles: List[String] = List(&quot;your_sram.v&quot;)
+</span>35 <span style=''>) {
+</span>36 <span style=''>
+</span>37 <span style=''>  </span><span style='background: #AEF1AE'>require(dataWidth &gt;= 4, &quot;Width must be greater than or equal 4&quot;)</span><span style=''>
+</span>38 <span style=''>  </span><span style='background: #AEF1AE'>require((fifoDepth % 2) == 0, &quot;Depth must be a power of 2&quot;)</span><span style=''>
+</span>39 <span style=''>}
 </span></pre>
           </div>
           <div class="tab-pane" id="statementlist">
@@ -79,15 +75,15 @@
         <th>Code</th>
       </tr><tr>
         <td>
-          41
+          37
         </td>
         <td>
           2
         </td>
         <td>
-          1096
+          954
           -
-          1135
+          993
         </td>
         <td>
           Literal
@@ -103,15 +99,15 @@
         </td>
       </tr><tr>
         <td>
-          41
+          37
         </td>
         <td>
           1
         </td>
         <td>
-          1080
+          938
           -
-          1094
+          952
         </td>
         <td>
           Apply
@@ -127,15 +123,15 @@
         </td>
       </tr><tr>
         <td>
-          41
+          37
         </td>
         <td>
           3
         </td>
         <td>
-          1072
+          930
           -
-          1136
+          994
         </td>
         <td>
           Apply
@@ -151,15 +147,15 @@
         </td>
       </tr><tr>
         <td>
-          42
+          38
         </td>
         <td>
           5
         </td>
         <td>
-          1169
+          1027
           -
-          1197
+          1055
         </td>
         <td>
           Literal
@@ -175,15 +171,15 @@
         </td>
       </tr><tr>
         <td>
-          42
+          38
         </td>
         <td>
           4
         </td>
         <td>
-          1147
+          1005
           -
-          1167
+          1025
         </td>
         <td>
           Apply
@@ -199,15 +195,15 @@
         </td>
       </tr><tr>
         <td>
-          42
+          38
         </td>
         <td>
           6
         </td>
         <td>
-          1139
+          997
           -
-          1198
+          1056
         </td>
         <td>
           Apply
