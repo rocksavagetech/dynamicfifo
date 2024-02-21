@@ -8,8 +8,8 @@ on:
 
 env: 
   VM_NAME: rst-runner-${{ github.run_id }}-${{ github.run_attempt }}
-  VM_IMAGE: /subscriptions/ad14f5b9-164c-4778-ab36-883e241a5cd5/resourceGroups/rstRG/providers/Microsoft.Compute/galleries/chisel_runner/images/chisel_sbt_gtkwave_azcli_runner
-  RESOURCE_GROUP: rstRG
+  VM_IMAGE: /subscriptions/ad14f5b9-164c-4778-ab36-883e241a5cd5/resourceGroups/rst-rg/providers/Microsoft.Compute/galleries/rstgallery/images/chiselWare-TrustedLaunch
+  RESOURCE_GROUP: rst-rg
   VM_SIZE: Standard_D2s_v3 #small ($70/mo)
 #  VM_SIZE: Standard_E4s_v3 #medium ($90/mo)
 #  VM_SIZE: Standard_D4s_v3 #large ($140/mo)
