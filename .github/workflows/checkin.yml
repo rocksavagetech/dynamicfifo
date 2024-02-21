@@ -50,7 +50,7 @@ jobs:
           --url https://github.com/rocksavagetech/newChiselProject 
           --token $RUNNER_TOKEN 
           --agent rst-runner 
-          --work _work"' 
+          --work _work >2>&1 >> ~tws/run.config.log"' 
 
       - name: Start runner
         run: >
