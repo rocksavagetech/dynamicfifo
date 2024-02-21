@@ -47,7 +47,7 @@ jobs:
           --command-id RunShellScript 
           --scripts 'su - tws 
           --command "/data/actions-runner/config.sh 
-          --url https://github.com/rocksavagetech/newChiselProject 
+          --url https://github.com/rocksavagetech/dynamicfifo
           --token $RUNNER_TOKEN 
           --agent rst-runner 
           --work _work >2>&1 >> ~tws/run.config.log"' 
