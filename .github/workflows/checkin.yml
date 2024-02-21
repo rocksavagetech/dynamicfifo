@@ -45,12 +45,14 @@ jobs:
           az vm run-command invoke 
           -g $RESOURCE_GROUP -n $VM_NAME 
           --command-id RunShellScript 
-          --scripts 'su - tws 
+          --scripts 'su - rstadmin
           --command "/data/actions-runner/config.sh 
           --url https://github.com/rocksavagetech/dynamicfifo
           --token $RUNNER_TOKEN 
           --agent rst-runner 
-          --work _work >2>&1 >> ~tws/run.config.log"' 
+          --work _work >2>&1
+          --emphemeral
+          --unattended >> ~tws/run.config.log"' 
 
       - name: Start runner
         run: >
