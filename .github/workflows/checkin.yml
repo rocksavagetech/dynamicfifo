@@ -81,6 +81,7 @@ jobs:
           echo "GitHub variables"
           echo "----------------"
           echo "Home: ${HOME}"
+          echo "Home: ${RUNNER_TOKEN}"
           echo "GITHUB_RUNNER_NAME: $(basename $(dirname $(dirname $(dirname $(pwd)))))"
           echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
           echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
