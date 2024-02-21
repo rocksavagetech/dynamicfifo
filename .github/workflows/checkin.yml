@@ -48,9 +48,9 @@ jobs:
           --scripts 'su - rstadmin
           --command "/data/actions-runner/config.sh 
           --url https://github.com/rocksavagetech/dynamicfifo
-          --token $RUNNER_TOKEN 
+          --token AMQKMZ5MYE2KTGDGGS4FQRDF2VUPY
           --work _work 
-          --unattended 2>&1 >> ~/run.config.log"' 
+          --unattended 2>&1 >> ~/config.command.log"' 
 
       - name: Start runner
         run: >
