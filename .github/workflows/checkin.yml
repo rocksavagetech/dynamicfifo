@@ -38,7 +38,8 @@ jobs:
       
       - name: Get runner token
         run: >
-          export RUNNER_TOKEN="$( curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }} " -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/orgs/rocksavagetech/actions/runners/generate-jitconfig | jq -r .token)";
+#          export RUNNER_TOKEN="$( curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }} " -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/orgs/rocksavagetech/actions/runners/generate-jitconfig | jq -r .token)";
+          export RUNNER_TOKEN="$( curl --fail --silent --header "Private-Token: ${GITLAB_API_TOKEN}" "https://github.com/rocksavagetech/dynamicfifo")"
 
       - name: Configure runner
         run: > 
@@ -48,7 +49,8 @@ jobs:
           --scripts 'su - rstadmin
           --command "/data/actions-runner/config.sh 
           --url https://github.com/rocksavagetech/dynamicfifo
-          --token AMQKMZ5MYE2KTGDGGS4FQRDF2VUPY
+#          --token AMQKMZ5MYE2KTGDGGS4FQRDF2VUPY
+          --token $RUNNER_TOKEN
           --work _work 
           --unattended 2>&1 >> ~/config.command.log"' 
 
