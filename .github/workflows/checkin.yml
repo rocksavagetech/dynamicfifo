@@ -38,7 +38,13 @@ jobs:
       
       - name: Get runner token
         run: >
-          export RUNNER_TOKEN="$( curl --fail --silent --header "Private-Token: ${GITLAB_API_TOKEN}" "https://github.com/rocksavagetech/dynamicfifo")"
+        export RUNNER_TOKEN="$(curl -L \
+        -X POST \ -H "Accept: application/vnd.github+json" \
+        -H "Authorization: Bearer $GITHUB_TOKEN" \
+        -H "X-GitHub-Api-Version: 2022-11-28" \
+        https://api.github.com/repos/rocksavagetech/dynamicfifo/actions/runners/registration-token | jq -r '.token' )"
+
+#          export RUNNER_TOKEN="$( curl --fail --silent --header "Private-Token: ${GITLAB_API_TOKEN}" "https://github.com/rocksavagetech/dynamicfifo")"
 
       - name: Configure runner
         run: > 
@@ -49,7 +55,6 @@ jobs:
           --command "/data/actions-runner/config.sh 
           --url https://github.com/rocksavagetech/dynamicfifo
           --token $RUNNER_TOKEN
-          --work _work 
           --unattended 2>&1 >> ~/config.command.log"' 
 
       - name: Start runner
