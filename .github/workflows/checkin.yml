@@ -37,7 +37,7 @@ jobs:
 #          --priority Spot
       
       - name: Get runner token
-        run: >
+        run: |
         export RUNNER_TOKEN="$(curl -L 
         -X POST \ -H "Accept: application/vnd.github+json" 
         -H "Authorization: Bearer $GITHUB_TOKEN" 
