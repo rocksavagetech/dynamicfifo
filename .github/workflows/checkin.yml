@@ -7,6 +7,7 @@ on:
       - check-in-regression
 
 env: 
+  MY_REPO: https://api.github.com/repos/rocksavagetech/dynamicfifo/actions/runners/registration-token 
   VM_NAME: rst-runner-${{ github.run_id }}-${{ github.run_attempt }}
   VM_IMAGE: /subscriptions/ad14f5b9-164c-4778-ab36-883e241a5cd5/resourceGroups/rst-rg/providers/Microsoft.Compute/galleries/rstgallery/images/chiselWare-TrustedLaunch
   RESOURCE_GROUP: rst-rg
@@ -45,7 +46,11 @@ jobs:
           az vm run-command invoke 
           -g $RESOURCE_GROUP -n $VM_NAME 
           --command-id RunShellScript 
-          export RUNNER_TOKEN="$(curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $MY_GHA_PAT" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/rocksavagetech/dynamicfifo/actions/runners/registration-token | jq -r '.token' )" && echo $RUNNER_TOKEN >> ~/runner_token.txt
+          --scripts 'su - rstadmin'
+          --command " export RUNNER_TOKEN="$(curl -L -X POST 
+          -H "Accept: application/vnd.github+json" 
+          -H "Authorization: Bearer $MY_GHA_PAT" 
+          -H "X-GitHub-Api-Version: 2022-11-28" $MY_REPO | jq -r '.token' )" 
 
       - name: Configure runner
         run: > 
