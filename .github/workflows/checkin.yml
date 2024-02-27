@@ -39,7 +39,7 @@ jobs:
       
       - name: Get runner token; add to environment
         run: |
-          export RUNNER_TOKEN="$(curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer $MY_GHA_PAT" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/rocksavagetech/dynamicfifo/actions/runners/registration-token | jq -r '.token' )" 
+          export RUNNER_TOKEN="$(curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer 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" -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/repos/rocksavagetech/dynamicfifo/actions/runners/registration-token | jq -r '.token' )" 
           echo "RUNNER_TOKEN=$RUNNER_TOKEN" >> $GITHUB_ENV
           echo $RUNNER_TOKEN
 
