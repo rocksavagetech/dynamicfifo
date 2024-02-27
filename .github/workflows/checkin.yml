@@ -46,7 +46,7 @@ jobs:
           az vm run-command invoke 
           -g $RESOURCE_GROUP -n $VM_NAME 
           --command-id RunShellScript 
-          --scripts 'su - rstadmin'
+          --scripts 'su - rstadmin
           --command " export RUNNER_TOKEN="$(curl -L -X POST 
           -H "Accept: application/vnd.github+json" 
           -H "Authorization: Bearer $MY_GHA_PAT" 
