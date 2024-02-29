@@ -40,7 +40,6 @@ jobs:
       
       - name: Generate runner token
         run: >
-#          gh api --method POST -H "Accept: application/vnd.github+json" /repos/rocksavagetech/dynamicfifo/actions/runners/registration-token | jq -r .token >> $GITHUB_ENV
           export RUNNER_TOKEN="$(curl -L -X POST 
           -H "Accept: application/vnd.github+json" 
           -H "Authorization: Bearer $MY_GHA_PAT" 
