@@ -1,5 +1,5 @@
 #File: .github/workflows/workflow.yml
-name: release-regression-test
+name: dynamicfifo-release-regression
 run-name: ${{ github.actor }} is running regression tests on ${{ github.repository }}
 on:
   push:
