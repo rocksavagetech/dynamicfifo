@@ -6,7 +6,7 @@ on:
     branches:
       - release-candidate
 
-# git commit -a -m "release candidate"; git push main:release-candidate
+# git commit -a -m "release candidate"; git push origin main:release-candidate
 
 env: 
 # Define these in GitHub Actions variables
@@ -22,6 +22,21 @@ jobs:
   create-vm:
     runs-on: ubuntu-latest
     steps:
+      - name: Display Github variables
+        run: |
+          echo "GitHub variables"
+          echo "----------------"
+          echo "Home: ${HOME}"
+          echo "VM SIZE: ${{ vars.VM_SIZE }}"
+          echo "GITHUB_RUNNER_NAME: $(basename $(dirname $(dirname $(dirname $(pwd)))))"
+          echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
+          echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
+          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
+          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
+          echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
+          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
+          echo "GITHUB_SHA: ${GITHUB_SHA}"
+
       - name: Azure login 
         uses: azure/login@v1
         with:
@@ -73,21 +88,6 @@ jobs:
 
       - name: Build and run regression tests
         run: sbt -v +test
-
-      - name: Display Github variables
-        run: |
-          echo "GitHub variables"
-          echo "----------------"
-          echo "Home: ${HOME}"
-          echo "VM SIZE: ${{ vars.VM_SIZE }}"
-          echo "GITHUB_RUNNER_NAME: $(basename $(dirname $(dirname $(dirname $(pwd)))))"
-          echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
-          echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
-          echo "GITHUB_ACTOR: ${GITHUB_ACTOR}"
-          echo "GITHUB_REPOSITORY: ${GITHUB_REPOSITORY}"
-          echo "GITHUB_EVENT_NAME: ${GITHUB_EVENT_NAME}"
-          echo "GITHUB_WORKSPACE: ${GITHUB_WORKSPACE}"
-          echo "GITHUB_SHA: ${GITHUB_SHA}"
 
   delete-vm:
     needs: build-and-test
