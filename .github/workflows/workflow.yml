@@ -8,6 +8,7 @@ on:
 
 # git commit -a -m "release candidate"; git push origin main:release-candidate
 
+
 env: 
 # Define these in GitHub Actions variables
 #  VM_SIZE: Standard_D2s_v3 #small ($70/mo)
