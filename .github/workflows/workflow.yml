@@ -54,11 +54,6 @@ jobs:
           --os-disk-delete-option Delete
           --data-disk-delete Delete
 
-      - name: Get runner token 
-        run: |
-          export RUNNER_TOKEN="$( curl -L -X POST -H "Accept: application/vnd.github+json" -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }} " -H "X-GitHub-Api-Version: 2022-11-28" https://api.github.com/orgs/rocksavagetech/actions/runners/generate-jitconfig | jq -r .token)";
-          echo ${RUNNER_TOKEN}
-      
       - name: Configure runner
         run: > 
           az vm run-command invoke 
@@ -67,7 +62,7 @@ jobs:
           --scripts 'su - rstadmin
           --command "/data/actions-runner/config.sh 
           --url https://github.com/rocksavagetech/newchiselproject
-          --token $RUNNER_TOKEN
+          --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN}}
           --unattended 2>&1 >> ~/config.command.log"' 
 
       - name: Start runner
