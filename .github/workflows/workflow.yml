@@ -62,7 +62,7 @@ jobs:
           --command-id RunShellScript 
           --scripts 'su - rstadmin
           --command "/data/actions-runner/config.sh 
-          --url https://github.com/rocksavagetech/newchiselproject
+          --url https://github.com/rocksavagetech/dynamicfifo
           --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN}}
           --unattended 2>&1 >> ~/config.command.log"' 
 
