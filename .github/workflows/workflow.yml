@@ -8,7 +8,6 @@ on:
 
 # git commit -a -m "release candidate"; git push origin main:release-candidate
 
-
 env: 
 # Define these in GitHub Actions variables
 #  VM_SIZE: Standard_D2s_v3 #small ($70/mo)
@@ -63,7 +62,7 @@ jobs:
           --scripts 'su - rstadmin
           --command "/data/actions-runner/config.sh 
           --url https://github.com/rocksavagetech/dynamicfifo
-          --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN}}
+          --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN }}
           --unattended 2>&1 >> ~/config.command.log"' 
 
       - name: Start runner
