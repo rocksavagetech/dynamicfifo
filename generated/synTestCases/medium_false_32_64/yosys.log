@@ -958,8 +958,8 @@ ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X8".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X16".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "TINV_X1".
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "TLAT_X1".
-ABC: Library "NangateOpenCellLibrary" from "/home/system76/drive/projects/chiselWare/dynamicfifo/generated/synTestCases/medium_false_32_64/../../../syn/stdcells.lib" has 90 cells (35 skipped: 21 seq; 6 tri-state; 8 no func; 10 dont_use).  Time =     0.05 sec
-ABC: Memory =    8.88 MB. Time =     0.05 sec
+ABC: Library "NangateOpenCellLibrary" from "/home/system76/drive/projects/chiselWare/dynamicfifo/generated/synTestCases/medium_false_32_64/../../../syn/stdcells.lib" has 90 cells (35 skipped: 21 seq; 6 tri-state; 8 no func; 10 dont_use).  Time =     0.06 sec
+ABC: Memory =    8.88 MB. Time =     0.06 sec
 ABC: Warning: Detected 2 multi-output gates (for example, "FA_X1").
 ABC: + strash 
 ABC: + ifraig 
@@ -1056,7 +1056,7 @@ Dumping module `\DynamicFifo'.
    Chip area for module '\DynamicFifo': 15388.366000
 
 Warnings: 8 unique messages, 72 total
-End of script. Logfile hash: 6a0107e406
-CPU: user 3.26s system 0.03s, MEM: 60.35 MB total, 48.99 MB resident
+End of script. Logfile hash: 3e64378873
+CPU: user 3.39s system 0.03s, MEM: 60.35 MB total, 49.26 MB resident
 Yosys 0.9 (git sha1 1979e0b)
 Time spent: 18% 17x opt_clean (0 sec), 17% 13x opt_merge (0 sec), ...

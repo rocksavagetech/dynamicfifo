@@ -16,7 +16,8 @@ import scala.math.pow
 import scala.collection.mutable.Stack
 import scala.collection.immutable.ListMap
 import java.io.{File, FileWriter, PrintWriter, BufferedWriter}
-import tech.rocksavage.chiselware.util.TestUtils.{randData, checkCoverage}
+//import tech.rocksavage.chiselware.util.TestUtils.{randData, checkCoverage}
+import TestUtils.{randData, checkCoverage}
 
 /** Highly randomized test suite driven by configuration parameters. Includes
   * code coverage for all top-level ports.

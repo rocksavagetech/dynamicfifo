@@ -36,4 +36,4 @@ lazy val root = (project in file("."))
 coverageDataDir            := target.value / "../generated/scalaCoverage"
 coverageFailOnMinimum      := true
 coverageMinimumStmtTotal   := 90
-coverageMinimumBranchTotal := 90
+coverageMinimumBranchTotal := 95

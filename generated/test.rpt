@@ -1,9 +1,9 @@
-[info] welcome to sbt 1.4.9 (Ubuntu Java 11.0.21)
+[info] welcome to sbt 1.4.9 (Ubuntu Java 11.0.22)
 [info] loading settings for project dynamicfifo-build from plugins.sbt ...
 [info] loading project definition from /home/system76/drive/projects/chiselWare/dynamicfifo/project
 [info] loading settings for project root from build.sbt ...
 [info] set current project to dynamicfifo (in build file:/home/system76/drive/projects/chiselWare/dynamicfifo/)
-[success] Total time: 0 s, completed Jan 14, 2024, 1:28:15 PM
+[success] Total time: 0 s, completed Mar 11, 2024, 6:07:04 PM
 [info] Defining ThisBuild / coverageEnabled
 [info] The new value will be used by Compile / compile / scalacOptions, libraryDependencies
 [info] Reapplying settings...
@@ -117,467 +117,467 @@
 [info] Will write measurement data to [/home/system76/drive/projects/chiselWare/dynamicfifo/target/../generated/scalaCoverage/scoverage-data]
 [warn] 100 warnings found
 [info] done compiling
-[info] compiling 1 Scala source to /home/system76/drive/projects/chiselWare/dynamicfifo/target/scala-2.13/test-classes ...
+[info] compiling 2 Scala sources to /home/system76/drive/projects/chiselWare/dynamicfifo/target/scala-2.13/test-classes ...
 [info] done compiling
 [info] DynamicFifoTest:
 [info] DynamicFifo_test_config_1
 [info] - should test this configuration
-[info]   + Test Data Size = 128 
+[info]   + Test Data Size = 576 
 [info]   + Data Width = 6 
-[info]   + FIFO Depth = 8 
-[info]   + Almost Full Threshold = 6 
-[info]   + Almost Empty Threshold = 0 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_1_false_6_8.cov 
-[info] DynamicFifo_test_config_2
-[info] - should test this configuration
-[info]   + Test Data Size = 1920 
-[info]   + Data Width = 4 
-[info]   + FIFO Depth = 128 
-[info]   + Almost Full Threshold = 115 
-[info]   + Almost Empty Threshold = 12 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_2_false_4_128.cov 
-[info] DynamicFifo_test_config_3
-[info] - should test this configuration
-[info]   + Test Data Size = 76 
-[info]   + Data Width = 128 
-[info]   + FIFO Depth = 4 
-[info]   + Almost Full Threshold = 3 
-[info]   + Almost Empty Threshold = 0 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_3_false_128_4.cov 
-[info] DynamicFifo_test_config_4
-[info] - should test this configuration
-[info]   + Test Data Size = 448 
-[info]   + Data Width = 8 
 [info]   + FIFO Depth = 32 
 [info]   + Almost Full Threshold = 29 
-[info]   + Almost Empty Threshold = 1 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_4_false_8_32.cov 
-[info] DynamicFifo_test_config_5
-[info] - should test this configuration
-[info]   + Test Data Size = 12288 
-[info]   + Data Width = 4 
-[info]   + FIFO Depth = 1024 
-[info]   + Almost Full Threshold = 849 
-[info]   + Almost Empty Threshold = 92 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_5_true_4_1024.cov 
-[info] DynamicFifo_test_config_6
-[info] - should test this configuration
-[info]   + Test Data Size = 272 
-[info]   + Data Width = 4 
-[info]   + FIFO Depth = 16 
-[info]   + Almost Full Threshold = 15 
-[info]   + Almost Empty Threshold = 1 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_6_false_4_16.cov 
-[info] DynamicFifo_test_config_7
-[info] - should test this configuration
-[info]   + Test Data Size = 768 
-[info]   + Data Width = 5 
-[info]   + FIFO Depth = 64 
-[info]   + Almost Full Threshold = 50 
-[info]   + Almost Empty Threshold = 3 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_7_false_5_64.cov 
-[info] DynamicFifo_test_config_8
-[info] - should test this configuration
-[info]   + Test Data Size = 1216 
-[info]   + Data Width = 7 
-[info]   + FIFO Depth = 64 
-[info]   + Almost Full Threshold = 56 
-[info]   + Almost Empty Threshold = 15 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_8_false_7_64.cov 
-[info] DynamicFifo_test_config_9
-[info] - should test this configuration
-[info]   + Test Data Size = 136 
-[info]   + Data Width = 4 
-[info]   + FIFO Depth = 8 
-[info]   + Almost Full Threshold = 7 
-[info]   + Almost Empty Threshold = 0 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_9_false_4_8.cov 
-[info] DynamicFifo_test_config_10
-[info] - should test this configuration
-[info]   + Test Data Size = 15360 
-[info]   + Data Width = 64 
-[info]   + FIFO Depth = 1024 
-[info]   + Almost Full Threshold = 788 
-[info]   + Almost Empty Threshold = 163 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_10_true_64_1024.cov 
-[info] DynamicFifo_test_config_11
-[info] - should test this configuration
-[info]   + Test Data Size = 30720 
-[info]   + Data Width = 6 
-[info]   + FIFO Depth = 2048 
-[info]   + Almost Full Threshold = 1638 
-[info]   + Almost Empty Threshold = 102 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_11_true_6_2048.cov 
-[info] DynamicFifo_test_config_12
-[info] - should test this configuration
-[info]   + Test Data Size = 8192 
-[info]   + Data Width = 64 
-[info]   + FIFO Depth = 512 
-[info]   + Almost Full Threshold = 476 
-[info]   + Almost Empty Threshold = 40 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_12_true_64_512.cov 
-[info] DynamicFifo_test_config_13
-[info] - should test this configuration
-[info]   + Test Data Size = 3328 
-[info]   + Data Width = 7 
-[info]   + FIFO Depth = 256 
-[info]   + Almost Full Threshold = 207 
-[info]   + Almost Empty Threshold = 12 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_13_true_7_256.cov 
-[info] DynamicFifo_test_config_14
-[info] - should test this configuration
-[info]   + Test Data Size = 304 
-[info]   + Data Width = 7 
-[info]   + FIFO Depth = 16 
-[info]   + Almost Full Threshold = 13 
-[info]   + Almost Empty Threshold = 3 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_14_false_7_16.cov 
-[info] DynamicFifo_test_config_15
-[info] - should test this configuration
-[info]   + Test Data Size = 240 
-[info]   + Data Width = 6 
-[info]   + FIFO Depth = 16 
-[info]   + Almost Full Threshold = 12 
-[info]   + Almost Empty Threshold = 1 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_15_false_6_16.cov 
-[info] DynamicFifo_test_config_16
-[info] - should test this configuration
-[info]   + Test Data Size = 160 
-[info]   + Data Width = 16 
-[info]   + FIFO Depth = 16 
-[info]   + Almost Full Threshold = 14 
-[info]   + Almost Empty Threshold = 3 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_16_false_16_16.cov 
-[info] DynamicFifo_test_config_17
-[info] - should test this configuration
-[info]   + Test Data Size = 104 
-[info]   + Data Width = 5 
-[info]   + FIFO Depth = 8 
-[info]   + Almost Full Threshold = 6 
-[info]   + Almost Empty Threshold = 1 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_17_false_5_8.cov 
-[info] DynamicFifo_test_config_18
-[info] - should test this configuration
-[info]   + Test Data Size = 76 
-[info]   + Data Width = 8 
-[info]   + FIFO Depth = 4 
-[info]   + Almost Full Threshold = 3 
-[info]   + Almost Empty Threshold = 0 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_18_false_8_4.cov 
-[info] DynamicFifo_test_config_19
-[info] - should test this configuration
-[info]   + Test Data Size = 19456 
-[info]   + Data Width = 32 
-[info]   + FIFO Depth = 1024 
-[info]   + Almost Full Threshold = 829 
-[info]   + Almost Empty Threshold = 204 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_19_true_32_1024.cov 
-[info] DynamicFifo_test_config_20
-[info] - should test this configuration
-[info]   + Test Data Size = 38912 
-[info]   + Data Width = 6 
-[info]   + FIFO Depth = 2048 
-[info]   + Almost Full Threshold = 1884 
-[info]   + Almost Empty Threshold = 266 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_20_true_6_2048.cov 
-[info] DynamicFifo_test_config_21
-[info] - should test this configuration
-[info]   + Test Data Size = 136 
-[info]   + Data Width = 32 
-[info]   + FIFO Depth = 8 
-[info]   + Almost Full Threshold = 7 
-[info]   + Almost Empty Threshold = 0 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_21_false_32_8.cov 
-[info] DynamicFifo_test_config_22
-[info] - should test this configuration
-[info]   + Test Data Size = 1920 
-[info]   + Data Width = 7 
-[info]   + FIFO Depth = 128 
-[info]   + Almost Full Threshold = 110 
-[info]   + Almost Empty Threshold = 12 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_22_false_7_128.cov 
-[info] DynamicFifo_test_config_23
-[info] - should test this configuration
-[info]   + Test Data Size = 18432 
-[info]   + Data Width = 16 
-[info]   + FIFO Depth = 1024 
-[info]   + Almost Full Threshold = 839 
-[info]   + Almost Empty Threshold = 163 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_23_true_16_1024.cov 
-[info] DynamicFifo_test_config_24
-[info] - should test this configuration
-[info]   + Test Data Size = 2304 
-[info]   + Data Width = 64 
-[info]   + FIFO Depth = 128 
-[info]   + Almost Full Threshold = 96 
-[info]   + Almost Empty Threshold = 5 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_24_true_64_128.cov 
-[info] DynamicFifo_test_config_25
-[info] - should test this configuration
-[info]   + Test Data Size = 4864 
-[info]   + Data Width = 5 
-[info]   + FIFO Depth = 256 
-[info]   + Almost Full Threshold = 215 
-[info]   + Almost Empty Threshold = 10 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_25_true_5_256.cov 
-[info] DynamicFifo_test_config_26
-[info] - should test this configuration
-[info]   + Test Data Size = 56 
-[info]   + Data Width = 7 
-[info]   + FIFO Depth = 4 
-[info]   + Almost Full Threshold = 3 
-[info]   + Almost Empty Threshold = 0 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_26_false_7_4.cov 
-[info] DynamicFifo_test_config_27
-[info] - should test this configuration
-[info]   + Test Data Size = 304 
-[info]   + Data Width = 128 
-[info]   + FIFO Depth = 16 
-[info]   + Almost Full Threshold = 13 
-[info]   + Almost Empty Threshold = 2 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_27_true_128_16.cov 
-[info] DynamicFifo_test_config_28
-[info] - should test this configuration
-[info]   + Test Data Size = 52 
-[info]   + Data Width = 128 
-[info]   + FIFO Depth = 4 
-[info]   + Almost Full Threshold = 3 
-[info]   + Almost Empty Threshold = 0 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_28_false_128_4.cov 
-[info] DynamicFifo_test_config_29
-[info] - should test this configuration
-[info]   + Test Data Size = 1152 
-[info]   + Data Width = 5 
-[info]   + FIFO Depth = 64 
-[info]   + Almost Full Threshold = 54 
-[info]   + Almost Empty Threshold = 8 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_29_false_5_64.cov 
-[info] DynamicFifo_test_config_30
-[info] - should test this configuration
-[info]   + Test Data Size = 64 
-[info]   + Data Width = 64 
-[info]   + FIFO Depth = 4 
-[info]   + Almost Full Threshold = 3 
-[info]   + Almost Empty Threshold = 0 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_30_false_64_4.cov 
-[info] DynamicFifo_test_config_31
-[info] - should test this configuration
-[info]   + Test Data Size = 4352 
-[info]   + Data Width = 6 
-[info]   + FIFO Depth = 256 
-[info]   + Almost Full Threshold = 202 
-[info]   + Almost Empty Threshold = 48 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_31_true_6_256.cov 
-[info] DynamicFifo_test_config_32
-[info] - should test this configuration
-[info]   + Test Data Size = 136 
-[info]   + Data Width = 7 
-[info]   + FIFO Depth = 8 
-[info]   + Almost Full Threshold = 6 
-[info]   + Almost Empty Threshold = 0 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_32_false_7_8.cov 
-[info] DynamicFifo_test_config_33
-[info] - should test this configuration
-[info]   + Test Data Size = 4096 
-[info]   + Data Width = 5 
-[info]   + FIFO Depth = 256 
-[info]   + Almost Full Threshold = 238 
-[info]   + Almost Empty Threshold = 51 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_33_true_5_256.cov 
-[info] DynamicFifo_test_config_34
-[info] - should test this configuration
-[info]   + Test Data Size = 640 
-[info]   + Data Width = 5 
-[info]   + FIFO Depth = 64 
-[info]   + Almost Full Threshold = 53 
-[info]   + Almost Empty Threshold = 10 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_34_false_5_64.cov 
-[info] DynamicFifo_test_config_35
-[info] - should test this configuration
-[info]   + Test Data Size = 28672 
-[info]   + Data Width = 128 
-[info]   + FIFO Depth = 2048 
-[info]   + Almost Full Threshold = 1843 
-[info]   + Almost Empty Threshold = 81 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_35_true_128_2048.cov 
-[info] DynamicFifo_test_config_36
-[info] - should test this configuration
-[info]   + Test Data Size = 28672 
-[info]   + Data Width = 4 
-[info]   + FIFO Depth = 2048 
-[info]   + Almost Full Threshold = 1720 
-[info]   + Almost Empty Threshold = 81 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_36_true_4_2048.cov 
-[info] DynamicFifo_test_config_37
-[info] - should test this configuration
-[info]   + Test Data Size = 9216 
-[info]   + Data Width = 128 
-[info]   + FIFO Depth = 512 
-[info]   + Almost Full Threshold = 414 
-[info]   + Almost Empty Threshold = 56 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_37_true_128_512.cov 
-[info] DynamicFifo_test_config_38
-[info] - should test this configuration
-[info]   + Test Data Size = 160 
-[info]   + Data Width = 4 
-[info]   + FIFO Depth = 16 
-[info]   + Almost Full Threshold = 13 
-[info]   + Almost Empty Threshold = 3 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_38_false_4_16.cov 
-[info] DynamicFifo_test_config_39
-[info] - should test this configuration
-[info]   + Test Data Size = 48 
-[info]   + Data Width = 8 
-[info]   + FIFO Depth = 4 
-[info]   + Almost Full Threshold = 3 
-[info]   + Almost Empty Threshold = 0 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_39_false_8_4.cov 
-[info] DynamicFifo_test_config_40
-[info] - should test this configuration
-[info]   + Test Data Size = 120 
-[info]   + Data Width = 8 
-[info]   + FIFO Depth = 8 
-[info]   + Almost Full Threshold = 7 
-[info]   + Almost Empty Threshold = 1 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_40_false_8_8.cov 
-[info] DynamicFifo_test_config_41
-[info] - should test this configuration
-[info]   + Test Data Size = 544 
-[info]   + Data Width = 64 
-[info]   + FIFO Depth = 32 
-[info]   + Almost Full Threshold = 30 
 [info]   + Almost Empty Threshold = 6 
 [info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_41_true_64_32.cov 
-[info] DynamicFifo_test_config_42
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_1_false_6_32.cov 
+[info] DynamicFifo_test_config_2
 [info] - should test this configuration
-[info]   + Test Data Size = 26624 
+[info]   + Test Data Size = 960 
+[info]   + Data Width = 4 
+[info]   + FIFO Depth = 64 
+[info]   + Almost Full Threshold = 56 
+[info]   + Almost Empty Threshold = 12 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_2_false_4_64.cov 
+[info] DynamicFifo_test_config_3
+[info] - should test this configuration
+[info]   + Test Data Size = 1792 
 [info]   + Data Width = 64 
+[info]   + FIFO Depth = 128 
+[info]   + Almost Full Threshold = 112 
+[info]   + Almost Empty Threshold = 12 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_3_true_64_128.cov 
+[info] DynamicFifo_test_config_4
+[info] - should test this configuration
+[info]   + Test Data Size = 4864 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 256 
+[info]   + Almost Full Threshold = 235 
+[info]   + Almost Empty Threshold = 20 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_4_true_8_256.cov 
+[info] DynamicFifo_test_config_5
+[info] - should test this configuration
+[info]   + Test Data Size = 384 
+[info]   + Data Width = 4 
+[info]   + FIFO Depth = 32 
+[info]   + Almost Full Threshold = 25 
+[info]   + Almost Empty Threshold = 7 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_5_false_4_32.cov 
+[info] DynamicFifo_test_config_6
+[info] - should test this configuration
+[info]   + Test Data Size = 18432 
+[info]   + Data Width = 64 
+[info]   + FIFO Depth = 1024 
+[info]   + Almost Full Threshold = 860 
+[info]   + Almost Empty Threshold = 81 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_6_true_64_1024.cov 
+[info] DynamicFifo_test_config_7
+[info] - should test this configuration
+[info]   + Test Data Size = 38912 
+[info]   + Data Width = 5 
 [info]   + FIFO Depth = 2048 
-[info]   + Almost Full Threshold = 1802 
+[info]   + Almost Full Threshold = 1617 
 [info]   + Almost Empty Threshold = 225 
 [info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_42_true_64_2048.cov 
-[info] DynamicFifo_test_config_43
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_7_true_5_2048.cov 
+[info] DynamicFifo_test_config_8
 [info] - should test this configuration
-[info]   + Test Data Size = 9728 
-[info]   + Data Width = 7 
-[info]   + FIFO Depth = 512 
-[info]   + Almost Full Threshold = 424 
-[info]   + Almost Empty Threshold = 46 
+[info]   + Test Data Size = 2432 
+[info]   + Data Width = 32 
+[info]   + FIFO Depth = 128 
+[info]   + Almost Full Threshold = 103 
+[info]   + Almost Empty Threshold = 20 
 [info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_43_true_7_512.cov 
-[info] DynamicFifo_test_config_44
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_8_true_32_128.cov 
+[info] DynamicFifo_test_config_9
+[info] - should test this configuration
+[info]   + Test Data Size = 384 
+[info]   + Data Width = 5 
+[info]   + FIFO Depth = 32 
+[info]   + Almost Full Threshold = 25 
+[info]   + Almost Empty Threshold = 3 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_9_false_5_32.cov 
+[info] DynamicFifo_test_config_10
 [info] - should test this configuration
 [info]   + Test Data Size = 352 
 [info]   + Data Width = 6 
 [info]   + FIFO Depth = 32 
-[info]   + Almost Full Threshold = 25 
-[info]   + Almost Empty Threshold = 3 
+[info]   + Almost Full Threshold = 29 
+[info]   + Almost Empty Threshold = 6 
 [info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_44_false_6_32.cov 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_10_false_6_32.cov 
+[info] DynamicFifo_test_config_11
+[info] - should test this configuration
+[info]   + Test Data Size = 16384 
+[info]   + Data Width = 32 
+[info]   + FIFO Depth = 1024 
+[info]   + Almost Full Threshold = 839 
+[info]   + Almost Empty Threshold = 163 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_11_true_32_1024.cov 
+[info] DynamicFifo_test_config_12
+[info] - should test this configuration
+[info]   + Test Data Size = 48 
+[info]   + Data Width = 6 
+[info]   + FIFO Depth = 4 
+[info]   + Almost Full Threshold = 3 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_12_false_6_4.cov 
+[info] DynamicFifo_test_config_13
+[info] - should test this configuration
+[info]   + Test Data Size = 72 
+[info]   + Data Width = 32 
+[info]   + FIFO Depth = 4 
+[info]   + Almost Full Threshold = 3 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_13_false_32_4.cov 
+[info] DynamicFifo_test_config_14
+[info] - should test this configuration
+[info]   + Test Data Size = 8192 
+[info]   + Data Width = 128 
+[info]   + FIFO Depth = 512 
+[info]   + Almost Full Threshold = 445 
+[info]   + Almost Empty Threshold = 61 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_14_true_128_512.cov 
+[info] DynamicFifo_test_config_15
+[info] - should test this configuration
+[info]   + Test Data Size = 2432 
+[info]   + Data Width = 128 
+[info]   + FIFO Depth = 128 
+[info]   + Almost Full Threshold = 115 
+[info]   + Almost Empty Threshold = 25 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_15_true_128_128.cov 
+[info] DynamicFifo_test_config_16
+[info] - should test this configuration
+[info]   + Test Data Size = 26624 
+[info]   + Data Width = 128 
+[info]   + FIFO Depth = 2048 
+[info]   + Almost Full Threshold = 1863 
+[info]   + Almost Empty Threshold = 122 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_16_true_128_2048.cov 
+[info] DynamicFifo_test_config_17
+[info] - should test this configuration
+[info]   + Test Data Size = 224 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 16 
+[info]   + Almost Full Threshold = 14 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_17_false_8_16.cov 
+[info] DynamicFifo_test_config_18
+[info] - should test this configuration
+[info]   + Test Data Size = 144 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 7 
+[info]   + Almost Empty Threshold = 1 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_18_false_8_8.cov 
+[info] DynamicFifo_test_config_19
+[info] - should test this configuration
+[info]   + Test Data Size = 68 
+[info]   + Data Width = 5 
+[info]   + FIFO Depth = 4 
+[info]   + Almost Full Threshold = 3 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_19_false_5_4.cov 
+[info] DynamicFifo_test_config_20
+[info] - should test this configuration
+[info]   + Test Data Size = 608 
+[info]   + Data Width = 6 
+[info]   + FIFO Depth = 32 
+[info]   + Almost Full Threshold = 28 
+[info]   + Almost Empty Threshold = 7 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_20_false_6_32.cov 
+[info] DynamicFifo_test_config_21
+[info] - should test this configuration
+[info]   + Test Data Size = 136 
+[info]   + Data Width = 6 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 6 
+[info]   + Almost Empty Threshold = 1 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_21_false_6_8.cov 
+[info] DynamicFifo_test_config_22
+[info] - should test this configuration
+[info]   + Test Data Size = 4864 
+[info]   + Data Width = 6 
+[info]   + FIFO Depth = 256 
+[info]   + Almost Full Threshold = 209 
+[info]   + Almost Empty Threshold = 28 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_22_true_6_256.cov 
+[info] DynamicFifo_test_config_23
+[info] - should test this configuration
+[info]   + Test Data Size = 80 
+[info]   + Data Width = 128 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 6 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_23_false_128_8.cov 
+[info] DynamicFifo_test_config_24
+[info] - should test this configuration
+[info]   + Test Data Size = 72 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 4 
+[info]   + Almost Full Threshold = 3 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_24_false_7_4.cov 
+[info] DynamicFifo_test_config_25
+[info] - should test this configuration
+[info]   + Test Data Size = 20480 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 2048 
+[info]   + Almost Full Threshold = 1843 
+[info]   + Almost Empty Threshold = 307 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_25_true_8_2048.cov 
+[info] DynamicFifo_test_config_26
+[info] - should test this configuration
+[info]   + Test Data Size = 56 
+[info]   + Data Width = 5 
+[info]   + FIFO Depth = 4 
+[info]   + Almost Full Threshold = 3 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_26_false_5_4.cov 
+[info] DynamicFifo_test_config_27
+[info] - should test this configuration
+[info]   + Test Data Size = 38912 
+[info]   + Data Width = 128 
+[info]   + FIFO Depth = 2048 
+[info]   + Almost Full Threshold = 1617 
+[info]   + Almost Empty Threshold = 471 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_27_true_128_2048.cov 
+[info] DynamicFifo_test_config_28
+[info] - should test this configuration
+[info]   + Test Data Size = 88 
+[info]   + Data Width = 5 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 7 
+[info]   + Almost Empty Threshold = 1 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_28_false_5_8.cov 
+[info] DynamicFifo_test_config_29
+[info] - should test this configuration
+[info]   + Test Data Size = 11264 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 1024 
+[info]   + Almost Full Threshold = 860 
+[info]   + Almost Empty Threshold = 71 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_29_true_8_1024.cov 
+[info] DynamicFifo_test_config_30
+[info] - should test this configuration
+[info]   + Test Data Size = 26624 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 2048 
+[info]   + Almost Full Threshold = 1925 
+[info]   + Almost Empty Threshold = 122 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_30_true_7_2048.cov 
+[info] DynamicFifo_test_config_31
+[info] - should test this configuration
+[info]   + Test Data Size = 15360 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 1024 
+[info]   + Almost Full Threshold = 829 
+[info]   + Almost Empty Threshold = 153 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_31_true_7_1024.cov 
+[info] DynamicFifo_test_config_32
+[info] - should test this configuration
+[info]   + Test Data Size = 7168 
+[info]   + Data Width = 5 
+[info]   + FIFO Depth = 512 
+[info]   + Almost Full Threshold = 481 
+[info]   + Almost Empty Threshold = 117 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_32_true_5_512.cov 
+[info] DynamicFifo_test_config_33
+[info] - should test this configuration
+[info]   + Test Data Size = 112 
+[info]   + Data Width = 128 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 6 
+[info]   + Almost Empty Threshold = 1 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_33_false_128_8.cov 
+[info] DynamicFifo_test_config_34
+[info] - should test this configuration
+[info]   + Test Data Size = 240 
+[info]   + Data Width = 32 
+[info]   + FIFO Depth = 16 
+[info]   + Almost Full Threshold = 14 
+[info]   + Almost Empty Threshold = 1 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_34_false_32_16.cov 
+[info] DynamicFifo_test_config_35
+[info] - should test this configuration
+[info]   + Test Data Size = 1792 
+[info]   + Data Width = 64 
+[info]   + FIFO Depth = 128 
+[info]   + Almost Full Threshold = 117 
+[info]   + Almost Empty Threshold = 8 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_35_true_64_128.cov 
+[info] DynamicFifo_test_config_36
+[info] - should test this configuration
+[info]   + Test Data Size = 80 
+[info]   + Data Width = 64 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 6 
+[info]   + Almost Empty Threshold = 1 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_36_false_64_8.cov 
+[info] DynamicFifo_test_config_37
+[info] - should test this configuration
+[info]   + Test Data Size = 2560 
+[info]   + Data Width = 5 
+[info]   + FIFO Depth = 256 
+[info]   + Almost Full Threshold = 212 
+[info]   + Almost Empty Threshold = 56 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_37_true_5_256.cov 
+[info] DynamicFifo_test_config_38
+[info] - should test this configuration
+[info]   + Test Data Size = 2432 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 128 
+[info]   + Almost Full Threshold = 102 
+[info]   + Almost Empty Threshold = 14 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_38_false_8_128.cov 
+[info] DynamicFifo_test_config_39
+[info] - should test this configuration
+[info]   + Test Data Size = 4352 
+[info]   + Data Width = 6 
+[info]   + FIFO Depth = 256 
+[info]   + Almost Full Threshold = 199 
+[info]   + Almost Empty Threshold = 33 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_39_true_6_256.cov 
+[info] DynamicFifo_test_config_40
+[info] - should test this configuration
+[info]   + Test Data Size = 1920 
+[info]   + Data Width = 16 
+[info]   + FIFO Depth = 128 
+[info]   + Almost Full Threshold = 101 
+[info]   + Almost Empty Threshold = 5 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_40_true_16_128.cov 
+[info] DynamicFifo_test_config_41
+[info] - should test this configuration
+[info]   + Test Data Size = 80 
+[info]   + Data Width = 8 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 7 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_41_false_8_8.cov 
+[info] DynamicFifo_test_config_42
+[info] - should test this configuration
+[info]   + Test Data Size = 208 
+[info]   + Data Width = 128 
+[info]   + FIFO Depth = 16 
+[info]   + Almost Full Threshold = 14 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_42_true_128_16.cov 
+[info] DynamicFifo_test_config_43
+[info] - should test this configuration
+[info]   + Test Data Size = 896 
+[info]   + Data Width = 4 
+[info]   + FIFO Depth = 64 
+[info]   + Almost Full Threshold = 58 
+[info]   + Almost Empty Threshold = 14 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_43_false_4_64.cov 
+[info] DynamicFifo_test_config_44
+[info] - should test this configuration
+[info]   + Test Data Size = 144 
+[info]   + Data Width = 32 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 7 
+[info]   + Almost Empty Threshold = 0 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_44_false_32_8.cov 
 [info] DynamicFifo_test_config_45
 [info] - should test this configuration
-[info]   + Test Data Size = 9216 
+[info]   + Test Data Size = 19456 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 1024 
+[info]   + Almost Full Threshold = 768 
+[info]   + Almost Empty Threshold = 204 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_45_true_7_1024.cov 
+[info] DynamicFifo_test_config_46
+[info] - should test this configuration
+[info]   + Test Data Size = 18432 
+[info]   + Data Width = 4 
+[info]   + FIFO Depth = 1024 
+[info]   + Almost Full Threshold = 942 
+[info]   + Almost Empty Threshold = 143 
+[info]   + -------------------------------- 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_46_true_4_1024.cov 
+[info] DynamicFifo_test_config_47
+[info] - should test this configuration
+[info]   + Test Data Size = 5632 
 [info]   + Data Width = 4 
 [info]   + FIFO Depth = 512 
 [info]   + Almost Full Threshold = 394 
-[info]   + Almost Empty Threshold = 25 
+[info]   + Almost Empty Threshold = 122 
 [info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_45_true_4_512.cov 
-[info] DynamicFifo_test_config_46
-[info] - should test this configuration
-[info]   + Test Data Size = 3840 
-[info]   + Data Width = 32 
-[info]   + FIFO Depth = 256 
-[info]   + Almost Full Threshold = 215 
-[info]   + Almost Empty Threshold = 48 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_46_true_32_256.cov 
-[info] DynamicFifo_test_config_47
-[info] - should test this configuration
-[info]   + Test Data Size = 2176 
-[info]   + Data Width = 32 
-[info]   + FIFO Depth = 128 
-[info]   + Almost Full Threshold = 120 
-[info]   + Almost Empty Threshold = 21 
-[info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_47_true_32_128.cov 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_47_true_4_512.cov 
 [info] DynamicFifo_test_config_48
 [info] - should test this configuration
-[info]   + Test Data Size = 3328 
-[info]   + Data Width = 128 
-[info]   + FIFO Depth = 256 
-[info]   + Almost Full Threshold = 207 
-[info]   + Almost Empty Threshold = 58 
+[info]   + Test Data Size = 128 
+[info]   + Data Width = 4 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 6 
+[info]   + Almost Empty Threshold = 0 
 [info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_48_true_128_256.cov 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_48_false_4_8.cov 
 [info] DynamicFifo_test_config_49
 [info] - should test this configuration
-[info]   + Test Data Size = 416 
+[info]   + Test Data Size = 144 
 [info]   + Data Width = 7 
-[info]   + FIFO Depth = 32 
-[info]   + Almost Full Threshold = 25 
-[info]   + Almost Empty Threshold = 2 
+[info]   + FIFO Depth = 8 
+[info]   + Almost Full Threshold = 6 
+[info]   + Almost Empty Threshold = 1 
 [info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_49_false_7_32.cov 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_49_false_7_8.cov 
 [info] DynamicFifo_test_config_50
 [info] - should test this configuration
-[info]   + Test Data Size = 12288 
-[info]   + Data Width = 64 
-[info]   + FIFO Depth = 1024 
-[info]   + Almost Full Threshold = 788 
-[info]   + Almost Empty Threshold = 133 
+[info]   + Test Data Size = 8192 
+[info]   + Data Width = 7 
+[info]   + FIFO Depth = 512 
+[info]   + Almost Full Threshold = 440 
+[info]   + Almost Empty Threshold = 61 
 [info]   + -------------------------------- 
-[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_50_true_64_1024.cov 
+[info]   + Verilog Coverage report written to generated/verilogCoverage/DynamicFifo_test_config_50_true_7_512.cov 
 [info] - should throw an assertion when dataWidth parameter is less than 4
 [info] - should throw an assertion when fifoDepth parameter is not a power of 2
-[info] Run completed in 3 minutes, 8 seconds.
+[info] Run completed in 3 minutes, 16 seconds.
 [info] Total number of tests run: 52
 [info] Suites: completed 1, aborted 0
 [info] Tests: succeeded 52, failed 0, canceled 0, ignored 0, pending 0
 [info] All tests passed.
-[success] Total time: 199 s (03:19), completed Jan 14, 2024, 1:31:36 PM
+[success] Total time: 207 s (03:27), completed Mar 11, 2024, 6:10:33 PM
 [info] running tech.rocksavage.chiselware.DynamicFifo.GenVerilog 
 Generating Verilog config: medium_false_32_64	externalRam = false	dataWidth = 32	 fifoDepth = 64
 Generating Verilog config: large_false_64_256	externalRam = false	dataWidth = 64	 fifoDepth = 256
@@ -585,9 +585,9 @@ Generating Verilog config: small_true_64_256	externalRam = true	dataWidth = 64	 
 Generating Verilog config: medium_true_128_128	externalRam = true	dataWidth = 128	 fifoDepth = 1028
 Generating Verilog config: small_false_8_8	externalRam = false	dataWidth = 8	 fifoDepth = 8
 Generating Verilog config: large_true_256_2048	externalRam = true	dataWidth = 256	 fifoDepth = 2048
-[success] Total time: 2 s, completed Jan 14, 2024, 1:31:37 PM
+[success] Total time: 2 s, completed Mar 11, 2024, 6:10:34 PM
 [info] running tech.rocksavage.chiselware.DynamicFifo.Main 
-[success] Total time: 0 s, completed Jan 14, 2024, 1:31:38 PM
+[success] Total time: 0 s, completed Mar 11, 2024, 6:10:35 PM
 [info] Waiting for measurement data to sync...
 [info] Reading scoverage instrumentation [/home/system76/drive/projects/chiselWare/dynamicfifo/target/../generated/scalaCoverage/scoverage-data/scoverage.coverage]
 [info] Reading scoverage measurements...
@@ -599,4 +599,4 @@ Generating Verilog config: large_true_256_2048	externalRam = true	dataWidth = 25
 [info] Branch coverage....: 100.00%
 [info] Coverage reports completed
 [info] All done. Coverage was stmt=[99.31%] branch=[100.00%]
-[success] Total time: 1 s, completed Jan 14, 2024, 1:31:39 PM
+[success] Total time: 1 s, completed Mar 11, 2024, 6:10:36 PM

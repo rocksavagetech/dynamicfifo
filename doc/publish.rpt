@@ -1,5 +1,5 @@
 [info] Updated file /home/system76/drive/projects/chiselWare/dynamicfifo/project/build.properties: set sbt.version to 1.4.9
-[info] welcome to sbt 1.4.9 (Ubuntu Java 11.0.21)
+[info] welcome to sbt 1.4.9 (Ubuntu Java 11.0.22)
 [info] loading settings for project dynamicfifo-build from plugins.sbt ...
 [info] loading project definition from /home/system76/drive/projects/chiselWare/dynamicfifo/project
 [info] loading settings for project root from build.sbt ...
@@ -11,10 +11,10 @@
 [info] done compiling
 [warn] multiple main classes detected: run 'show discoveredMainClasses' to see the list
 [info] Test Scala API documentation to /home/system76/drive/projects/chiselWare/dynamicfifo/target/scala-2.13/test-api...
-[info] compiling 1 Scala source to /home/system76/drive/projects/chiselWare/dynamicfifo/target/scala-2.13/test-classes ...
+[info] compiling 2 Scala sources to /home/system76/drive/projects/chiselWare/dynamicfifo/target/scala-2.13/test-classes ...
 [info] Test Scala API documentation successful.
 [info] done compiling
-[info] :: delivering :: tech.rocksavage#dynamicfifo_2.13;0.1.0 :: 0.1.0 :: release :: Sun Jan 14 13:28:00 PST 2024
+[info] :: delivering :: tech.rocksavage#dynamicfifo_2.13;0.1.0 :: 0.1.0 :: release :: Mon Mar 11 18:06:49 PDT 2024
 [info] 	delivering ivy file to /home/system76/drive/projects/chiselWare/dynamicfifo/target/scala-2.13/ivy-0.1.0.xml
 [info] 	published dynamicfifo_2.13 to /home/tws/.ivy2/local/tech.rocksavage/dynamicfifo_2.13/0.1.0/srcs/dynamicfifo_2.13-tests-sources.jar
 [info] 	published dynamicfifo_2.13 to /home/tws/.ivy2/local/tech.rocksavage/dynamicfifo_2.13/0.1.0/docs/dynamicfifo_2.13-tests-javadoc.jar
@@ -24,4 +24,4 @@
 [info] 	published dynamicfifo_2.13 to /home/tws/.ivy2/local/tech.rocksavage/dynamicfifo_2.13/0.1.0/jars/dynamicfifo_2.13-tests.jar
 [info] 	published dynamicfifo_2.13 to /home/tws/.ivy2/local/tech.rocksavage/dynamicfifo_2.13/0.1.0/poms/dynamicfifo_2.13.pom
 [info] 	published ivy to /home/tws/.ivy2/local/tech.rocksavage/dynamicfifo_2.13/0.1.0/ivys/ivy.xml
-[success] Total time: 10 s, completed Jan 14, 2024, 1:28:00 PM
+[success] Total time: 9 s, completed Mar 11, 2024, 6:06:49 PM
