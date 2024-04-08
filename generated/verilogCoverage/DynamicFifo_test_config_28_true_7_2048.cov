@@ -1,0 +1,63 @@
+--------------------------------------------------------------------------------
+%									Count				Coverage Point 
+--------------------------------------------------------------------------------
+5.12					     1681				dut.io__almostEmpty
+68.67					    22524				dut.io__almostFull
+5.12					     1681				dut.io__empty
+68.67					    22524				dut.io__full
+64.81					    21258				dut.io__pop
+71.05					    23306				dut.io__push
+64.81					    21258				dut.io__ramReadEnable
+71.05					    23306				dut.io__ramWriteEnable
+35.78					    11738				dut.io_dataIn_0
+64.30					    21092				dut.io_dataIn_1
+64.41					    21127				dut.io_dataIn_2
+64.66					    21211				dut.io_dataIn_3
+35.33					    11590				dut.io_dataIn_4
+64.42					    21130				dut.io_dataIn_5
+35.20					    11547				dut.io_dataIn_6
+47.27					    15506				dut.io_dataOut_0
+46.72					    15324				dut.io_dataOut_1
+47.01					    15419				dut.io_dataOut_2
+53.09					    17414				dut.io_dataOut_3
+46.69					    15316				dut.io_dataOut_4
+53.30					    17483				dut.io_dataOut_5
+52.88					    17347				dut.io_dataOut_6
+35.78					    11738				dut.io_ramDataIn_0
+64.30					    21092				dut.io_ramDataIn_1
+64.41					    21127				dut.io_ramDataIn_2
+64.66					    21211				dut.io_ramDataIn_3
+35.33					    11590				dut.io_ramDataIn_4
+64.42					    21130				dut.io_ramDataIn_5
+35.20					    11547				dut.io_ramDataIn_6
+47.27					    15506				dut.io_ramDataOut_0
+46.72					    15324				dut.io_ramDataOut_1
+47.01					    15419				dut.io_ramDataOut_2
+53.09					    17414				dut.io_ramDataOut_3
+46.69					    15316				dut.io_ramDataOut_4
+53.30					    17483				dut.io_ramDataOut_5
+52.88					    17347				dut.io_ramDataOut_6
+47.00					    15418				dut.io_ramReadAddress_0
+47.24					    15495				dut.io_ramReadAddress_1
+44.94					    14741				dut.io_ramReadAddress_10
+46.88					    15379				dut.io_ramReadAddress_2
+46.90					    15384				dut.io_ramReadAddress_3
+47.07					    15441				dut.io_ramReadAddress_4
+47.13					    15459				dut.io_ramReadAddress_5
+46.95					    15399				dut.io_ramReadAddress_6
+46.62					    15292				dut.io_ramReadAddress_7
+46.00					    15090				dut.io_ramReadAddress_8
+46.40					    15219				dut.io_ramReadAddress_9
+47.03					    15426				dut.io_ramWriteAddress_0
+47.02					    15423				dut.io_ramWriteAddress_1
+45.09					    14791				dut.io_ramWriteAddress_10
+46.85					    15369				dut.io_ramWriteAddress_2
+47.06					    15436				dut.io_ramWriteAddress_3
+46.96					    15404				dut.io_ramWriteAddress_4
+46.81					    15355				dut.io_ramWriteAddress_5
+47.08					    15444				dut.io_ramWriteAddress_6
+46.86					    15370				dut.io_ramWriteAddress_7
+46.43					    15230				dut.io_ramWriteAddress_8
+46.37					    15211				dut.io_ramWriteAddress_9
+--------------------------------------------------------------------------------
+2024-04-07T18:43:50.808377
