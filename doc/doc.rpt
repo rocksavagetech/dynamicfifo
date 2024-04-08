@@ -5,7 +5,7 @@
 [info] set current project to dynamicfifo (in build file:/home/system76/drive/projects/chiselWare/dynamicfifo/)
 [info] Main Scala API documentation to /home/system76/drive/projects/chiselWare/dynamicfifo/target/scala-2.13/api...
 [info] Main Scala API documentation successful.
-[success] Total time: 4 s, completed Mar 11, 2024, 6:06:58 PM
+[success] Total time: 4 s, completed Apr 7, 2024, 6:41:39 PM
 This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
@@ -118,8 +118,8 @@ LaTeX Warning: Reference `fig:timing' on page 7 undefined on input line 47.
 ) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.80 \include{./tops.tex}
-                          <./images/timing.png>] (./sim.tex
+l.80 \include{./tops}
+                      <./images/timing.png>] (./sim.tex
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd)) [8] (./syn.tex)
 [9] (./DynamicFifo.aux (./errata.aux) (./ports.aux) (./params.aux) (./tops.aux)
  (./sim.aux) (./syn.aux))
@@ -147,7 +147,7 @@ ts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on DynamicFifo.pdf (9 pages, 227926 bytes).
+Output written on DynamicFifo.pdf (9 pages, 227992 bytes).
 Transcript written on DynamicFifo.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -248,8 +248,8 @@ on with the same identifier (name{figure.2}) has been already used, duplicate i
 gnored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.80 \include{./tops.tex}
-                          <./images/timing.png>] (./sim.tex
+l.80 \include{./tops}
+                      <./images/timing.png>] (./sim.tex
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd)) [8] (./syn.tex)
 [9] (./DynamicFifo.aux (./errata.aux) (./ports.aux) (./params.aux) (./tops.aux)
  (./sim.aux) (./syn.aux)) )
@@ -265,5 +265,5 @@ ts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
 mr9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pf
 b></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on DynamicFifo.pdf (9 pages, 232009 bytes).
+Output written on DynamicFifo.pdf (9 pages, 232081 bytes).
 Transcript written on DynamicFifo.log.
