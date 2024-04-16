@@ -1,5 +1,5 @@
 // (c) 2024 Rocksavage Technology, Inc.
-// This code is licensed under MIT license (see LICENSE.MD for details)
+// This code is licensed under the Apache Software License 2.0 (see LICENSE.MD)
 
 package tech.rocksavage.chiselware.DynamicFifo
 

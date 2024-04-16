@@ -620,7 +620,7 @@ ABC: ABC command line: "source <abc-temp-dir>/abc.script".
 ABC: 
 ABC: + read_blif <abc-temp-dir>/input.blif 
 ABC: + read_lib -w /home/system76/drive/projects/chiselWare/dynamicfifo/generated/synTestCases/small_true_64_256/../../../syn/stdcells.lib 
-ABC: Parsing finished successfully.  Parsing time =     0.04 sec
+ABC: Parsing finished successfully.  Parsing time =     0.05 sec
 ABC: Scl_LibertyReadGenlib() skipped cell "ANTENNA_X1" due to dont_use attribute.
 ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X1" without logic function.
 ABC: Scl_LibertyReadGenlib() skipped cell "CLKGATETST_X2" without logic function.
@@ -666,8 +666,8 @@ ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X8".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "TBUF_X16".
 ABC: Scl_LibertyReadGenlib() skipped three-state cell "TINV_X1".
 ABC: Scl_LibertyReadGenlib() skipped sequential cell "TLAT_X1".
-ABC: Library "NangateOpenCellLibrary" from "/home/system76/drive/projects/chiselWare/dynamicfifo/generated/synTestCases/small_true_64_256/../../../syn/stdcells.lib" has 90 cells (35 skipped: 21 seq; 6 tri-state; 8 no func; 10 dont_use).  Time =     0.06 sec
-ABC: Memory =    8.88 MB. Time =     0.06 sec
+ABC: Library "NangateOpenCellLibrary" from "/home/system76/drive/projects/chiselWare/dynamicfifo/generated/synTestCases/small_true_64_256/../../../syn/stdcells.lib" has 90 cells (35 skipped: 21 seq; 6 tri-state; 8 no func; 10 dont_use).  Time =     0.07 sec
+ABC: Memory =    8.88 MB. Time =     0.07 sec
 ABC: Warning: Detected 2 multi-output gates (for example, "FA_X1").
 ABC: + strash 
 ABC: + ifraig 
@@ -760,7 +760,7 @@ Dumping module `\DynamicFifo'.
    Chip area for module '\DynamicFifo': 284.620000
 
 Warnings: 8 unique messages, 72 total
-End of script. Logfile hash: e7a3f3945c
-CPU: user 0.29s system 0.01s, MEM: 40.41 MB total, 30.46 MB resident
+End of script. Logfile hash: 3871ad6b70
+CPU: user 0.33s system 0.00s, MEM: 40.41 MB total, 30.53 MB resident
 Yosys 0.9 (git sha1 1979e0b)
-Time spent: 22% 2x stat (0 sec), 22% 1x dfflibmap (0 sec), ...
+Time spent: 26% 2x stat (0 sec), 19% 1x dfflibmap (0 sec), ...
