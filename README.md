@@ -21,25 +21,12 @@ the ability for dynamic flow control.
 
 ## Getting Started
 
-It is recommended that the user reads the DynamicFiFo Users Guide can be 
+It is recommended that the user reads the DynamicFiFo Users Guide which can be 
 found in the ```./doc/user-guide``` directory.
 
 ### Dependencies
 
-Testing requires several utilities in the chiselWare util package.
-
-The following should be added to the user's ```build.sbt``` file:
-
-```
-"tech.rocksavage"   %% "chiselware" % "0.1.0",
-"tech.rocksavage"   %% "chiselware" % "0.1.0" % "test" classifier "tests"```
-```
-The utilities are imported to the test program as follows:
-
-```
-import tech.rocksavage.chiselware.util.TestUtils.{randData, checkCoverage}
-```
-Other non-Chisel-related dependencies are for two other open-source tools 
+There are non-Chisel-related dependencies are for two other open-source tools 
 that are needed (only) for running the included synthesis regression tests:
 
 * **[Yosys](https://yosyshq.net/yosys/)** (version 0.9) A synthesis and optimization (using ABC) tool
@@ -77,8 +64,8 @@ as follows:
 
 ```
 $ sbt
-sbt:DynamicFifo>
-sbt:DynamicFifo> test
+sbt:dynamicFifo>
+sbt:dynamicFifo> test
 ```
 
 ### Synthesis
@@ -103,7 +90,9 @@ Warren Savage
 
 * 0.1
     * Initial Release with full functionality
+* 0.2
+    * Miscellaneous non-functional cleanup (README.md, etc.)
 
 ## License
 
-See the [LICENSE.MD](https://github.com/rocksavagetech/dynamicfifo/blob/main/LICENSE.MD) file for license rights and limitations (MIT).
+See the [LICENSE.MD](https://github.com/rocksavagetech/dynamicfifo/blob/main/LICENSE.MD) file for license rights and limitations (Apache2).

@@ -15,7 +15,7 @@ env:
 #  VM_SIZE: Standard_D4s_v3 #large ($140/mo)
 
   VM_NAME: rst-runner-${{ github.run_id }}-${{ github.run_attempt }}
-  VM_IMAGE: /subscriptions/ad14f5b9-164c-4778-ab36-883e241a5cd5/resourceGroups/rst-rg/providers/Microsoft.Compute/galleries/rstgallery/images/chiselWare-TrustedLaunch
+  VM_IMAGE: /subscriptions/bc701900-84e1-4c91-8788-25c8a04b5c9d/resourceGroups/rst-rg/providers/Microsoft.Compute/galleries/rstgallery/images/chiselWare-TrustedLaunch
   RESOURCE_GROUP: rst-rg
 
 jobs:
@@ -27,6 +27,7 @@ jobs:
           echo "GitHub variables"
           echo "----------------"
           echo "Home: ${HOME}"
+          echo "VM NAME: ${{ VM_NAME }}"
           echo "VM SIZE: ${{ vars.VM_SIZE }}"
           echo "GITHUB_RUNNER_NAME: $(basename $(dirname $(dirname $(dirname $(pwd)))))"
           echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
