@@ -45,8 +45,8 @@ jobs:
 
       - name: Create VM
         run: > 
-          az vm create -n $VM_NAME -g $RESOURCE_GROUP
-          --image $VM_IMAGE
+          az vm create -n $VM_NAME -g ${{ env.RESOURCE_GROUP }}
+          --image ${{ env.VM_IMAGE }}
           --size ${{ vars.VM_SIZE }}
           --generate-ssh-keys
           --security-type TrustedLaunch
@@ -101,8 +101,8 @@ jobs:
 
     - name: Delete VM and all resources
       run: |
-        az vm delete -g $RESOURCE_GROUP -n $VM_NAME --force-deletion none --yes
-        az network nsg delete -g $RESOURCE_GROUP --name ${VM_NAME}NSG
-        az network public-ip delete -g $RESOURCE_GROUP --name ${VM_NAME}PublicIP
+        az vm delete -g ${{ env.RESOURCE_GROUP }} -n ${{ env.VM_NAME }} --force-deletion none --yes
+        az network nsg delete -g ${{ env.RESOURCE_GROUP }} --name ${{ env.VM_NAME}} NSG
+        az network public-ip delete -g ${{ env.RESOURCE_GROUP }} --name ${{ env.VM_NAME}} PublicIP
         unattachedDiskIds=$(az disk list --query '[?managedBy==`null`].[id]' -o tsv)
         for id in ${unattachedDiskIds[@]}; do az disk delete --ids $id --yes; done
