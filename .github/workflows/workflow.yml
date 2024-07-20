@@ -27,7 +27,7 @@ jobs:
           echo "GitHub variables"
           echo "----------------"
           echo "Home: ${HOME}"
-#          echo "VM NAME: ${{ VM_NAME }}"
+          echo "VM NAME: ${{ VM_NAME }}"
           echo "VM SIZE: ${{ vars.VM_SIZE }}"
           echo "GITHUB_RUNNER_NAME: $(basename $(dirname $(dirname $(dirname $(pwd)))))"
           echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
