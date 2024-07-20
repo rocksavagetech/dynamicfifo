@@ -15,7 +15,6 @@ env:
 #  VM_SIZE: Standard_D4s_v3 #large ($140/mo)
 
   VM_NAME: rst-runner-${{ github.run_id }}-${{ github.run_attempt }}
-  echo "VM NAME: ${{ VM_NAME }}"
   VM_IMAGE: /subscriptions/${{ secrets.AZURE_SUBSCRIPTION }}/resourceGroups/rst-rg/providers/Microsoft.Compute/galleries/rstgallery/images/chiselWare-TrustedLaunch
   RESOURCE_GROUP: rst-main-rg
 
