@@ -26,7 +26,7 @@ found in the ```./doc/user-guide``` directory.
 
 ### Dependencies
 
-There are non-Chisel-related dependencies are for two other open-source tools 
+There are non-Chisel-related dependencies for two other open-source tools 
 that are needed (only) for running the included synthesis regression tests:
 
 * **[Yosys](https://yosyshq.net/yosys/)** (version 0.9) A synthesis and optimization (using ABC) tool
