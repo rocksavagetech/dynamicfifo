@@ -7,7 +7,6 @@ on:
       - release-candidate
 
 # git commit -a -m "release candidate"; git push origin main:release-candidate
-# git commit -a -m "$(date +%F-%H:%M:%S)"; git push origin main:release-candidate
 
 env: 
 # Define these in GitHub Actions variables
