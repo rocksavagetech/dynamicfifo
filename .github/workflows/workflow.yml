@@ -48,7 +48,7 @@ jobs:
           az vm create -n $VM_NAME -g ${{ env.RESOURCE_GROUP }}
           --image ${{ env.VM_IMAGE }}
           --size ${{ vars.VM_SIZE }}
-          --location centralus
+          --location westus
           --generate-ssh-keys
           --security-type TrustedLaunch
           --public-ip-sku Standard
