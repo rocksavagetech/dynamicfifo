@@ -61,8 +61,8 @@ jobs:
           az vm run-command invoke 
           -g $RESOURCE_GROUP -n $VM_NAME 
           --command-id RunShellScript 
-          --scripts '
-          --command "./.actions-runner/config.sh 
+          --scripts 'su - rstadmin
+          --command "./actions-runner/config.sh 
           --url https://github.com/rocksavagetech/dynamicfifo
           --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN }}
           --unattended 2>&1 >> ~/config.command.log"' 
@@ -73,8 +73,8 @@ jobs:
           -g $RESOURCE_GROUP 
           -n $VM_NAME 
           --command-id RunShellScript 
-          --scripts '
-          --command "./.actions-runner/run.sh 2>&1 >> ~/run-command.log &"'
+          --scripts 'su - rstadmin 
+          --command "./actions-runner/run.sh 2>&1 >> ~/run-command.log &"'
 
   build-and-test:
     needs: create-vm
