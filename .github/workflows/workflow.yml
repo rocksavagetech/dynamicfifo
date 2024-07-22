@@ -56,15 +56,29 @@ jobs:
           --os-disk-delete-option Delete
           --data-disk-delete Delete
 
+      - name: Download the runner softare
+        run: > 
+          az vm run-command invoke 
+          -g $RESOURCE_GROUP -n $VM_NAME 
+          --command-id RunShellScript 
+          --scripts "
+          mkdir actions-runner;
+          cd actions-runner;
+          curl -o actions-runner-linux-x64-2.317.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.317.0/actions-runner-linux-x64-2.317.0.tar.gz;
+          tar xzf ./actions-runner-linux-x64-2.317.0.tar.gz
+          "
+
       - name: Configure runner
         run: > 
           az vm run-command invoke 
           -g $RESOURCE_GROUP -n $VM_NAME 
           --command-id RunShellScript 
-          --scripts "cd .actions-runner && config.sh 
-          --url https://github.com/rocksavagetech/dynamicfifo
+          --scripts "
+          ./actions-runner/config.sh 
+          --url https://github.com/rocksavagetech
           --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN }}
-          --unattended 2>&1 >> config.command.log"
+          --unattended 2>&1 >! ~/config.command.log
+          "
 
       - name: Start runner
         run: >
@@ -72,7 +86,7 @@ jobs:
           -g $RESOURCE_GROUP 
           -n $VM_NAME 
           --command-id RunShellScript 
-          --scripts "cd .actions-runner && run.sh 2>&1 >> run-command.log &"
+          --scripts "./actions-runner/run.sh 2>&1 >! ~/run-command.log &"'
 
   build-and-test:
     needs: create-vm
