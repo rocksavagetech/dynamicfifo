@@ -29,6 +29,7 @@ jobs:
           echo "Home: ${HOME}"
           echo "VM NAME: ${{ env.VM_NAME }}"
           echo "VM SIZE: ${{ vars.VM_SIZE }}"
+          echo "VM SIZE: ${{ vars.VM_USER }}"
           echo "GITHUB_RUNNER_NAME: $(basename $(dirname $(dirname $(dirname $(pwd)))))"
           echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
           echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
@@ -62,6 +63,7 @@ jobs:
           -g $RESOURCE_GROUP -n $VM_NAME 
           --command-id RunShellScript 
           --scripts "
+          cd /home/${{ vars.VM_USER }}
           mkdir actions-runner ; 
           cd actions-runner ;
           curl -o actions-runner-linux-x64-2.317.0.tar.gz 
