@@ -29,7 +29,7 @@ jobs:
           echo "Home: ${HOME}"
           echo "VM NAME: ${{ env.VM_NAME }}"
           echo "VM SIZE: ${{ vars.VM_SIZE }}"
-          echo "VM SIZE: ${{ vars.VM_USER }}"
+          echo "VM USER: ${{ vars.VM_USER }}"
           echo "GITHUB_RUNNER_NAME: $(basename $(dirname $(dirname $(dirname $(pwd)))))"
           echo "GITHUB_WORKFLOW: ${GITHUB_WORKFLOW}"
           echo "GITHUB_ACTIONS: ${GITHUB_ACTIONS}"
