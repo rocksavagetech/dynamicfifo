@@ -78,7 +78,7 @@ jobs:
           /home/${{ vars.VM_USER }}/actions-runner/config.sh 
           --url https://github.com/rocksavagetech
           --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN }}
-          --unattended 
+          --unattended 2>&1 >> ~/config.command.log
           "
 
       - name: Start runner
@@ -87,7 +87,7 @@ jobs:
           -g $RESOURCE_GROUP 
           -n $VM_NAME 
           --command-id RunShellScript 
-          --scripts "/home/${{ vars.VM_USER }}/actions-runner/run.sh" 
+          --scripts "/home/${{ vars.VM_USER }}/actions-runner/run.sh 2>&1 >> ~/run-command.log &" 
 
   build-and-test:
     needs: create-vm
