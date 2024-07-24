@@ -76,7 +76,8 @@ jobs:
           -g $RESOURCE_GROUP 
           -n $VM_NAME 
           --command-id RunShellScript 
-          --scripts "sudo -H -u ${{vars.VM_USER }} bash -c ' /home/${{ vars.VM_USER }}/actions-runner/config.sh --url https://github.com/rocksavagetech --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN }} --unattended 2>&1 >> /home/${{ vars.VM_USER }}/actions-runner/config.command.log '"
+          --scripts "sudo -H -u runner bash -c ' /home/${{ vars.VM_USER }}/actions-runner/config.sh --url https://github.com/rocksavagetech --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN }} --unattended 2>&1 >> /home/${{ vars.VM_USER }}/actions-runner/config.command.log '"
+#          --scripts "sudo -H -u ${{vars.VM_USER }} bash -c ' /home/${{ vars.VM_USER }}/actions-runner/config.sh --url https://github.com/rocksavagetech --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN }} --unattended 2>&1 >> /home/${{ vars.VM_USER }}/actions-runner/config.command.log '"
 
       - name: Start runner
         run: >
@@ -84,7 +85,8 @@ jobs:
           -g $RESOURCE_GROUP 
           -n $VM_NAME 
           --command-id RunShellScript 
-          --scripts "sudo -H -u ${{vars.VM_USER }} bash -c ' /home/${{ vars.VM_USER }}/actions-runner/run.sh 2>&1 >> /home/${{ vars.VM_USER }}/actions-runner//run-command.log & '" 
+          --scripts "sudo -H -u runner bash -c ' /home/${{ vars.VM_USER }}/actions-runner/run.sh 2>&1 >> /home/${{ vars.VM_USER }}/actions-runner//run-command.log & '" 
+#          --scripts "sudo -H -u ${{vars.VM_USER }} bash -c ' /home/${{ vars.VM_USER }}/actions-runner/run.sh 2>&1 >> /home/${{ vars.VM_USER }}/actions-runner//run-command.log & '" 
 
   build-and-test:
     needs: create-vm
