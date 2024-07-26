@@ -99,7 +99,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Run synthesis and STA
+      - name: Run all tests
         run: make all
 
   delete-vm:
@@ -114,7 +114,7 @@ jobs:
     - name: Delete VM and all resources
       run: |
         az vm delete -g ${{ env.RESOURCE_GROUP }} -n ${{ env.VM_NAME }} --force-deletion none --yes
-        az network nsg delete -g ${{ env.RESOURCE_GROUP }} --name ${{ env.VM_NAME}} NSG
+        az network nsg delete -g ${{ env.RESOURCE_GROUP }} --name ${{ env.VM_NAME}}NSG
         az network public-ip delete -g ${{ env.RESOURCE_GROUP }} --name ${{ env.VM_NAME}} PublicIP
         unattachedDiskIds=$(az disk list --query '[?managedBy==`null`].[id]' -o tsv)
         for id in ${unattachedDiskIds[@]}; do az disk delete --ids $id --yes; done
