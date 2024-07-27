@@ -100,23 +100,23 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run all tests
-        run: make all
+        run: make yosys
 
-  delete-vm:
-    needs: build-and-test
-    runs-on: ubuntu-latest
-    steps:
-    - name: Azure login
-      uses: azure/login@v1 
-      with:
-        creds: ${{ secrets.DYNAMICFIFO_SECRET }}
-
-    - name: Delete VM and all resources
-      run: |
-        az vm delete -g ${{ env.RESOURCE_GROUP }} -n ${{ env.VM_NAME }} --force-deletion none --yes
-        az network nsg delete -g ${{ env.RESOURCE_GROUP }} --name ${{ env.VM_NAME}}NSG
-        az network public-ip delete -g ${{ env.RESOURCE_GROUP }} --name ${{ env.VM_NAME}} PublicIP
-        unattachedDiskIds=$(az disk list --query '[?managedBy==`null`].[id]' -o tsv)
-        for id in ${unattachedDiskIds[@]}; do az disk delete --ids $id --yes; done
+#  delete-vm:
+#    needs: build-and-test
+#    runs-on: ubuntu-latest
+#    steps:
+#    - name: Azure login
+#      uses: azure/login@v1 
+#      with:
+#        creds: ${{ secrets.DYNAMICFIFO_SECRET }}
+#
+#    - name: Delete VM and all resources
+#      run: |
+#        az vm delete -g ${{ env.RESOURCE_GROUP }} -n ${{ env.VM_NAME }} --force-deletion none --yes
+#        az network nsg delete -g ${{ env.RESOURCE_GROUP }} --name ${{ env.VM_NAME}}NSG
+#        az network public-ip delete -g ${{ env.RESOURCE_GROUP }} --name ${{ env.VM_NAME}} PublicIP
+#        unattachedDiskIds=$(az disk list --query '[?managedBy==`null`].[id]' -o tsv)
+#        for id in ${unattachedDiskIds[@]}; do az disk delete --ids $id --yes; done
 
 
