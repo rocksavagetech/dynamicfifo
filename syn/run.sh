@@ -20,6 +20,8 @@ do
   echo "*** Synthesizing test case:  " $testCase
   echo "" 
   rm -f *.log *.rpt ../../../syn/*.rpt
+  echo $PATH
+  which yosys
   yosys -Qv 1 -l yosys.log ../../../syn/$designName.yo.tcl  
   echo "" 
   cd ../../../syn
