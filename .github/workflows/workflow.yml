@@ -100,7 +100,9 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Run all tests
-        run: make yosys
+        run: |
+          export PATH="$PATH:/usr/share/oss-cad-suite/bin/yosys"
+          make yosys
 
 #  delete-vm:
 #    needs: build-and-test
