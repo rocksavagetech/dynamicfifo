@@ -101,7 +101,11 @@ jobs:
 
       - name: Run all tests
         run: |
+          echo "***"
+          echo $PATH
           export PATH="$PATH:/usr/share/oss-cad-suite/bin/yosys"
+          echo $PATH
+          echo "***"
           make yosys
 
 #  delete-vm:
