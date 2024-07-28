@@ -103,7 +103,7 @@ jobs:
         run: |
           echo "***"
           echo $PATH
-          export PATH="$PATH:/usr/share/oss-cad-suite/bin/yosys"
+          export PATH="/usr/share/oss-cad-suite/bin/yosys:$PATH"
           echo $PATH
           echo "***"
           make yosys
