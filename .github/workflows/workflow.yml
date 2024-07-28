@@ -59,7 +59,7 @@ jobs:
       - name: Download the runner software
         run: > 
           az vm run-command invoke 
-          -g $RESOURCE_GROUP 
+          -g ${{ secrets.RESOURCE_GROUP }} 
           -n $VM_NAME 
           --command-id RunShellScript 
           --scripts "
@@ -73,7 +73,7 @@ jobs:
       - name: Configure runner
         run: > 
           az vm run-command invoke 
-          -g $RESOURCE_GROUP 
+          -g ${{ secrets.RESOURCE_GROUP }} 
           -n $VM_NAME 
           --command-id RunShellScript 
           --scripts "sudo -H -u ${{vars.VM_USER }} bash -c ' cd /home/${{ vars.VM_USER }}/actions-runner; ./config.sh --url https://github.com/rocksavagetech --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN }} --unattended 2>&1 >> /home/${{ vars.VM_USER }}/actions-runner/config.command.log '"
@@ -81,7 +81,7 @@ jobs:
       - name: Start runner
         run: >
           az vm run-command invoke 
-          -g $RESOURCE_GROUP 
+          -g ${{ secrets.RESOURCE_GROUP }} 
           -n $VM_NAME 
           --command-id RunShellScript 
           --scripts "sudo -H -u ${{vars.VM_USER }} bash -c ' /home/${{ vars.VM_USER }}/actions-runner/run.sh 2>&1 >> /home/${{ vars.VM_USER }}/actions-runner/run-command.log & '" 
