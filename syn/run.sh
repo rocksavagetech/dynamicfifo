@@ -22,7 +22,7 @@ do
   rm -f *.log *.rpt ../../../syn/*.rpt
   echo $PATH
   which yosys
-  yosys -Qv 1 -l yosys.log ../../../syn/$designName.yo.tcl  
+  /usr/share/oss-cad-suite/bin/yosys -Qv 1 -l yosys.log ../../../syn/$designName.yo.tcl  
   echo "" 
   cd ../../../syn
 done
