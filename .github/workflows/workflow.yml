@@ -64,12 +64,12 @@ jobs:
           -n $VM_NAME 
           --command-id RunShellScript 
           --scripts "
-          mkdir actions-runner ; 
-          cd actions-runner ;
-          curl -o actions-runner-linux-x64-2.317.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.317.0/actions-runner-linux-x64-2.317.0.tar.gz ;
-          tar xzf actions-runner-linux-x64-2.317.0.tar.gz ; 
-          rm actions-runner-linux-x64-2.317.0.tar.gz 
-          "
+          sudo -H -u ${{ vars.VM_USER }} bash -c 'mkdir /home/${{ vars.VM_USER }}/actions-runner ; 
+          cd /home/${{ vars.VM_USER }}/actions-runner ;
+          curl -o /home/${{ vars.VM_USER }}/actions-runner-linux-x64-2.317.0.tar.gz -L https://github.com/actions/runner/releases/download/v2.317.0/actions-runner-linux-x64-2.317.0.tar.gz ;
+          tar xzf /home/${{ vars.VM_USER }}/actions-runner-linux-x64-2.317.0.tar.gz ; 
+          rm /home/${{ vars.VM_USER }}/actions-runner-linux-x64-2.317.0.tar.gz 
+          '"
 
       - name: Configure runner
         run: > 
@@ -77,7 +77,7 @@ jobs:
           -g $RESOURCE_GROUP 
           -n $VM_NAME 
           --command-id RunShellScript 
-          --scripts "cd actions-runner; ./config.sh --url https://github.com/rocksavagetech --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN }} --unattended 2>&1 >> config.command.log"
+          --scripts "sudo -H -u ${{vars.VM_USER }} bash -c ' cd /home/${{ vars.VM_USER }}/actions-runner; ./config.sh --url https://github.com/rocksavagetech --token ${{ secrets.DYNAMICFIFO_GHR_TOKEN }} --unattended 2>&1 >> /home/${{ vars.VM_USER }}/actions-runner/config.command.log '"
 
       - name: Start runner
         run: >
@@ -85,7 +85,7 @@ jobs:
           -g $RESOURCE_GROUP 
           -n $VM_NAME 
           --command-id RunShellScript 
-          --scripts "./actions-runner/run.sh 2>&1 >> ./actions-runner/run-command.log &" 
+          --scripts "sudo -H -u ${{vars.VM_USER }} bash -c ' /home/${{ vars.VM_USER }}/actions-runner/run.sh 2>&1 >> /home/${{ vars.VM_USER }}/actions-runner/run-command.log & '" 
 
   build-and-test:
     needs: create-vm
