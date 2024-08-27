@@ -20,7 +20,7 @@ do
   echo "*** Synthesizing test case:  " $testCase
   echo "" 
   rm -f *.log *.rpt ../../../syn/*.rpt
-  /usr/share/oss-cad-suite/bin/yosys -Qv 1 -l yosys.log ../../../syn/$designName.yo.tcl  
+  yosys -Qv 1 -l yosys.log ../../../syn/$designName.yo.tcl  
   echo "" 
   cd ../../../syn
 done

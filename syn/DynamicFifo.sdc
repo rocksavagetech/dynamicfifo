@@ -1,5 +1,5 @@
 
-    create_clock -period 5.0 -waveform {0 2.5} -name clock
+    create_clock -period 5.0 -waveform {0 2.5} clock
     set_input_delay -clock clock 1.0 {reset}
     set_input_delay -clock clock 1.0 {io_pop}
     set_input_delay -clock clock 1.0 {io_push}
@@ -15,4 +15,6 @@
     set_output_delay -clock clock 1.0 {io_ramDataIn}
     set_output_delay -clock clock 1.0 {io_ramWriteEnable}
     set_output_delay -clock clock 1.0 {io_ramReadEnable}
+    set_output_delay -clock clock 1.0 {io_ramWriteAddress}
+    set_output_delay -clock clock 1.0 {io_ramReadAddress}
   

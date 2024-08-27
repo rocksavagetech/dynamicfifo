@@ -1,7 +1,3 @@
-Warning: There are 148 input ports missing set_input_delay.
-Warning: There are 150 output ports missing set_output_delay.
-Warning: There are 25 unclocked register/latch pins.
-Warning: There are 175 unconstrained endpoints.
 Startpoint: io_almostEmptyLevel[0] (input port clocked by clock)
 Endpoint: io_almostEmpty (output port clocked by clock)
 Path Group: clock

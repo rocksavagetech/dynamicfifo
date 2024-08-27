@@ -1,8 +1,8 @@
 <scoverage 
-statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rate="100.00" version="1.0" timestamp="1713231785193">
+statement-count="435" statements-invoked="432" statement-rate="99.31" branch-rate="100.00" version="1.0" timestamp="1724796132599">
     <packages>
         <package 
-        name="tech.rocksavage.chiselware.DynamicFifo" statement-count="433" statements-invoked="430" statement-rate="99.31">
+        name="tech.rocksavage.chiselware.DynamicFifo" statement-count="435" statements-invoked="432" statement-rate="99.31">
             <classes>
                 <class 
                 name="tech.rocksavage.chiselware.DynamicFifo.SramBb" filename="SramBb.scala" statement-count="56" statements-invoked="55" statement-rate="98.21" branch-rate="100.00">
@@ -10,6 +10,36 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                         <method 
                         name="tech.rocksavage.chiselware.DynamicFifo/SramBb/_elementsImpl" statement-count="24" statements-invoked="24" statement-rate="100.00" branch-rate="100.00">
                             <statements>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="490" end="493" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
 </statement>
@@ -39,36 +69,6 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="487" end="906" line="16" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="490" end="493" line="16" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="_elementsImpl" start="494" end="494" line="16" branch="false" invocation-count="1" ignored="false">
@@ -113,6 +113,51 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                         name="tech.rocksavage.chiselware.DynamicFifo/SramBb/&lt;none&gt;" statement-count="27" statements-invoked="27" statement-rate="100.00" branch-rate="100.00">
                             <statements>
                                 <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="848" end="900" line="25" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="642" end="678" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="764" end="790" line="22" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="527" end="541" line="17" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="714" end="737" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="822" end="841" line="23" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="610" end="616" line="19" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="653" end="674" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="775" end="786" line="22" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="662" end="673" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="703" end="739" line="21" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="872" end="900" line="25" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="770" end="789" line="22" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="533" end="540" line="17" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="648" end="677" line="20" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="714" end="735" line="21" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
@@ -122,43 +167,13 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="566" end="579" line="18" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="703" end="739" line="21" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="872" end="900" line="25" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="662" end="673" line="20" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="648" end="677" line="20" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="770" end="789" line="22" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="533" end="540" line="17" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="653" end="676" line="20" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="775" end="788" line="22" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="452" end="475" line="15" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="827" end="838" line="23" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="572" end="578" line="18" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="723" end="734" line="21" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="709" end="738" line="21" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="827" end="838" line="23" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="815" end="842" line="23" branch="false" invocation-count="1" ignored="false">
@@ -167,31 +182,16 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="604" end="617" line="19" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="610" end="616" line="19" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="709" end="738" line="21" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="714" end="737" line="21" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="653" end="676" line="20" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="822" end="841" line="23" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="452" end="475" line="15" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="848" end="900" line="25" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="653" end="674" line="20" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="775" end="786" line="22" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="642" end="678" line="20" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="527" end="541" line="17" branch="false" invocation-count="1" ignored="false">
-</statement>
-                                <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="764" end="790" line="22" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="SramBb" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.SramBb" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/SramBb.scala" method="&lt;none&gt;" start="775" end="788" line="22" branch="false" invocation-count="1" ignored="false">
 </statement>
                             </statements>
 </method>
@@ -350,7 +350,7 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="DynamicFifo" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.DynamicFifo" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="3387" end="3433" line="101" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="DynamicFifo" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.DynamicFifo" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="5831" end="6835" line="186" branch="false" invocation-count="2" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="DynamicFifo" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.DynamicFifo" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="5831" end="6964" line="188" branch="false" invocation-count="2" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="DynamicFifo" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.DynamicFifo" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="2827" end="2833" line="84" branch="false" invocation-count="1" ignored="false">
@@ -548,7 +548,7 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="DynamicFifo" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.DynamicFifo" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="3755" end="3934" line="109" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="DynamicFifo" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.DynamicFifo" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="6874" end="6889" line="189" branch="false" invocation-count="2" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="DynamicFifo" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.DynamicFifo" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7003" end="7018" line="191" branch="false" invocation-count="2" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="DynamicFifo" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.DynamicFifo" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="2856" end="2871" line="86" branch="false" invocation-count="1" ignored="false">
@@ -659,7 +659,7 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="DynamicFifo" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.DynamicFifo" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="5609" end="5631" line="163" branch="false" invocation-count="2" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="DynamicFifo" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.DynamicFifo" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="6839" end="6871" line="188" branch="false" invocation-count="2" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="DynamicFifo" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.DynamicFifo" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="6968" end="7000" line="190" branch="false" invocation-count="2" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="DynamicFifo" class-type="Class" full-class-name="tech.rocksavage.chiselware.DynamicFifo.DynamicFifo" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="3604" end="3617" line="106" branch="false" invocation-count="1" ignored="false">
@@ -1215,16 +1215,16 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                     </methods>
 </class>
                 <class 
-                name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" filename="GenVerilog.scala" statement-count="40" statements-invoked="40" statement-rate="100.00" branch-rate="100.00">
+                name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" filename="GenVerilog.scala" statement-count="42" statements-invoked="42" statement-rate="100.00" branch-rate="100.00">
                     <methods>
                         <method 
-                        name="tech.rocksavage.chiselware.DynamicFifo/GenVerilog/&lt;none&gt;" statement-count="40" statements-invoked="40" statement-rate="100.00" branch-rate="100.00">
+                        name="tech.rocksavage.chiselware.DynamicFifo/GenVerilog/&lt;none&gt;" statement-count="42" statements-invoked="42" statement-rate="100.00" branch-rate="100.00">
                             <statements>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1007" end="1007" line="27" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1485" end="1716" line="43" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1613" end="1633" line="46" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="555" end="602" line="17" branch="false" invocation-count="1" ignored="false">
@@ -1233,10 +1233,10 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="714" end="762" line="20" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1132" end="1323" line="33" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1185" end="1185" line="34" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1401" end="1722" line="41" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1413" end="1413" line="41" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="608" end="654" line="18" branch="false" invocation-count="1" ignored="false">
@@ -1248,10 +1248,13 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="453" end="497" line="15" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1574" end="1603" line="45" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1438" end="1463" line="42" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="503" end="549" line="16" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="770" end="1726" line="23" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="660" end="708" line="19" branch="false" invocation-count="1" ignored="false">
@@ -1260,7 +1263,10 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="967" end="968" line="26" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1500" end="1564" line="44" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1132" end="1323" line="33" branch="false" invocation-count="1" ignored="false">
+</statement>
+                                <statement 
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1401" end="1722" line="41" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="902" end="931" line="25" branch="false" invocation-count="1" ignored="false">
@@ -1272,7 +1278,7 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="580" end="602" line="17" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1643" end="1660" line="47" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1574" end="1603" line="45" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1007" end="1007" line="27" branch="false" invocation-count="1" ignored="false">
@@ -1284,13 +1290,13 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="633" end="654" line="18" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1438" end="1438" line="42" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1485" end="1716" line="43" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="478" end="497" line="15" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1147" end="1317" line="36" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1149" end="1149" line="34" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="528" end="549" line="16" branch="false" invocation-count="1" ignored="false">
@@ -1302,13 +1308,13 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="503" end="523" line="16" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="770" end="1726" line="23" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1438" end="1438" line="42" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="911" end="912" line="25" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1438" end="1463" line="42" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1147" end="1317" line="36" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="660" end="681" line="19" branch="false" invocation-count="1" ignored="false">
@@ -1323,7 +1329,7 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="714" end="735" line="20" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1613" end="1633" line="46" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1500" end="1564" line="44" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="394" end="766" line="13" branch="false" invocation-count="1" ignored="false">
@@ -1335,7 +1341,7 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="608" end="627" line="18" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1413" end="1413" line="41" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1643" end="1660" line="47" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
                                 package="tech.rocksavage.chiselware.DynamicFifo" class="GenVerilog" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.GenVerilog" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/GenVerilog.scala" method="&lt;none&gt;" start="1007" end="1126" line="27" branch="false" invocation-count="1" ignored="false">
@@ -1351,58 +1357,58 @@ statement-count="433" statements-invoked="430" statement-rate="99.31" branch-rat
                         name="tech.rocksavage.chiselware.DynamicFifo/Main/&lt;none&gt;" statement-count="18" statements-invoked="18" statement-rate="100.00" branch-rate="100.00">
                             <statements>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="6991" end="6995" line="196" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7120" end="7124" line="198" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7208" end="7237" line="204" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7337" end="7366" line="206" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7136" end="7200" line="203" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7265" end="7329" line="205" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7043" end="7341" line="200" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7172" end="7470" line="202" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7034" end="7036" line="198" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7163" end="7165" line="200" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7273" end="7284" line="206" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7402" end="7413" line="208" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="6961" end="7040" line="195" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7090" end="7169" line="197" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7123" end="7337" line="202" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7252" end="7466" line="204" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7078" end="7103" line="201" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7207" end="7232" line="203" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7078" end="7078" line="201" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7207" end="7207" line="203" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7245" end="7265" line="205" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7374" end="7394" line="207" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7013" end="7016" line="197" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7142" end="7145" line="199" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="6961" end="6961" line="195" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7090" end="7090" line="197" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7317" end="7331" line="208" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7446" end="7460" line="210" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7292" end="7309" line="207" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7421" end="7438" line="209" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="6961" end="6961" line="195" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7090" end="7090" line="197" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7094" end="7102" line="201" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7223" end="7231" line="203" branch="false" invocation-count="1" ignored="false">
 </statement>
                                 <statement 
-                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7055" end="7055" line="200" branch="false" invocation-count="1" ignored="false">
+                                package="tech.rocksavage.chiselware.DynamicFifo" class="Main" class-type="Object" full-class-name="tech.rocksavage.chiselware.DynamicFifo.Main" source="/home/system76/drive/projects/chiselWare/dynamicfifo/src/main/scala/DynamicFifo.scala" method="&lt;none&gt;" start="7184" end="7184" line="202" branch="false" invocation-count="1" ignored="false">
 </statement>
                             </statements>
 </method>

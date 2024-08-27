@@ -825,6 +825,6 @@ Dumping module `\DynamicFifo'.
 
 Warnings: 8 unique messages, 72 total
 End of script. Logfile hash: daf7027baa
-CPU: user 0.32s system 0.02s, MEM: 40.51 MB total, 30.39 MB resident
+CPU: user 0.38s system 0.02s, MEM: 40.48 MB total, 30.25 MB resident
 Yosys 0.9 (git sha1 1979e0b)
-Time spent: 20% 2x stat (0 sec), 19% 1x dfflibmap (0 sec), ...
+Time spent: 20% 1x dfflibmap (0 sec), 18% 2x stat (0 sec), ...

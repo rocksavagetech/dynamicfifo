@@ -547,7 +547,7 @@
           23
         </td>
         <td>
-          377
+          379
         </td>
         <td>
           770
@@ -577,10 +577,10 @@
       &lt;artifact&gt; val x$5: List[String] @scala.reflect.internal.annotations.uncheckedBounds = BaseParams.apply$default$5;
       BaseParams.apply(x$2, x$3, x$1, x$4, x$5)
     };
-    scala.Predef.println((&quot;Generating Verilog config: &quot;.+(testName).+(&quot;\t&quot;): String).+((&quot;externalRam = &quot;.+(thisExternalRam).+(&quot;\t&quot;): String)).+((&quot;dataWidth = &quot;.+(thisDataWidth).+(&quot;\t &quot;): String)).+((&quot;fifoDepth = &quot;.+(thisFifoDepth): String)));
+    scala.Predef.println(&quot;Generating Verilog config: &quot;.+(testName).+(&quot;\t&quot;).+(&quot;externalRam = &quot;.+(thisExternalRam).+(&quot;\t&quot;)).+(&quot;dataWidth = &quot;.+(thisDataWidth).+(&quot;\t &quot;)).+(&quot;fifoDepth = &quot;.+(thisFifoDepth)));
     {
       &lt;artifact&gt; val x$6: () =&gt; tech.rocksavage.chiselware.DynamicFifo.DynamicFifo @scala.reflect.internal.annotations.uncheckedBounds = (() =&gt; new DynamicFifo(myParams));
-      &lt;artifact&gt; val x$7: Array[String] @scala.reflect.internal.annotations.uncheckedBounds = scala.Array.apply[String](&quot;--lowering-options=disallowLocalVariables,disallowPackedArrays&quot;, &quot;--disable-all-randomization&quot;, &quot;--strip-debug-info&quot;, &quot;--split-verilog&quot;, (&quot;-o=generated/synTestCases/&quot;.+(testName): String))((ClassTag.apply[String](classOf[java.lang.String]): scala.reflect.ClassTag[String]));
+      &lt;artifact&gt; val x$7: Array[String] @scala.reflect.internal.annotations.uncheckedBounds = scala.Array.apply[String](&quot;--lowering-options=disallowLocalVariables,disallowPackedArrays&quot;, &quot;--disable-all-randomization&quot;, &quot;--strip-debug-info&quot;, &quot;--split-verilog&quot;, &quot;-o=generated/synTestCases/&quot;.+(testName))((ClassTag.apply[String](classOf[java.lang.String]): scala.reflect.ClassTag[String]));
       &lt;artifact&gt; val x$8: Array[String] @scala.reflect.internal.annotations.uncheckedBounds = circt.stage.ChiselStage.emitSystemVerilog$default$2;
       circt.stage.ChiselStage.emitSystemVerilog(x$6.apply(), x$8, x$7)
     }
@@ -808,7 +808,7 @@
           33
         </td>
         <td>
-          367
+          369
         </td>
         <td>
           1132
@@ -825,14 +825,62 @@
           
         </td>
         <td style="background: #AEF1AE">
-          scala.Predef.println((&quot;Generating Verilog config: &quot;.+(testName).+(&quot;\t&quot;): String).+((&quot;externalRam = &quot;.+(thisExternalRam).+(&quot;\t&quot;): String)).+((&quot;dataWidth = &quot;.+(thisDataWidth).+(&quot;\t &quot;): String)).+((&quot;fifoDepth = &quot;.+(thisFifoDepth): String)))
+          scala.Predef.println(&quot;Generating Verilog config: &quot;.+(testName).+(&quot;\t&quot;).+(&quot;externalRam = &quot;.+(thisExternalRam).+(&quot;\t&quot;)).+(&quot;dataWidth = &quot;.+(thisDataWidth).+(&quot;\t &quot;)).+(&quot;fifoDepth = &quot;.+(thisFifoDepth)))
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          367
+        </td>
+        <td>
+          1185
+          -
+          1185
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;\t&quot;
+        </td>
+      </tr><tr>
+        <td>
+          34
+        </td>
+        <td>
+          366
+        </td>
+        <td>
+          1149
+          -
+          1149
+        </td>
+        <td>
+          Literal
+        </td>
+        <td>
+          &lt;nosymbol&gt;
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          &quot;Generating Verilog config: &quot;
         </td>
       </tr><tr>
         <td>
           36
         </td>
         <td>
-          366
+          368
         </td>
         <td>
           1147
@@ -849,7 +897,7 @@
           
         </td>
         <td style="background: #AEF1AE">
-          (&quot;Generating Verilog config: &quot;.+(testName).+(&quot;\t&quot;): String).+((&quot;externalRam = &quot;.+(thisExternalRam).+(&quot;\t&quot;): String)).+((&quot;dataWidth = &quot;.+(thisDataWidth).+(&quot;\t &quot;): String)).+((&quot;fifoDepth = &quot;.+(thisFifoDepth): String))
+          &quot;Generating Verilog config: &quot;.+(testName).+(&quot;\t&quot;).+(&quot;externalRam = &quot;.+(thisExternalRam).+(&quot;\t&quot;)).+(&quot;dataWidth = &quot;.+(thisDataWidth).+(&quot;\t &quot;)).+(&quot;fifoDepth = &quot;.+(thisFifoDepth))
         </td>
       </tr><tr>
         <td>
@@ -857,30 +905,6 @@
         </td>
         <td>
           376
-        </td>
-        <td>
-          1401
-          -
-          1722
-        </td>
-        <td>
-          Apply
-        </td>
-        <td>
-          circt.stage.ChiselStage.emitSystemVerilog
-        </td>
-        <td>
-          
-        </td>
-        <td style="background: #AEF1AE">
-          circt.stage.ChiselStage.emitSystemVerilog(x$6.apply(), x$8, x$7)
-        </td>
-      </tr><tr>
-        <td>
-          41
-        </td>
-        <td>
-          374
         </td>
         <td>
           1413
@@ -901,34 +925,34 @@
         </td>
       </tr><tr>
         <td>
-          42
+          41
         </td>
         <td>
-          375
+          378
         </td>
         <td>
-          1438
+          1401
           -
-          1438
+          1722
         </td>
         <td>
           Apply
         </td>
         <td>
-          scala.Function0.apply
+          circt.stage.ChiselStage.emitSystemVerilog
         </td>
         <td>
           
         </td>
         <td style="background: #AEF1AE">
-          x$6.apply()
+          circt.stage.ChiselStage.emitSystemVerilog(x$6.apply(), x$8, x$7)
         </td>
       </tr><tr>
         <td>
           42
         </td>
         <td>
-          368
+          370
         </td>
         <td>
           1438
@@ -949,10 +973,34 @@
         </td>
       </tr><tr>
         <td>
+          42
+        </td>
+        <td>
+          377
+        </td>
+        <td>
+          1438
+          -
+          1438
+        </td>
+        <td>
+          Apply
+        </td>
+        <td>
+          scala.Function0.apply
+        </td>
+        <td>
+          
+        </td>
+        <td style="background: #AEF1AE">
+          x$6.apply()
+        </td>
+      </tr><tr>
+        <td>
           43
         </td>
         <td>
-          373
+          375
         </td>
         <td>
           1485
@@ -969,14 +1017,14 @@
           
         </td>
         <td style="background: #AEF1AE">
-          scala.Array.apply[String](&quot;--lowering-options=disallowLocalVariables,disallowPackedArrays&quot;, &quot;--disable-all-randomization&quot;, &quot;--strip-debug-info&quot;, &quot;--split-verilog&quot;, (&quot;-o=generated/synTestCases/&quot;.+(testName): String))((ClassTag.apply[String](classOf[java.lang.String]): scala.reflect.ClassTag[String]))
+          scala.Array.apply[String](&quot;--lowering-options=disallowLocalVariables,disallowPackedArrays&quot;, &quot;--disable-all-randomization&quot;, &quot;--strip-debug-info&quot;, &quot;--split-verilog&quot;, &quot;-o=generated/synTestCases/&quot;.+(testName))((ClassTag.apply[String](classOf[java.lang.String]): scala.reflect.ClassTag[String]))
         </td>
       </tr><tr>
         <td>
           44
         </td>
         <td>
-          369
+          371
         </td>
         <td>
           1500
@@ -1000,7 +1048,7 @@
           45
         </td>
         <td>
-          370
+          372
         </td>
         <td>
           1574
@@ -1024,7 +1072,7 @@
           46
         </td>
         <td>
-          371
+          373
         </td>
         <td>
           1613
@@ -1048,7 +1096,7 @@
           47
         </td>
         <td>
-          372
+          374
         </td>
         <td>
           1643

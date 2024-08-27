@@ -191,7 +191,7 @@
 </span>167 <span style=''>  val sdcFile     = </span><span style='background: #AEF1AE'>new PrintWriter(sdc)</span><span style=''>
 </span>168 <span style=''>
 </span>169 <span style=''>  val sdcFileData = </span><span style='background: #AEF1AE'>s&quot;&quot;&quot;
-</span>170 <span style=''></span><span style='background: #AEF1AE'>    create_clock -period $period -waveform {0 $fallingEdge} -name clock
+</span>170 <span style=''></span><span style='background: #AEF1AE'>    create_clock -period $period -waveform {0 $fallingEdge} clock
 </span>171 <span style=''></span><span style='background: #AEF1AE'>    set_input_delay -clock clock $inputDelay {reset}
 </span>172 <span style=''></span><span style='background: #AEF1AE'>    set_input_delay -clock clock $inputDelay {io_pop}
 </span>173 <span style=''></span><span style='background: #AEF1AE'>    set_input_delay -clock clock $inputDelay {io_push}
@@ -207,32 +207,34 @@
 </span>183 <span style=''></span><span style='background: #AEF1AE'>    set_output_delay -clock clock $outputDelay {io_ramDataIn}
 </span>184 <span style=''></span><span style='background: #AEF1AE'>    set_output_delay -clock clock $outputDelay {io_ramWriteEnable}
 </span>185 <span style=''></span><span style='background: #AEF1AE'>    set_output_delay -clock clock $outputDelay {io_ramReadEnable}
-</span>186 <span style=''></span><span style='background: #AEF1AE'>  &quot;&quot;&quot;.stripMargin</span><span style=''>
-</span>187 <span style=''>
-</span>188 <span style=''>  </span><span style='background: #AEF1AE'>sdcFile.write(s&quot;${sdcFileData}&quot;)</span><span style=''>
-</span>189 <span style=''>  </span><span style='background: #AEF1AE'>sdcFile.close()</span><span style=''>
-</span>190 <span style=''>
-</span>191 <span style=''>}
+</span>186 <span style=''></span><span style='background: #AEF1AE'>    set_output_delay -clock clock $outputDelay {io_ramWriteAddress}
+</span>187 <span style=''></span><span style='background: #AEF1AE'>    set_output_delay -clock clock $outputDelay {io_ramReadAddress}
+</span>188 <span style=''></span><span style='background: #AEF1AE'>  &quot;&quot;&quot;.stripMargin</span><span style=''>
+</span>189 <span style=''>
+</span>190 <span style=''>  </span><span style='background: #AEF1AE'>sdcFile.write(s&quot;${sdcFileData}&quot;)</span><span style=''>
+</span>191 <span style=''>  </span><span style='background: #AEF1AE'>sdcFile.close()</span><span style=''>
 </span>192 <span style=''>
-</span>193 <span style=''>/** Generate Verilog */
-</span>194 <span style=''>object Main extends App {
-</span>195 <span style=''>  val myParams = </span><span style='background: #AEF1AE'>BaseParams(
-</span>196 <span style=''></span><span style='background: #AEF1AE'>    externalRam = true,
-</span>197 <span style=''></span><span style='background: #AEF1AE'>    dataWidth = 128,
-</span>198 <span style=''></span><span style='background: #AEF1AE'>    fifoDepth = 32
-</span>199 <span style=''></span><span style='background: #AEF1AE'>  )</span><span style=''>
-</span>200 <span style=''>  </span><span style='background: #AEF1AE'>ChiselStage.emitSystemVerilog(
-</span>201 <span style=''></span><span style='background: #AEF1AE'>    new DynamicFifo(myParams),
-</span>202 <span style=''></span><span style='background: #AEF1AE'>    firtoolOpts = Array(
-</span>203 <span style=''></span><span style='background: #AEF1AE'>      &quot;--lowering-options=disallowLocalVariables,disallowPackedArrays&quot;,
-</span>204 <span style=''></span><span style='background: #AEF1AE'>      &quot;--disable-all-randomization&quot;,
-</span>205 <span style=''></span><span style='background: #AEF1AE'>      &quot;--strip-debug-info&quot;,
-</span>206 <span style=''></span><span style='background: #AEF1AE'>      &quot;--verilog&quot;,
-</span>207 <span style=''></span><span style='background: #AEF1AE'>      &quot;--split-verilog&quot;,
-</span>208 <span style=''></span><span style='background: #AEF1AE'>      &quot;-o=generated&quot;
-</span>209 <span style=''></span><span style='background: #AEF1AE'>    )
-</span>210 <span style=''></span><span style='background: #AEF1AE'>  )</span><span style=''>
-</span>211 <span style=''>}
+</span>193 <span style=''>}
+</span>194 <span style=''>
+</span>195 <span style=''>/** Generate Verilog */
+</span>196 <span style=''>object Main extends App {
+</span>197 <span style=''>  val myParams = </span><span style='background: #AEF1AE'>BaseParams(
+</span>198 <span style=''></span><span style='background: #AEF1AE'>    externalRam = true,
+</span>199 <span style=''></span><span style='background: #AEF1AE'>    dataWidth = 128,
+</span>200 <span style=''></span><span style='background: #AEF1AE'>    fifoDepth = 32
+</span>201 <span style=''></span><span style='background: #AEF1AE'>  )</span><span style=''>
+</span>202 <span style=''>  </span><span style='background: #AEF1AE'>ChiselStage.emitSystemVerilog(
+</span>203 <span style=''></span><span style='background: #AEF1AE'>    new DynamicFifo(myParams),
+</span>204 <span style=''></span><span style='background: #AEF1AE'>    firtoolOpts = Array(
+</span>205 <span style=''></span><span style='background: #AEF1AE'>      &quot;--lowering-options=disallowLocalVariables,disallowPackedArrays&quot;,
+</span>206 <span style=''></span><span style='background: #AEF1AE'>      &quot;--disable-all-randomization&quot;,
+</span>207 <span style=''></span><span style='background: #AEF1AE'>      &quot;--strip-debug-info&quot;,
+</span>208 <span style=''></span><span style='background: #AEF1AE'>      &quot;--verilog&quot;,
+</span>209 <span style=''></span><span style='background: #AEF1AE'>      &quot;--split-verilog&quot;,
+</span>210 <span style=''></span><span style='background: #AEF1AE'>      &quot;-o=generated&quot;
+</span>211 <span style=''></span><span style='background: #AEF1AE'>    )
+</span>212 <span style=''></span><span style='background: #AEF1AE'>  )</span><span style=''>
+</span>213 <span style=''>}
 </span></pre>
           </div>
           <div class="tab-pane" id="statementlist">
@@ -4228,8 +4230,8 @@
           {
   val tick: chisel3.Bool = chisel3.internal.plugin.`package`.autoNameRecursively[chisel3.Bool](&quot;tick&quot;)(chisel3.experimental.prefix.apply[chisel3.Bool](&quot;tick&quot;)(chisel3.`package`.fromBooleanToLiteral(true).B));
   scala.Predef.intWrapper(0).to(DynamicFifo.this.p.dataWidth.-(1)).foreach[chisel3.cover.Cover](((bit: Int) =&gt; {
-    (_applyWithSourceLine((DynamicFifo.this.io.dataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 87, 23): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 87, &quot;cover(io.dataOut(bit)).suggestName(s\&quot;io_dataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 87, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_dataOut_&quot;.+(bit): String));
-    (_applyWithSourceLine((DynamicFifo.this.io.dataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 88, 22): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 88, &quot;cover(io.dataIn(bit)).suggestName(s\&quot;io_dataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 88, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_dataIn_&quot;.+(bit): String))
+    (_applyWithSourceLine((DynamicFifo.this.io.dataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 87, 23): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 87, &quot;cover(io.dataOut(bit)).suggestName(s\&quot;io_dataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 87, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_dataOut_&quot;.+(bit));
+    (_applyWithSourceLine((DynamicFifo.this.io.dataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 88, 22): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 88, &quot;cover(io.dataIn(bit)).suggestName(s\&quot;io_dataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 88, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_dataIn_&quot;.+(bit))
   }));
   (_applyWithSourceLine(tick, scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 98, &quot;cover(tick).suggestName(\&quot;tick\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 98, 10): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;tick&quot;);
   (_applyWithSourceLine(DynamicFifo.this.io.pop, scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 99, &quot;cover(io.pop).suggestName(\&quot;io__pop\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 99, 10): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io__pop&quot;);
@@ -4243,12 +4245,12 @@
       (_applyWithSourceLine(DynamicFifo.this.io.ramWriteEnable, scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 107, &quot;cover(io.ramWriteEnable).suggestName(\&quot;io__ramWriteEnable\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 107, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io__ramWriteEnable&quot;);
       (_applyWithSourceLine(DynamicFifo.this.io.ramReadEnable, scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 108, &quot;cover(io.ramReadEnable).suggestName(\&quot;io__ramReadEnable\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 108, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io__ramReadEnable&quot;);
       scala.Predef.intWrapper(0).to(DynamicFifo.this.p.dataWidth.-(1)).foreach[chisel3.cover.Cover](((bit: Int) =&gt; {
-        (_applyWithSourceLine((DynamicFifo.this.io.ramDataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 27): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 110, &quot;cover(io.ramDataIn(bit)).suggestName(s\&quot;io_ramDataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramDataIn_&quot;.+(bit): String));
-        (_applyWithSourceLine((DynamicFifo.this.io.ramDataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 28): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 111, &quot;cover(io.ramDataOut(bit)).suggestName(s\&quot;io_ramDataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramDataOut_&quot;.+(bit): String))
+        (_applyWithSourceLine((DynamicFifo.this.io.ramDataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 27): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 110, &quot;cover(io.ramDataIn(bit)).suggestName(s\&quot;io_ramDataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramDataIn_&quot;.+(bit));
+        (_applyWithSourceLine((DynamicFifo.this.io.ramDataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 28): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 111, &quot;cover(io.ramDataOut(bit)).suggestName(s\&quot;io_ramDataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramDataOut_&quot;.+(bit))
       }));
       scala.Predef.intWrapper(0).to(chisel3.util.log2Ceil.apply(DynamicFifo.this.p.fifoDepth).-(1)).foreach[chisel3.cover.Cover](((bit: Int) =&gt; {
-        (_applyWithSourceLine((DynamicFifo.this.io.ramReadAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 32): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 114, &quot;cover(io.ramReadAddress(bit)).suggestName(s\&quot;io_ramReadAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramReadAddress_&quot;.+(bit): String));
-        (_applyWithSourceLine((DynamicFifo.this.io.ramWriteAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 33): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 115, &quot;cover(io.ramWriteAddress(bit)).suggestName(s\&quot;io_ramWriteAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramWriteAddress_&quot;.+(bit): String))
+        (_applyWithSourceLine((DynamicFifo.this.io.ramReadAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 32): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 114, &quot;cover(io.ramReadAddress(bit)).suggestName(s\&quot;io_ramReadAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramReadAddress_&quot;.+(bit));
+        (_applyWithSourceLine((DynamicFifo.this.io.ramWriteAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 33): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 115, &quot;cover(io.ramWriteAddress(bit)).suggestName(s\&quot;io_ramWriteAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramWriteAddress_&quot;.+(bit))
       }))
     }
   else
@@ -4398,8 +4400,8 @@
         </td>
         <td style="background: #AEF1AE">
           scala.Predef.intWrapper(0).to(DynamicFifo.this.p.dataWidth.-(1)).foreach[chisel3.cover.Cover](((bit: Int) =&gt; {
-  (_applyWithSourceLine((DynamicFifo.this.io.dataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 87, 23): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 87, &quot;cover(io.dataOut(bit)).suggestName(s\&quot;io_dataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 87, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_dataOut_&quot;.+(bit): String));
-  (_applyWithSourceLine((DynamicFifo.this.io.dataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 88, 22): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 88, &quot;cover(io.dataIn(bit)).suggestName(s\&quot;io_dataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 88, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_dataIn_&quot;.+(bit): String))
+  (_applyWithSourceLine((DynamicFifo.this.io.dataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 87, 23): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 87, &quot;cover(io.dataOut(bit)).suggestName(s\&quot;io_dataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 87, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_dataOut_&quot;.+(bit));
+  (_applyWithSourceLine((DynamicFifo.this.io.dataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 88, 22): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 88, &quot;cover(io.dataIn(bit)).suggestName(s\&quot;io_dataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 88, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_dataIn_&quot;.+(bit))
 }))
         </td>
       </tr><tr>
@@ -4424,7 +4426,7 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          (_applyWithSourceLine((DynamicFifo.this.io.dataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 87, 23): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 87, &quot;cover(io.dataOut(bit)).suggestName(s\&quot;io_dataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 87, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_dataOut_&quot;.+(bit): String))
+          (_applyWithSourceLine((DynamicFifo.this.io.dataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 87, 23): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 87, &quot;cover(io.dataOut(bit)).suggestName(s\&quot;io_dataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 87, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_dataOut_&quot;.+(bit))
         </td>
       </tr><tr>
         <td>
@@ -4448,7 +4450,7 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          (_applyWithSourceLine((DynamicFifo.this.io.dataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 88, 22): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 88, &quot;cover(io.dataIn(bit)).suggestName(s\&quot;io_dataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 88, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_dataIn_&quot;.+(bit): String))
+          (_applyWithSourceLine((DynamicFifo.this.io.dataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 88, 22): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 88, &quot;cover(io.dataIn(bit)).suggestName(s\&quot;io_dataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 88, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_dataIn_&quot;.+(bit))
         </td>
       </tr><tr>
         <td>
@@ -4692,12 +4694,12 @@
   (_applyWithSourceLine(DynamicFifo.this.io.ramWriteEnable, scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 107, &quot;cover(io.ramWriteEnable).suggestName(\&quot;io__ramWriteEnable\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 107, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io__ramWriteEnable&quot;);
   (_applyWithSourceLine(DynamicFifo.this.io.ramReadEnable, scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 108, &quot;cover(io.ramReadEnable).suggestName(\&quot;io__ramReadEnable\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 108, 12): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io__ramReadEnable&quot;);
   scala.Predef.intWrapper(0).to(DynamicFifo.this.p.dataWidth.-(1)).foreach[chisel3.cover.Cover](((bit: Int) =&gt; {
-    (_applyWithSourceLine((DynamicFifo.this.io.ramDataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 27): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 110, &quot;cover(io.ramDataIn(bit)).suggestName(s\&quot;io_ramDataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramDataIn_&quot;.+(bit): String));
-    (_applyWithSourceLine((DynamicFifo.this.io.ramDataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 28): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 111, &quot;cover(io.ramDataOut(bit)).suggestName(s\&quot;io_ramDataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramDataOut_&quot;.+(bit): String))
+    (_applyWithSourceLine((DynamicFifo.this.io.ramDataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 27): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 110, &quot;cover(io.ramDataIn(bit)).suggestName(s\&quot;io_ramDataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramDataIn_&quot;.+(bit));
+    (_applyWithSourceLine((DynamicFifo.this.io.ramDataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 28): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 111, &quot;cover(io.ramDataOut(bit)).suggestName(s\&quot;io_ramDataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramDataOut_&quot;.+(bit))
   }));
   scala.Predef.intWrapper(0).to(chisel3.util.log2Ceil.apply(DynamicFifo.this.p.fifoDepth).-(1)).foreach[chisel3.cover.Cover](((bit: Int) =&gt; {
-    (_applyWithSourceLine((DynamicFifo.this.io.ramReadAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 32): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 114, &quot;cover(io.ramReadAddress(bit)).suggestName(s\&quot;io_ramReadAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramReadAddress_&quot;.+(bit): String));
-    (_applyWithSourceLine((DynamicFifo.this.io.ramWriteAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 33): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 115, &quot;cover(io.ramWriteAddress(bit)).suggestName(s\&quot;io_ramWriteAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramWriteAddress_&quot;.+(bit): String))
+    (_applyWithSourceLine((DynamicFifo.this.io.ramReadAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 32): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 114, &quot;cover(io.ramReadAddress(bit)).suggestName(s\&quot;io_ramReadAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramReadAddress_&quot;.+(bit));
+    (_applyWithSourceLine((DynamicFifo.this.io.ramWriteAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 33): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 115, &quot;cover(io.ramWriteAddress(bit)).suggestName(s\&quot;io_ramWriteAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramWriteAddress_&quot;.+(bit))
   }))
 }
         </td>
@@ -4844,8 +4846,8 @@
         </td>
         <td style="background: #AEF1AE">
           scala.Predef.intWrapper(0).to(DynamicFifo.this.p.dataWidth.-(1)).foreach[chisel3.cover.Cover](((bit: Int) =&gt; {
-  (_applyWithSourceLine((DynamicFifo.this.io.ramDataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 27): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 110, &quot;cover(io.ramDataIn(bit)).suggestName(s\&quot;io_ramDataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramDataIn_&quot;.+(bit): String));
-  (_applyWithSourceLine((DynamicFifo.this.io.ramDataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 28): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 111, &quot;cover(io.ramDataOut(bit)).suggestName(s\&quot;io_ramDataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramDataOut_&quot;.+(bit): String))
+  (_applyWithSourceLine((DynamicFifo.this.io.ramDataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 27): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 110, &quot;cover(io.ramDataIn(bit)).suggestName(s\&quot;io_ramDataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramDataIn_&quot;.+(bit));
+  (_applyWithSourceLine((DynamicFifo.this.io.ramDataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 28): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 111, &quot;cover(io.ramDataOut(bit)).suggestName(s\&quot;io_ramDataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramDataOut_&quot;.+(bit))
 }))
         </td>
       </tr><tr>
@@ -4870,7 +4872,7 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          (_applyWithSourceLine((DynamicFifo.this.io.ramDataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 27): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 110, &quot;cover(io.ramDataIn(bit)).suggestName(s\&quot;io_ramDataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramDataIn_&quot;.+(bit): String))
+          (_applyWithSourceLine((DynamicFifo.this.io.ramDataIn.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 27): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 110, &quot;cover(io.ramDataIn(bit)).suggestName(s\&quot;io_ramDataIn_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 110, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramDataIn_&quot;.+(bit))
         </td>
       </tr><tr>
         <td>
@@ -4894,7 +4896,7 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          (_applyWithSourceLine((DynamicFifo.this.io.ramDataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 28): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 111, &quot;cover(io.ramDataOut(bit)).suggestName(s\&quot;io_ramDataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramDataOut_&quot;.+(bit): String))
+          (_applyWithSourceLine((DynamicFifo.this.io.ramDataOut.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 28): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 111, &quot;cover(io.ramDataOut(bit)).suggestName(s\&quot;io_ramDataOut_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 111, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramDataOut_&quot;.+(bit))
         </td>
       </tr><tr>
         <td>
@@ -4919,8 +4921,8 @@
         </td>
         <td style="background: #AEF1AE">
           scala.Predef.intWrapper(0).to(chisel3.util.log2Ceil.apply(DynamicFifo.this.p.fifoDepth).-(1)).foreach[chisel3.cover.Cover](((bit: Int) =&gt; {
-  (_applyWithSourceLine((DynamicFifo.this.io.ramReadAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 32): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 114, &quot;cover(io.ramReadAddress(bit)).suggestName(s\&quot;io_ramReadAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramReadAddress_&quot;.+(bit): String));
-  (_applyWithSourceLine((DynamicFifo.this.io.ramWriteAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 33): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 115, &quot;cover(io.ramWriteAddress(bit)).suggestName(s\&quot;io_ramWriteAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramWriteAddress_&quot;.+(bit): String))
+  (_applyWithSourceLine((DynamicFifo.this.io.ramReadAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 32): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 114, &quot;cover(io.ramReadAddress(bit)).suggestName(s\&quot;io_ramReadAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramReadAddress_&quot;.+(bit));
+  (_applyWithSourceLine((DynamicFifo.this.io.ramWriteAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 33): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 115, &quot;cover(io.ramWriteAddress(bit)).suggestName(s\&quot;io_ramWriteAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramWriteAddress_&quot;.+(bit))
 }))
         </td>
       </tr><tr>
@@ -4993,7 +4995,7 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          (_applyWithSourceLine((DynamicFifo.this.io.ramReadAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 32): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 114, &quot;cover(io.ramReadAddress(bit)).suggestName(s\&quot;io_ramReadAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramReadAddress_&quot;.+(bit): String))
+          (_applyWithSourceLine((DynamicFifo.this.io.ramReadAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 32): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 114, &quot;cover(io.ramReadAddress(bit)).suggestName(s\&quot;io_ramReadAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 114, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramReadAddress_&quot;.+(bit))
         </td>
       </tr><tr>
         <td>
@@ -5017,7 +5019,7 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          (_applyWithSourceLine((DynamicFifo.this.io.ramWriteAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 33): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 115, &quot;cover(io.ramWriteAddress(bit)).suggestName(s\&quot;io_ramWriteAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName((&quot;io_ramWriteAddress_&quot;.+(bit): String))
+          (_applyWithSourceLine((DynamicFifo.this.io.ramWriteAddress.do_apply(bit)(scala.Predef.implicitly[chisel3.experimental.SourceInfo]((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 33): chisel3.experimental.SourceInfo))): chisel3.Bool), scala.Tuple3.apply[String, Int, String](&quot;DynamicFifo.scala&quot;, 115, &quot;cover(io.ramWriteAddress(bit)).suggestName(s\&quot;io_ramWriteAddress_$bit\&quot;)&quot;), scala.None)((chisel3.experimental.SourceLine.apply(&quot;src/main/scala/DynamicFifo.scala&quot;, 115, 14): chisel3.experimental.SourceInfo)): chisel3.cover.Cover).suggestName(&quot;io_ramWriteAddress_&quot;.+(bit))
         </td>
       </tr><tr>
         <td>
@@ -5333,7 +5335,7 @@
         </td>
       </tr><tr>
         <td>
-          186
+          188
         </td>
         <td>
           211
@@ -5341,7 +5343,7 @@
         <td>
           5831
           -
-          6835
+          6964
         </td>
         <td>
           Select
@@ -5353,19 +5355,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          scala.Predef.augmentString((&quot;\n    create_clock -period &quot;.+(&quot;&quot;.+(DynamicFifo.this.period).+(&quot; -waveform {0 &quot;).+(DynamicFifo.this.fallingEdge).+(&quot;} -name clock\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {reset}\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {io_pop}\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {io_push}\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {io_dataIn}\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {io_almostFullLevel}\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {io_almostEmptyLevel}\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {io_ramDataOut}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_dataOut}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_empty}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_full}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_almostEmpty}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_almostFull}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_ramDataIn}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_ramWriteEnable}\n    set_output_delay -clock clock &quot;)).+(&quot;&quot;.+(DynamicFifo.this.outputDelay).+(&quot; {io_ramReadEnable}\n  &quot;)): String)).stripMargin
+          scala.Predef.augmentString(&quot;\n    create_clock -period &quot;.+(&quot;&quot;.+(DynamicFifo.this.period).+(&quot; -waveform {0 &quot;).+(DynamicFifo.this.fallingEdge).+(&quot;} clock\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {reset}\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {io_pop}\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {io_push}\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {io_dataIn}\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {io_almostFullLevel}\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {io_almostEmptyLevel}\n    set_input_delay -clock clock &quot;).+(DynamicFifo.this.inputDelay).+(&quot; {io_ramDataOut}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_dataOut}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_empty}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_full}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_almostEmpty}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_almostFull}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_ramDataIn}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_ramWriteEnable}\n    set_output_delay -clock clock &quot;)).+(&quot;&quot;.+(DynamicFifo.this.outputDelay).+(&quot; {io_ramReadEnable}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_ramWriteAddress}\n    set_output_delay -clock clock &quot;).+(DynamicFifo.this.outputDelay).+(&quot; {io_ramReadAddress}\n  &quot;))).stripMargin
         </td>
       </tr><tr>
         <td>
-          188
+          190
         </td>
         <td>
           212
         </td>
         <td>
-          6839
+          6968
           -
-          6871
+          7000
         </td>
         <td>
           Apply
@@ -5377,19 +5379,19 @@
           tech.rocksavage.chiselware.dynamicfifo.dynamicfifotest
         </td>
         <td style="background: #AEF1AE">
-          DynamicFifo.this.sdcFile.write((&quot;&quot;.+(DynamicFifo.this.sdcFileData): String))
+          DynamicFifo.this.sdcFile.write(&quot;&quot;.+(DynamicFifo.this.sdcFileData))
         </td>
       </tr><tr>
         <td>
-          189
+          191
         </td>
         <td>
           213
         </td>
         <td>
-          6874
+          7003
           -
-          6889
+          7018
         </td>
         <td>
           Apply
@@ -5405,15 +5407,15 @@
         </td>
       </tr><tr>
         <td>
-          195
+          197
         </td>
         <td>
           223
         </td>
         <td>
-          6961
+          7090
           -
-          7040
+          7169
         </td>
         <td>
           Apply
@@ -5429,15 +5431,15 @@
         </td>
       </tr><tr>
         <td>
-          195
+          197
         </td>
         <td>
           222
         </td>
         <td>
-          6961
+          7090
           -
-          6961
+          7090
         </td>
         <td>
           Select
@@ -5453,15 +5455,15 @@
         </td>
       </tr><tr>
         <td>
-          195
+          197
         </td>
         <td>
           221
         </td>
         <td>
-          6961
+          7090
           -
-          6961
+          7090
         </td>
         <td>
           Select
@@ -5477,15 +5479,15 @@
         </td>
       </tr><tr>
         <td>
-          196
+          198
         </td>
         <td>
           218
         </td>
         <td>
-          6991
+          7120
           -
-          6995
+          7124
         </td>
         <td>
           Literal
@@ -5501,15 +5503,15 @@
         </td>
       </tr><tr>
         <td>
-          197
+          199
         </td>
         <td>
           219
         </td>
         <td>
-          7013
+          7142
           -
-          7016
+          7145
         </td>
         <td>
           Literal
@@ -5525,15 +5527,15 @@
         </td>
       </tr><tr>
         <td>
-          198
+          200
         </td>
         <td>
           220
         </td>
         <td>
-          7034
+          7163
           -
-          7036
+          7165
         </td>
         <td>
           Literal
@@ -5549,15 +5551,15 @@
         </td>
       </tr><tr>
         <td>
-          200
+          202
         </td>
         <td>
           235
         </td>
         <td>
-          7043
+          7172
           -
-          7341
+          7470
         </td>
         <td>
           Apply
@@ -5573,15 +5575,15 @@
         </td>
       </tr><tr>
         <td>
-          200
+          202
         </td>
         <td>
           233
         </td>
         <td>
-          7055
+          7184
           -
-          7055
+          7184
         </td>
         <td>
           Select
@@ -5597,15 +5599,15 @@
         </td>
       </tr><tr>
         <td>
-          201
+          203
         </td>
         <td>
           225
         </td>
         <td>
-          7078
+          7207
           -
-          7103
+          7232
         </td>
         <td>
           Apply
@@ -5621,15 +5623,15 @@
         </td>
       </tr><tr>
         <td>
-          201
+          203
         </td>
         <td>
           234
         </td>
         <td>
-          7078
+          7207
           -
-          7078
+          7207
         </td>
         <td>
           Apply
@@ -5645,15 +5647,15 @@
         </td>
       </tr><tr>
         <td>
-          201
+          203
         </td>
         <td>
           224
         </td>
         <td>
-          7094
+          7223
           -
-          7102
+          7231
         </td>
         <td>
           Select
@@ -5669,15 +5671,15 @@
         </td>
       </tr><tr>
         <td>
-          202
+          204
         </td>
         <td>
           232
         </td>
         <td>
-          7123
+          7252
           -
-          7337
+          7466
         </td>
         <td>
           ApplyToImplicitArgs
@@ -5693,15 +5695,15 @@
         </td>
       </tr><tr>
         <td>
-          203
+          205
         </td>
         <td>
           226
         </td>
         <td>
-          7136
+          7265
           -
-          7200
+          7329
         </td>
         <td>
           Literal
@@ -5717,15 +5719,15 @@
         </td>
       </tr><tr>
         <td>
-          204
+          206
         </td>
         <td>
           227
         </td>
         <td>
-          7208
+          7337
           -
-          7237
+          7366
         </td>
         <td>
           Literal
@@ -5741,15 +5743,15 @@
         </td>
       </tr><tr>
         <td>
-          205
+          207
         </td>
         <td>
           228
         </td>
         <td>
-          7245
+          7374
           -
-          7265
+          7394
         </td>
         <td>
           Literal
@@ -5765,15 +5767,15 @@
         </td>
       </tr><tr>
         <td>
-          206
+          208
         </td>
         <td>
           229
         </td>
         <td>
-          7273
+          7402
           -
-          7284
+          7413
         </td>
         <td>
           Literal
@@ -5789,15 +5791,15 @@
         </td>
       </tr><tr>
         <td>
-          207
+          209
         </td>
         <td>
           230
         </td>
         <td>
-          7292
+          7421
           -
-          7309
+          7438
         </td>
         <td>
           Literal
@@ -5813,15 +5815,15 @@
         </td>
       </tr><tr>
         <td>
-          208
+          210
         </td>
         <td>
           231
         </td>
         <td>
-          7317
+          7446
           -
-          7331
+          7460
         </td>
         <td>
           Literal

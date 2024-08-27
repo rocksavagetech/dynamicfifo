@@ -1,9 +1,5 @@
-Warning: There are 148 input ports missing set_input_delay.
-Warning: There are 150 output ports missing set_output_delay.
-Warning: There are 16409 unclocked register/latch pins.
-Warning: There are 16559 unconstrained endpoints.
-Startpoint: io_almostEmptyLevel[1] (input port clocked by clock)
-Endpoint: io_almostEmpty (output port clocked by clock)
+Startpoint: _73946_ (rising edge-triggered flip-flop clocked by clock)
+Endpoint: io_dataOut[13] (output port clocked by clock)
 Path Group: clock
 Path Type: max
 
@@ -11,17 +7,18 @@ Path Type: max
 ---------------------------------------------------------
    0.00    0.00   clock clock (rise edge)
    0.00    0.00   clock network delay (ideal)
-   1.00    1.00 v input external delay
-   0.00    1.00 v io_almostEmptyLevel[1] (in)
-   0.03    1.03 v _41854_/ZN (XNOR2_X1)
-   0.02    1.05 ^ _41855_/ZN (OAI21_X1)
-   0.02    1.07 v _41859_/ZN (AOI21_X1)
-   0.07    1.14 ^ _41860_/ZN (AOI221_X1)
-   0.02    1.16 v _41864_/ZN (OAI21_X1)
-   0.02    1.19 ^ _41866_/ZN (OAI211_X1)
-   0.01    1.20 v _41867_/ZN (AOI21_X1)
-   0.00    1.20 v io_almostEmpty (out)
-           1.20   data arrival time
+   0.00    0.00 ^ _73946_/CK (DFF_X1)
+   0.12    0.12 v _73946_/Q (DFF_X1)
+   0.08    0.21 ^ _28974_/ZN (INV_X1)
+   1.47    1.68 v _29001_/ZN (NAND4_X1)
+   0.58    2.25 v _29110_/ZN (OR2_X1)
+   0.07    2.33 v _29184_/ZN (AND4_X1)
+   0.02    2.35 ^ _29185_/ZN (NAND4_X1)
+   0.09    2.44 v _29215_/ZN (NOR4_X1)
+   0.15    2.59 ^ _29216_/ZN (NAND2_X1)
+   0.03    2.62 v _30988_/ZN (OAI211_X1)
+   0.00    2.62 v io_dataOut[13] (out)
+           2.62   data arrival time
 
    5.00    5.00   clock clock (rise edge)
    0.00    5.00   clock network delay (ideal)
@@ -30,8 +27,8 @@ Path Type: max
            4.00   data required time
 ---------------------------------------------------------
            4.00   data required time
-          -1.20   data arrival time
+          -2.62   data arrival time
 ---------------------------------------------------------
-           2.80   slack (MET)
+           1.38   slack (MET)
 
 

@@ -1,4 +1,4 @@
-[info] welcome to sbt 1.4.9 (Ubuntu Java 11.0.22)
+[info] welcome to sbt 1.4.9 (Ubuntu Java 11.0.24)
 [info] loading settings for project dynamicfifo-build from plugins.sbt ...
 [info] loading project definition from /home/system76/drive/projects/chiselWare/dynamicfifo/project
 [info] loading settings for project root from build.sbt ...
@@ -12,4 +12,4 @@ Generating Verilog config: small_true_64_256	externalRam = true	dataWidth = 64	 
 Generating Verilog config: medium_true_128_128	externalRam = true	dataWidth = 128	 fifoDepth = 1028
 Generating Verilog config: small_false_8_8	externalRam = false	dataWidth = 8	 fifoDepth = 8
 Generating Verilog config: large_true_256_2048	externalRam = true	dataWidth = 256	 fifoDepth = 2048
-[success] Total time: 10 s, completed Apr 15, 2024, 6:43:20 PM
+[success] Total time: 11 s, completed Aug 27, 2024, 3:02:30 PM
