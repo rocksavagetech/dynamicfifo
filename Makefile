@@ -3,6 +3,9 @@ MAKEFLAGS += --silent
 SBT = sbt
 	
 # Run everything and scan for errors
+list:
+	@grep '^[^#[:space:]].*:' Makefile
+
 all: clean publish docs cov yosys check
 
 check: 

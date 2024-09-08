@@ -1,0 +1,23 @@
+--------------------------------------------------------------------------------
+%									Count				Coverage Point 
+--------------------------------------------------------------------------------
+11.84					       58				dut.io__almostEmpty
+65.31					      320				dut.io__almostFull
+11.84					       58				dut.io__empty
+65.31					      320				dut.io__full
+64.69					      317				dut.io__pop
+71.22					      349				dut.io__push
+33.47					      164				dut.io_dataIn_0
+35.92					      176				dut.io_dataIn_1
+34.69					      170				dut.io_dataIn_2
+67.76					      332				dut.io_dataIn_3
+34.90					      171				dut.io_dataIn_4
+36.12					      177				dut.io_dataIn_5
+45.92					      225				dut.io_dataOut_0
+52.04					      255				dut.io_dataOut_1
+53.06					      260				dut.io_dataOut_2
+51.84					      254				dut.io_dataOut_3
+55.92					      274				dut.io_dataOut_4
+49.59					      243				dut.io_dataOut_5
+--------------------------------------------------------------------------------
+2024-09-01T10:13:06.121054
