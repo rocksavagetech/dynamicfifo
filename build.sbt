@@ -1,13 +1,13 @@
 // See README.md for license details.
 
-ThisBuild / scalaVersion     := "2.13.10"
+ThisBuild / scalaVersion     := "2.13.13"
 ThisBuild / version          := "0.1.0"
 ThisBuild / organization     := "tech.rocksavage"
 ThisBuild / organizationName := "Rocksavage Technology"
 
 Test / parallelExecution := false
 
-val chiselVersion   = "5.0.0"
+val chiselVersion   = "5.3.0"
 val scalafmtVersion = "2.5.0"
 
 lazy val root = (project in file("."))
@@ -26,7 +26,7 @@ lazy val root = (project in file("."))
       "-Ymacro-annotations"
     ),
     addCompilerPlugin(
-      "org.chipsalliance" % "chisel-plugin" % "5.0.0" cross CrossVersion.full
+      "org.chipsalliance" % "chisel-plugin" % "5.3.0" cross CrossVersion.full
     )
   )
 
