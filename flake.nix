@@ -6,7 +6,7 @@
         devShell = {
             aarch64-darwin = with nixpkgs.legacyPackages.aarch64-darwin; mkShellNoCC {
                 packages = with pkgs; [
-                    # Chisel
+                    # Chisel / firtool 1.44.0
                     (let
                         circtpkgs = import (builtins.fetchTree { 
                         type = "github"; 
@@ -15,7 +15,6 @@
                         rev = "50a7139fbd1acd4a3d4cfa695e694c529dd26f3a"; }) 
                         { inherit (pkgs) system; };
                     in circtpkgs.circt)
-
                 
                     # Scala 
                     sbt
@@ -81,7 +80,7 @@
 
             x86_64-linux = with nixpkgs.legacyPackages.x86_64-linux; mkShellNoCC {
                 packages = with pkgs; [
-                    # Chisel
+                    # Chisel / firtool 1.44.0
                     (let
                         circtpkgs = import (builtins.fetchTree { 
                         type = "github"; 
