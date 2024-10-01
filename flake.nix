@@ -70,8 +70,6 @@
 
                     # LaTeX
                     texliveFull
-
-                    firefox
                 ];
                 shellHook = ''
                     export CXX=/usr/bin/c++
