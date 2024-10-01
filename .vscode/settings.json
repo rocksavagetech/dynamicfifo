@@ -1,0 +1,10 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[scala]": {
+    "editor.defaultFormatter": "scalameta.metals"
+  },
+  "files.watcherExclude": {
+    "**/target": true
+  }
+}

@@ -1,24 +1,45 @@
-# General
-*.swp
+# scala-cli, bloop, metals
+.bsp/
+.bloop/
+.metals/
+.scala-build/
+project/metals.sbt
+build.sc
 
-# Chisel
-generated/*
-project/*
-target/*
+# scala 3
+.tasty
 
-# Visual Studio
-.vscode
-.metals
-.bloop
-.bsp
+# sbt
+project/project/
+project/target/
+target/
 
-# DynamicFifo specific
-!*.rpt
-!generated/*.rpt
-!generated/verilogCoverage/
-!generated/synTestCases/
-!generated/scalaCoverage/
-generated/scalaCoverage/
-!generated/scalaCoverage/scoverage-report
-!/project/plugins.sbt
+# eclipse
+build/
+.classpath
+.project
+.settings
+.worksheet
+bin/
+.cache
 
+# intellij idea
+*.log
+*.iml
+*.ipr
+*.iws
+.idea
+
+# mac
+.DS_Store
+
+# other?
+.history
+.scala_dependencies
+.cache-main
+
+# general
+*.class
+
+# build output
+out
