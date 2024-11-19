@@ -15,10 +15,10 @@ target/*
 
 # DynamicFifo specific
 *.rpt
-generated/*.rpt
-generated/verilogCoverage/
-generated/synTestCases/
-generated/scalaCoverage/
-generated/scalaCoverage/
-generated/scalaCoverage/scoverage-report
+#generated/*.rpt
+#generated/verilogCoverage/
+#generated/synTestCases/
+#generated/scalaCoverage/
+#generated/scalaCoverage/
+#generated/scalaCoverage/scoverage-report
 
