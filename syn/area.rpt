@@ -1,6 +1,0 @@
-small_false_8_8 = 	 769 gates
-medium_false_32_64 = 	 19283 gates
-large_false_64_256 = 	 152808 gates
-small_true_64_256 = 	 355 gates
-medium_true_128_128 = 	 477 gates
-large_true_256_2048 = 	 502 gates

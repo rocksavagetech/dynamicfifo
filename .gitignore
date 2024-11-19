@@ -4,6 +4,7 @@
 # Chisel
 generated/*
 project/*
+!/project/plugins.sbt
 target/*
 
 # Visual Studio
@@ -13,12 +14,11 @@ target/*
 .bsp
 
 # DynamicFifo specific
-!*.rpt
-!generated/*.rpt
-!generated/verilogCoverage/
-!generated/synTestCases/
-!generated/scalaCoverage/
+*.rpt
+generated/*.rpt
+generated/verilogCoverage/
+generated/synTestCases/
 generated/scalaCoverage/
-!generated/scalaCoverage/scoverage-report
-!/project/plugins.sbt
+generated/scalaCoverage/
+generated/scalaCoverage/scoverage-report
 
