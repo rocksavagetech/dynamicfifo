@@ -14,6 +14,12 @@ project/project/
 project/target/
 target/
 
+# scalafmt / github actions
+cs
+
+# Jetbrains
+.idea/
+
 # eclipse
 build/
 .classpath
@@ -22,13 +28,6 @@ build/
 .worksheet
 bin/
 .cache
-
-# intellij idea
-*.log
-*.iml
-*.ipr
-*.iws
-.idea
 
 # mac
 .DS_Store
@@ -43,3 +42,5 @@ bin/
 
 # build output
 out
+generated/
+/test_run_dir/
