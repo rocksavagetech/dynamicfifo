@@ -106,8 +106,9 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
     // ### Behavioral Model ###
     // 1. Assert Count exactly matches the number of elements in the FIFO
 
-    val numElementsReg = RegInit(0.U((2 * log2Ceil(p.fifoDepth + 1)).W))
-    val numElements    = WireDefault(0.U((2 * log2Ceil(p.fifoDepth + 1)).W))
+    val numElementsReg = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
+    val numElements    = WireDefault(0.U(log2Ceil(p.fifoDepth + 1).W))
+
     when(pushValid & !popValid) {
       numElements := numElementsReg + 1.U
     }.elsewhen(!pushValid & popValid) {
