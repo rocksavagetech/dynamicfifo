@@ -8,20 +8,20 @@ import chiseltest.formal.past
 import tech.rocksavage.test.TestUtils.coverAll
 
 /** A synchronous FIFO and FIFO controller with dynamic flags
-  *
-  * @constructor
-  *   create a new FIFO or FIFO controller
-  * @param p
-  *   a set of parameters for the FIFO
-  * @author
-  *   Warren Savage
-  * @todo
-  *   emit license from FIRRTL
-  * @see
-  *   [[http://www.rocksavage.tech/]] for more information
-  *
-  * <img src="doc/images/user-guide/block-diagram.png" />
-  */
+ *
+ * @constructor
+ *   create a new FIFO or FIFO controller
+ * @param p
+ *   a set of parameters for the FIFO
+ * @author
+ *   Warren Savage
+ * @todo
+ *   emit license from FIRRTL
+ * @see
+ *   [[http://www.rocksavage.tech/]] for more information
+ *
+ * <img src="doc/images/user-guide/block-diagram.png" />
+ */
 
 class DynamicFifo(p: DynamicFifoParams) extends Module {
 
@@ -52,15 +52,14 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
   fifoMemory.io.writeData    := memWriteData
 
   val memReadData = fifoMemory.io.readData
-  val prevReadData = RegNext(memReadData)
-  io.dataOut := Mux(memReadEnable, memReadData, prevReadData)
+  io.dataOut := Mux(memReadEnable, memReadData, RegNext(io.dataOut))
 
   val head  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
   val tail  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
   val count = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
 
   /** When push is asserted && the fifo is not full increment count
-    */
+   */
   val pushValid = io.push && (count =/= p.fifoDepth.U)
   when(pushValid) {
     head := increment(head, p.fifoDepth.U - 1.U)
@@ -71,7 +70,7 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
   }
 
   /** When pop is asserted && the fifo is not empty decrement count
-    */
+   */
   val popValid = io.pop && (count =/= 0.U)
   when(popValid) {
     tail := increment(tail, p.fifoDepth.U - 1.U)
@@ -127,7 +126,9 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
     assert(numElementsReg <= p.fifoDepth.U)
 
     // 3. Assert that the elements exit in the same order they entered
-    val fifoModel = RegInit(VecInit(Seq.fill(p.fifoDepth)(0.U(p.dataWidth.W))))
+    val fifoModel = RegInit(
+      VecInit(Seq.fill(p.fifoDepth)(0.U(p.dataWidth.W)))
+    )
 
     // when popped, shift all elements down by one
     for (i <- 0 until p.fifoDepth - 1) {
