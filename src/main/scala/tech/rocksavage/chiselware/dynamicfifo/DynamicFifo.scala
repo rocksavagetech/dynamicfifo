@@ -25,197 +25,198 @@ import tech.rocksavage.test.TestUtils.coverAll
 
 class DynamicFifo(p: DynamicFifoParams) extends Module {
 
-  val io = IO(new Bundle {
-    val push             = Input(Bool())
-    val pop              = Input(Bool())
-    val dataIn           = Input(UInt(p.dataWidth.W))
-    val dataOut          = Output(UInt(p.dataWidth.W))
-    val empty            = Output(Bool())
-    val full             = Output(Bool())
-    val almostEmpty      = Output(Bool())
-    val almostFull       = Output(Bool())
-    val almostEmptyLevel = Input(UInt(log2Ceil(p.fifoDepth).W))
-    val almostFullLevel  = Input(UInt(log2Ceil(p.fifoDepth).W))
-  })
+    val io = IO(new Bundle {
+        val push             = Input(Bool())
+        val pop              = Input(Bool())
+        val dataIn           = Input(UInt(p.dataWidth.W))
+        val dataOut          = Output(UInt(p.dataWidth.W))
+        val empty            = Output(Bool())
+        val full             = Output(Bool())
+        val almostEmpty      = Output(Bool())
+        val almostFull       = Output(Bool())
+        val almostEmptyLevel = Input(UInt(log2Ceil(p.fifoDepth).W))
+        val almostFullLevel  = Input(UInt(log2Ceil(p.fifoDepth).W))
+    })
 
-  val memReadEnable   = WireDefault(false.B)
-  val memWriteEnable  = WireDefault(false.B)
-  val memReadAddress  = WireDefault(0.U(log2Ceil(p.fifoDepth).W))
-  val memWriteAddress = WireDefault(0.U(log2Ceil(p.fifoDepth).W))
-  val memWriteData    = WireDefault(0.U(p.dataWidth.W))
+    val memReadEnable   = WireDefault(false.B)
+    val memWriteEnable  = WireDefault(false.B)
+    val memReadAddress  = WireDefault(0.U(log2Ceil(p.fifoDepth).W))
+    val memWriteAddress = WireDefault(0.U(log2Ceil(p.fifoDepth).W))
+    val memWriteData    = WireDefault(0.U(p.dataWidth.W))
 
-  val fifoMemory = Module(new DynamicFifoMem(p))
-  fifoMemory.io.readEnable   := memReadEnable
-  fifoMemory.io.writeEnable  := memWriteEnable
-  fifoMemory.io.readAddress  := memReadAddress
-  fifoMemory.io.writeAddress := memWriteAddress
-  fifoMemory.io.writeData    := memWriteData
+    val fifoMemory = Module(new DynamicFifoMem(p))
+    fifoMemory.io.readEnable   := memReadEnable
+    fifoMemory.io.writeEnable  := memWriteEnable
+    fifoMemory.io.readAddress  := memReadAddress
+    fifoMemory.io.writeAddress := memWriteAddress
+    fifoMemory.io.writeData    := memWriteData
 
-  val memReadData = fifoMemory.io.readData
-  val prevReadData = RegNext(memReadData)
-  io.dataOut := Mux(memReadEnable, memReadData, prevReadData)
+    val memReadData = fifoMemory.io.readData
+    io.dataOut := Mux(memReadEnable, memReadData, RegNext(io.dataOut))
 
-  val head  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
-  val tail  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
-  val count = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
+    val head  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
+    val tail  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
+    val count = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
 
-  /** When push is asserted && the fifo is not full increment count
-    */
-  val pushValid = io.push && (count =/= p.fifoDepth.U)
-  when(pushValid) {
-    head := increment(head, p.fifoDepth.U - 1.U)
-
-    memWriteEnable  := true.B
-    memWriteAddress := head
-    memWriteData    := io.dataIn
-  }
-
-  /** When pop is asserted && the fifo is not empty decrement count
-    */
-  val popValid = io.pop && (count =/= 0.U)
-  when(popValid) {
-    tail := increment(tail, p.fifoDepth.U - 1.U)
-
-    memReadEnable  := true.B
-    memReadAddress := tail
-  }
-
-  when(pushValid && popValid) {
-    count := count
-  }.elsewhen(pushValid && !popValid) {
-    count := count + 1.U
-  }.elsewhen(!pushValid && popValid) {
-    count := count - 1.U
-  }
-
-  io.empty       := count === 0.U
-  io.full        := count === p.fifoDepth.U
-  io.almostEmpty := count <= io.almostEmptyLevel
-  io.almostFull  := count >= io.almostFullLevel
-
-  def increment(value: UInt, max: UInt): UInt = {
-    Mux(value === max, 0.U, value + 1.U)
-  }
-
-  // Collect code coverage points
-  if (p.coverage) {
-    coverAll(io)
-  }
-
-  if (p.formal) {
-
-    // ### Behavioral Model ###
-    // 1. Assert Count exactly matches the number of elements in the FIFO
-
-    val numElementsReg = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
-    val numElements    = WireDefault(0.U(log2Ceil(p.fifoDepth + 1).W))
-
-    when(pushValid & !popValid) {
-      numElements := numElementsReg + 1.U
-    }.elsewhen(!pushValid & popValid) {
-      numElements := numElementsReg - 1.U
-    }.elsewhen(pushValid & popValid) {
-      numElements := numElementsReg
-    }.otherwise {
-      numElements := numElementsReg
-    }
-    numElementsReg := numElements
-    assert(numElementsReg === count)
-
-    // 2. Assert that the number of elements in the FIFO is within the bounds of the FIFO depth
-    assert(numElementsReg >= 0.U)
-    assert(numElementsReg <= p.fifoDepth.U)
-
-    // 3. Assert that the elements exit in the same order they entered
-    val fifoModel = RegInit(VecInit(Seq.fill(p.fifoDepth)(0.U(p.dataWidth.W))))
-
-    // when popped, shift all elements down by one
-    for (i <- 0 until p.fifoDepth - 1) {
-      when(popValid) {
-        fifoModel(i) := fifoModel(i + 1)
-      }
-    }
-    // when pushed, add the new element to the correct index
+    /** When push is asserted && the fifo is not full increment count
+      */
+    val pushValid = io.push && (count =/= p.fifoDepth.U)
     when(pushValid) {
-      fifoModel(numElements - 1.U) := io.dataIn
+        head := increment(head, p.fifoDepth.U - 1.U)
+
+        memWriteEnable  := true.B
+        memWriteAddress := head
+        memWriteData    := io.dataIn
     }
 
-    // when popped, the dataOut should match the head of the fifo
+    /** When pop is asserted && the fifo is not empty decrement count
+      */
+    val popValid = io.pop && (count =/= 0.U)
     when(popValid) {
-      assert(fifoModel(0) === io.dataOut)
+        tail := increment(tail, p.fifoDepth.U - 1.U)
+
+        memReadEnable  := true.B
+        memReadAddress := tail
     }
 
-    // ### Flag Assertions ###
-    // 1. if count == 0, then the fifo is empty
-    when(numElementsReg === 0.U) {
-      assert(io.empty)
+    when(pushValid && popValid) {
+        count := count
+    }.elsewhen(pushValid && !popValid) {
+        count := count + 1.U
+    }.elsewhen(!pushValid && popValid) {
+        count := count - 1.U
     }
 
-    // 2. if count == p.fifoDepth, then the fifo is full
-    when(numElementsReg === p.fifoDepth.U) {
-      assert(io.full)
+    io.empty       := count === 0.U
+    io.full        := count === p.fifoDepth.U
+    io.almostEmpty := count <= io.almostEmptyLevel
+    io.almostFull  := count >= io.almostFullLevel
+
+    def increment(value: UInt, max: UInt): UInt = {
+        Mux(value === max, 0.U, value + 1.U)
     }
 
-    // 3. if count <= io.almostEmptyLevel, then the fifo is almost empty
-    when(numElementsReg <= io.almostEmptyLevel) {
-      assert(io.almostEmpty)
+    // Collect code coverage points
+    if (p.coverage) {
+        coverAll(io)
     }
 
-    // 4. if count >= io.almostFullLevel, then the fifo is almost full
-    when(numElementsReg >= io.almostFullLevel) {
-      assert(io.almostFull)
-    }
+    if (p.formal) {
 
-    // ### Push Assertions ###
-    // 1. pushValid and count < p.fifoDepth
-    when(io.push && numElementsReg < p.fifoDepth.U) {
-      assert(pushValid)
-    }
+        // ### Behavioral Model ###
+        // 1. Assert Count exactly matches the number of elements in the FIFO
 
-    // 2. pushValid and count == p.fifoDepth
-    when(io.push && numElementsReg === p.fifoDepth.U) {
-      assert(!pushValid)
-    }
+        val numElementsReg = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
+        val numElements    = WireDefault(0.U(log2Ceil(p.fifoDepth + 1).W))
 
-    // 3. head = head + 1
-    when(past(pushValid)) {
-      // either head is incremented by 1 or it wraps around to 0 if it reaches p.fifoDepth
-      when(past(head) === p.fifoDepth.U - 1.U) {
-        assert(head === 0.U)
-      }.otherwise {
-        assert(past(head) + 1.U === head)
-      }
-    }
+        when(pushValid & !popValid) {
+            numElements := numElementsReg + 1.U
+        }.elsewhen(!pushValid & popValid) {
+            numElements := numElementsReg - 1.U
+        }.elsewhen(pushValid & popValid) {
+            numElements := numElementsReg
+        }.otherwise {
+            numElements := numElementsReg
+        }
+        numElementsReg := numElements
+        assert(numElementsReg === count)
 
-    // 4. memWriteEnable = true
-    when(pushValid) {
-      assert(memWriteEnable)
-    }
+        // 2. Assert that the number of elements in the FIFO is within the bounds of the FIFO depth
+        assert(numElementsReg >= 0.U)
+        assert(numElementsReg <= p.fifoDepth.U)
 
-    // ### Pop Assertions ###
-    // 1. popValid and count > 0
-    when(io.pop && numElementsReg > 0.U) {
-      assert(popValid)
-    }
+        // 3. Assert that the elements exit in the same order they entered
+        val fifoModel = RegInit(
+          VecInit(Seq.fill(p.fifoDepth)(0.U(p.dataWidth.W)))
+        )
 
-    // 2. popValid and count == 0
-    when(io.pop && numElementsReg === 0.U) {
-      assert(!popValid)
-    }
+        // when popped, shift all elements down by one
+        for (i <- 0 until p.fifoDepth - 1) {
+            when(popValid) {
+                fifoModel(i) := fifoModel(i + 1)
+            }
+        }
+        // when pushed, add the new element to the correct index
+        when(pushValid) {
+            fifoModel(numElements - 1.U) := io.dataIn
+        }
 
-    // 3. tail = tail + 1
-    when(past(popValid)) {
-      // either tail is incremented by 1 or it wraps around to 0 if it reaches p.fifoDepth
-      when(past(tail) === p.fifoDepth.U - 1.U) {
-        assert(tail === 0.U)
-      }.otherwise {
-        assert(past(tail) + 1.U === tail)
-      }
-    }
+        // when popped, the dataOut should match the head of the fifo
+        when(popValid) {
+            assert(fifoModel(0) === io.dataOut)
+        }
 
-    // 4. memReadEnable = true
-    when(popValid) {
-      assert(memReadEnable)
+        // ### Flag Assertions ###
+        // 1. if count == 0, then the fifo is empty
+        when(numElementsReg === 0.U) {
+            assert(io.empty)
+        }
+
+        // 2. if count == p.fifoDepth, then the fifo is full
+        when(numElementsReg === p.fifoDepth.U) {
+            assert(io.full)
+        }
+
+        // 3. if count <= io.almostEmptyLevel, then the fifo is almost empty
+        when(numElementsReg <= io.almostEmptyLevel) {
+            assert(io.almostEmpty)
+        }
+
+        // 4. if count >= io.almostFullLevel, then the fifo is almost full
+        when(numElementsReg >= io.almostFullLevel) {
+            assert(io.almostFull)
+        }
+
+        // ### Push Assertions ###
+        // 1. pushValid and count < p.fifoDepth
+        when(io.push && numElementsReg < p.fifoDepth.U) {
+            assert(pushValid)
+        }
+
+        // 2. pushValid and count == p.fifoDepth
+        when(io.push && numElementsReg === p.fifoDepth.U) {
+            assert(!pushValid)
+        }
+
+        // 3. head = head + 1
+        when(past(pushValid)) {
+            // either head is incremented by 1 or it wraps around to 0 if it reaches p.fifoDepth
+            when(past(head) === p.fifoDepth.U - 1.U) {
+                assert(head === 0.U)
+            }.otherwise {
+                assert(past(head) + 1.U === head)
+            }
+        }
+
+        // 4. memWriteEnable = true
+        when(pushValid) {
+            assert(memWriteEnable)
+        }
+
+        // ### Pop Assertions ###
+        // 1. popValid and count > 0
+        when(io.pop && numElementsReg > 0.U) {
+            assert(popValid)
+        }
+
+        // 2. popValid and count == 0
+        when(io.pop && numElementsReg === 0.U) {
+            assert(!popValid)
+        }
+
+        // 3. tail = tail + 1
+        when(past(popValid)) {
+            // either tail is incremented by 1 or it wraps around to 0 if it reaches p.fifoDepth
+            when(past(tail) === p.fifoDepth.U - 1.U) {
+                assert(tail === 0.U)
+            }.otherwise {
+                assert(past(tail) + 1.U === tail)
+            }
+        }
+
+        // 4. memReadEnable = true
+        when(popValid) {
+            assert(memReadEnable)
+        }
     }
-  }
 }
