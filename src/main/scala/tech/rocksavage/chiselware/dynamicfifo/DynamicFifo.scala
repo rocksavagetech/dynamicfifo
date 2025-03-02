@@ -52,7 +52,8 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
   fifoMemory.io.writeData    := memWriteData
 
   val memReadData = fifoMemory.io.readData
-  io.dataOut := Mux(memReadEnable, memReadData, 0.U)
+  val prevReadData = RegNext(memReadData)
+  io.dataOut := Mux(memReadEnable, memReadData, prevReadData)
 
   val head  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
   val tail  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
