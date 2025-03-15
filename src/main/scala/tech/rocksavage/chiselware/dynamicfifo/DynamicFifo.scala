@@ -51,10 +51,6 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
     fifoMemory.io.writeAddress := memWriteAddress
     fifoMemory.io.writeData    := memWriteData
 
-    val memReadData = fifoMemory.io.readData
-
-    io.dataOut := Mux(memReadEnable, memReadData, RegNext(io.dataOut))
-
     val head  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
     val tail  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
     val count = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
@@ -63,12 +59,12 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
       */
     val pushValid = io.push && (count =/= p.fifoDepth.U)
     when(pushValid) {
-        head := increment(head, p.fifoDepth.U - 1.U)
-
+        head            := increment(head, p.fifoDepth.U - 1.U)
         memWriteEnable  := true.B
         memWriteAddress := head
-        memWriteData    := io.dataIn
     }
+
+    memWriteData := io.dataIn
 
     /** When pop is asserted && the fifo is not empty decrement count
       */
@@ -77,6 +73,7 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
         tail := increment(tail, p.fifoDepth.U - 1.U)
     }
     memReadAddress := tail
+    io.dataOut     := fifoMemory.io.readData
 
     when(pushValid && popValid) {
         count := count
