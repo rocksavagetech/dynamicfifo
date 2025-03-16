@@ -38,18 +38,10 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
         val almostFullLevel  = Input(UInt(log2Ceil(p.fifoDepth).W))
     })
 
-    val memReadEnable   = WireDefault(true.B)
     val memWriteEnable  = WireDefault(false.B)
-    val memReadAddress  = WireDefault(0.U(log2Ceil(p.fifoDepth).W))
     val memWriteAddress = WireDefault(0.U(log2Ceil(p.fifoDepth).W))
-    val memWriteData    = WireDefault(0.U(p.dataWidth.W))
 
     val fifoMemory = Module(new DynamicFifoMem(p))
-    fifoMemory.io.readEnable   := memReadEnable
-    fifoMemory.io.writeEnable  := memWriteEnable
-    fifoMemory.io.readAddress  := memReadAddress
-    fifoMemory.io.writeAddress := memWriteAddress
-    fifoMemory.io.writeData    := memWriteData
 
     val head  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
     val tail  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
@@ -64,16 +56,12 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
         memWriteAddress := head
     }
 
-    memWriteData := io.dataIn
-
     /** When pop is asserted && the fifo is not empty decrement count
       */
     val popValid = io.pop && (count =/= 0.U)
     when(popValid) {
         tail := increment(tail, p.fifoDepth.U - 1.U)
     }
-    memReadAddress := tail
-    io.dataOut     := fifoMemory.io.readData
 
     when(pushValid && popValid) {
         count := count
@@ -87,6 +75,14 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
     io.full        := count === p.fifoDepth.U
     io.almostEmpty := count <= io.almostEmptyLevel
     io.almostFull  := count >= io.almostFullLevel
+
+    fifoMemory.io.readEnable   := true.B
+    fifoMemory.io.writeEnable  := memWriteEnable
+    fifoMemory.io.readAddress  := tail
+    fifoMemory.io.writeAddress := memWriteAddress
+    fifoMemory.io.writeData    := io.dataIn
+
+    io.dataOut := fifoMemory.io.readData
 
     def increment(value: UInt, max: UInt): UInt = {
         Mux(value === max, 0.U, value + 1.U)
@@ -212,7 +208,7 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
 
         // 4. memReadEnable = true
         when(popValid) {
-            assert(memReadEnable)
+            assert(fifoMemory.io.readEnable)
         }
     }
 }
