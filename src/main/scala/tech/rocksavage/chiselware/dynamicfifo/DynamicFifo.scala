@@ -34,8 +34,8 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
         val full             = Output(Bool())
         val almostEmpty      = Output(Bool())
         val almostFull       = Output(Bool())
-        val almostEmptyLevel = Input(UInt(log2Ceil(p.fifoDepth).W))
-        val almostFullLevel  = Input(UInt(log2Ceil(p.fifoDepth).W))
+        val almostEmptyLevel = Input(UInt((log2Ceil(p.fifoDepth) + 1).W))
+        val almostFullLevel  = Input(UInt((log2Ceil(p.fifoDepth) + 1).W))
     })
 
     val memWriteEnable  = WireDefault(false.B)
