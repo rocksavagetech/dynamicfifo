@@ -10,6 +10,7 @@ class DynamicFifoSynchronized(p: DynamicFifoParams) extends Module {
   val io = IO(new Bundle {
     val push             = Input(Bool())
     val pop              = Input(Bool())
+    val flush            = Input(Bool())
     val dataIn           = Input(UInt(p.dataWidth.W))
     val dataOut          = Output(UInt(p.dataWidth.W))
     val empty            = Output(Bool())
@@ -26,6 +27,7 @@ class DynamicFifoSynchronized(p: DynamicFifoParams) extends Module {
 
   dut.io.push             := RegNext(io.push)
   dut.io.pop              := RegNext(io.pop)
+  dut.io.flush            := RegNext(io.flush)
   dut.io.dataIn           := RegNext(io.dataIn)
   dut.io.almostEmptyLevel := RegNext(io.almostEmptyLevel)
   dut.io.almostFullLevel  := RegNext(io.almostFullLevel)

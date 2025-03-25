@@ -28,6 +28,7 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
     val io = IO(new Bundle {
         val push             = Input(Bool())
         val pop              = Input(Bool())
+        val flush            = Input(Bool())
         val dataIn           = Input(UInt(p.dataWidth.W))
         val dataOut          = Output(UInt(p.dataWidth.W))
         val empty            = Output(Bool())
@@ -49,7 +50,7 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
 
     /** When push is asserted && the fifo is not full increment count
       */
-    val pushValid = io.push && (count =/= p.fifoDepth.U)
+    val pushValid = io.push && (count =/= p.fifoDepth.U) && !io.flush
     when(pushValid) {
         head            := increment(head, p.fifoDepth.U - 1.U)
         memWriteEnable  := true.B
@@ -58,9 +59,15 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
 
     /** When pop is asserted && the fifo is not empty decrement count
       */
-    val popValid = io.pop && (count =/= 0.U)
+    val popValid = io.pop && (count =/= 0.U) && !io.flush
     when(popValid) {
         tail := increment(tail, p.fifoDepth.U - 1.U)
+    }
+
+    when(io.flush) {
+        head := 0.U
+        tail := 0.U
+        count := 0.U
     }
 
     when(pushValid && popValid) {
@@ -82,7 +89,8 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
     fifoMemory.io.writeAddress := memWriteAddress
     fifoMemory.io.writeData    := io.dataIn
 
-    io.dataOut := fifoMemory.io.readData
+
+    io.dataOut := Mux(count === 0.U, 0.U, fifoMemory.io.readData)
 
     def increment(value: UInt, max: UInt): UInt = {
         Mux(value === max, 0.U, value + 1.U)
@@ -101,12 +109,14 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
         val numElementsReg = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
         val numElements    = WireDefault(0.U(log2Ceil(p.fifoDepth + 1).W))
 
-        when(pushValid & !popValid) {
+        when(pushValid & !popValid & !io.flush) {
             numElements := numElementsReg + 1.U
-        }.elsewhen(!pushValid & popValid) {
+        }.elsewhen(!pushValid & popValid & !io.flush) {
             numElements := numElementsReg - 1.U
-        }.elsewhen(pushValid & popValid) {
+        }.elsewhen(pushValid & popValid & !io.flush) {
             numElements := numElementsReg
+        }.elsewhen(io.flush) {
+            numElements := 0.U
         }.otherwise {
             numElements := numElementsReg
         }
@@ -126,6 +136,8 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
         for (i <- 0 until p.fifoDepth - 1) {
             when(popValid) {
                 fifoModel(i) := fifoModel(i + 1)
+            }.elsewhen(io.flush) {
+                fifoModel(i) := 0.U
             }
         }
         // when pushed, add the new element to the correct index
@@ -161,12 +173,12 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
 
         // ### Push Assertions ###
         // 1. pushValid and count < p.fifoDepth
-        when(io.push && numElementsReg < p.fifoDepth.U) {
+        when(io.push && numElementsReg < p.fifoDepth.U && !io.flush) {
             assert(pushValid)
         }
 
         // 2. pushValid and count == p.fifoDepth
-        when(io.push && numElementsReg === p.fifoDepth.U) {
+        when(io.push && numElementsReg === p.fifoDepth.U && !io.flush) {
             assert(!pushValid)
         }
 
@@ -187,12 +199,12 @@ class DynamicFifo(p: DynamicFifoParams) extends Module {
 
         // ### Pop Assertions ###
         // 1. popValid and count > 0
-        when(io.pop && numElementsReg > 0.U) {
+        when(io.pop && numElementsReg > 0.U && !io.flush) {
             assert(popValid)
         }
 
         // 2. popValid and count == 0
-        when(io.pop && numElementsReg === 0.U) {
+        when(io.pop && numElementsReg === 0.U && !io.flush) {
             assert(!popValid)
         }
 
