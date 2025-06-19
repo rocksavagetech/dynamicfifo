@@ -127,71 +127,9 @@
                     scala-cli
 
                     # Verilator
-                    # Verilator has issues with nix (VUart__pch.h.slow: No such file or director)
-                    # Installing from derivation needs to be done with clang or it will fail at runtime
-                    # a workaround is to install verilator via the system package manager
-                    (let
-                       systemcClang = pkgs.systemc.override { stdenv = pkgs.clangStdenv; };
-                     in
-                     pkgs.clangStdenv.mkDerivation rec {
-                       pname = "verilator";
-                       version = "5.006";
+                    verilator
 
-                       VERILATOR_SRC_VERSION = "v${version}";
 
-                       src = pkgs.fetchFromGitHub {
-                         owner = pname;
-                         repo = pname;
-                         rev = "v${version}";
-                         hash = "sha256-YgK60fAYG5575uiWmbCODqNZMbRfFdOVcJXz5h5TLuE=";
-                       };
-
-                       enableParallelBuilding = true;
-                       buildInputs = [
-                         pkgs.perl
-                         pkgs.python3
-                         systemcClang
-                       ];
-                       nativeBuildInputs = [
-                         pkgs.makeWrapper
-                         pkgs.flex
-                         pkgs.bison
-                         pkgs.autoconf
-                         pkgs.help2man
-                         pkgs.git
-                       ];
-                       nativeCheckInputs = [
-                         pkgs.which
-                         pkgs.numactl
-                         pkgs.coreutils
-                       ];
-
-                       doCheck = pkgs.stdenv.hostPlatform.isLinux;
-                       checkTarget = "test";
-
-                       preConfigure = "autoconf";
-
-                       postPatch = ''
-                         patchShebangs bin/* src/* nodist/* docs/bin/* examples/xml_py/* \
-                         test_regress/{driver.pl,t/*.{pl,pf}} \
-                         ci/* ci/docker/run/* ci/docker/run/hooks/* ci/docker/buildenv/build.sh
-                         sed -i 's|/bin/echo|${pkgs.coreutils}/bin/echo|' bin/verilator
-                       '';
-
-                       env = {
-                         SYSTEMC_INCLUDE = "${pkgs.lib.getDev systemcClang}/include";
-                         SYSTEMC_LIBDIR = "${pkgs.lib.getLib systemcClang}/lib";
-                       };
-
-                       meta = with pkgs.lib; {
-                         description = "Fast and robust (System)Verilog simulator/compiler and linter";
-                         homepage = "https://www.veripool.org/verilator";
-                         license = with licenses; [ lgpl3Only artistic2 ];
-                         platforms = platforms.unix;
-                         maintainers = with maintainers; [ thoughtpolice amiloradovsky ];
-                       };
-                     })
-                    # The simplest way to use verilator is to install from package manager
                     ninja
                     cmake
 
