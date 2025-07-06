@@ -1,7 +1,7 @@
 // (c) 2024 Rocksavage Technology, Inc.
 // This code is licensed under the Apache Software License 2.0 (see LICENSE.MD)
 
-package tech.rocksavage.chiselware.DynamicFifo
+package tech.rocksavage.chiselware.dynamicfifo
 
 import chisel3._
 import chisel3.util._
@@ -54,7 +54,7 @@ class DynamicFifoTest
     val fullThreshold  = (fifoDepth * Random.between(75, 95) / 100).toInt
     val emptyThreshold = (fifoDepth * Random.between(3, 25) / 100).toInt
 
-    val myParams = BaseParams(
+    val myParams = DynamicFifoParams(
       dataWidth,
       fifoDepth,
       useExternalRam,
@@ -205,7 +205,7 @@ class DynamicFifoTest
   // Test that illegal combinations are caught
   it should "throw an assertion when dataWidth parameter is less than 4" in {
     val myParams = assertThrows[IllegalArgumentException] {
-      BaseParams(
+      DynamicFifoParams(
         dataWidth = 3,
         bbFiles = List("dual_port_sync_sram.v")
       )
@@ -214,7 +214,7 @@ class DynamicFifoTest
 
   it should "throw an assertion when fifoDepth parameter is not a power of 2" in {
     val myParams = assertThrows[IllegalArgumentException] {
-      BaseParams(
+      DynamicFifoParams(
         fifoDepth = 7,
         bbFiles = List("dual_port_sync_sram.v")
       )

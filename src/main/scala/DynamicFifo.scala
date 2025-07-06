@@ -1,6 +1,6 @@
 // (c) 2024 Rocksavage Technology, Inc.
 // This code is licensed under the Apache Software License 2.0 (see LICENSE.MD)
-package tech.rocksavage.chiselware.DynamicFifo
+package tech.rocksavage.chiselware.dynamicfifo
 
 import chisel3._
 import chisel3.util._
@@ -26,7 +26,7 @@ import _root_.circt.stage.ChiselStage
   *
   * <img src="doc/images/user-guide/block-diagram.png" />
   */
-class DynamicFifo(p: BaseParams) extends Module {
+class DynamicFifo(p: DynamicFifoParams) extends Module {
 
   val io = IO(new Bundle {
     val push             = Input(Bool())
@@ -47,15 +47,15 @@ class DynamicFifo(p: BaseParams) extends Module {
     val ramDataOut       = Input(UInt(p.dataWidth.W))
   })
 
-  val fifoMemory = Reg(Vec(p.fifoDepth, UInt(p.dataWidth.W)))
+  val fifoMemory = RegInit(VecInit(Seq.fill(p.fifoDepth)(0.U(p.dataWidth.W))))
 
   val tail  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
   val head  = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
   val count = RegInit(0.U(log2Ceil(p.fifoDepth + 1).W))
 
-  when(io.push === 1.U) { count := count + 1.U }
-  when(io.pop === 1.U) { count := count - 1.U }
-  when((io.pop === 1.U) && io.push === 1.U) { count := count }
+  when((io.push === 1.U) && (io.full =/= 1.U)) { count := count + 1.U }
+  when((io.pop === 1.U) && (io.empty =/= 1.U)) { count := count - 1.U }
+  when((io.pop === 1.U) && (io.push === 1.U)) { count := count }
 
   io.empty       := count === 0.U
   io.full        := count === p.fifoDepth.U
@@ -194,7 +194,7 @@ class DynamicFifo(p: BaseParams) extends Module {
 
 /** Generate Verilog */
 object Main extends App {
-  val myParams = BaseParams(
+  val myParams = DynamicFifoParams(
     externalRam = true,
     dataWidth = 128,
     fifoDepth = 32

@@ -4,6 +4,7 @@
 # Chisel
 generated/*
 project/*
+!/project/build.properties
 !/project/plugins.sbt
 target/*
 

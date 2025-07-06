@@ -1,7 +1,7 @@
 // (c) 2024 Rocksavage Technology, Inc.
 // This code is licensed under the Apache Software License 2.0 (see LICENSE.MD)
 
-package tech.rocksavage.chiselware.DynamicFifo
+package tech.rocksavage.chiselware.dynamicfifo
 
 import chisel3._
 import scala.util.Random

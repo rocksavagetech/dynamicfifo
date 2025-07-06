@@ -1,7 +1,7 @@
 // (c) 2024 Rocksavage Technology, Inc.
 // This code is licensed under the Apache Software License 2.0 (see LICENSE.MD)
 
-package tech.rocksavage.chiselware.DynamicFifo
+package tech.rocksavage.chiselware.dynamicfifo
 
 import chisel3._
 import chisel3.util._
@@ -26,7 +26,7 @@ import chisel3.util._
   * @see
   *   [[http://www.rocksavage.tech]] for more information
   */
-case class BaseParams(
+case class DynamicFifoParams(
     dataWidth: Int = 8,
     fifoDepth: Int = 8,
     externalRam: Boolean = false,

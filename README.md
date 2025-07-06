@@ -1,6 +1,6 @@
 # DynamicFifo
 
-A highly configurable FIFO or FIFO controller with dynamic status flags.
+A highly configurable synchronous FIFO or FIFO controller with dynamic status flags.
 
 ## Description
 
@@ -46,7 +46,7 @@ found in the main class file (DynamicFifo.scala) and executed as follows:
 ```
 $ sbt
 sbt:dynamicfifo>
-sbt:dynamicfifo> runMain tech.rocksavage.chiselware.DynamicFifo.Main
+sbt:dynamicfifo> runMain tech.rocksavage.chiselware.dynamicfifo.Main
 ```
 
 The RTL will be generated in the ```./generated``` directory.
@@ -64,8 +64,8 @@ as follows:
 
 ```
 $ sbt
-sbt:dynamicFifo>
-sbt:dynamicFifo> test
+sbt:dynamicfifo>
+sbt:dynamicfifo> test
 ```
 
 ### Synthesis
@@ -92,6 +92,19 @@ Warren Savage
     * Initial Release with full functionality
 * 0.2
     * Miscellaneous non-functional cleanup (README.md, etc.)
+* 0.3
+    * chiselWare compliance changes
+      * package names to be per Scala styleguide (lowercase)
+      * BaseParams to DynamicFifoParams to avoid name conflict
+    * Move forward all versions to latest version possible without code changes
+      * scalaVersion 2.13.10 -> 2.13.13
+      * chiselVersion 5.0.0 -> 5.3.0
+      * chiseltest 5.0.0 -> 5.0.2
+      * sbt version 1.4.9 -> 1.11.2
+    * Make flip-flop-based memory resetable for DFT-purposes
+    * Add two extra gates to protect against upstream controller errors 
+      * Ignore push when full 
+      * Ignore pop when empty
 
 ## License
 

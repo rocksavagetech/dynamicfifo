@@ -1,13 +1,13 @@
 // (c) 2024 Rocksavage Technology, Inc.
 // This code is licensed under the Apache Software License 2.0 (see LICENSE.MD)
 
-package tech.rocksavage.chiselware.DynamicFifo
+package tech.rocksavage.chiselware.dynamicfifo
 
 import chisel3._
 import chisel3.util._
 
 /** Blackbox to hold Verilog simulation model */
-class SramBb(p: BaseParams)
+class SramBb(p: DynamicFifoParams)
     extends BlackBox(
       Map("ADDR_WIDTH" -> log2Ceil(p.fifoDepth), "DATA_WIDTH" -> p.dataWidth)
     )

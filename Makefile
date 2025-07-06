@@ -49,7 +49,7 @@ docs:
 verilog:
 	@echo Generate Verilog for synthesis
 	mkdir -p generated
-	$(SBT) "runMain tech.rocksavage.chiselware.DynamicFifo.GenVerilog" | tee generated/verilog.rpt
+	$(SBT) "runMain tech.rocksavage.chiselware.dynamicfifo.GenVerilog" | tee generated/verilog.rpt
 	rm *.anno.json    
 
 # Run the tests
@@ -66,8 +66,8 @@ cov:
 	$(SBT) clean \
 	coverageOn \
 	test \
-	"runMain tech.rocksavage.chiselware.DynamicFifo.GenVerilog" \
-	"runMain tech.rocksavage.chiselware.DynamicFifo.Main" \
+	"runMain tech.rocksavage.chiselware.dynamicfifo.GenVerilog" \
+	"runMain tech.rocksavage.chiselware.dynamicfifo.Main" \
 	coverageReport | tee generated/test.rpt
 	google-chrome --new-window generated/scalaCoverage/scoverage-report/index.html &
 

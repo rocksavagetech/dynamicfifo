@@ -1,7 +1,7 @@
 // (c) 2024 Rocksavage Technology, Inc.
 // This code is licensed under the Apache Software License 2.0 (see LICENSE.MD)
 
-package tech.rocksavage.chiselware.DynamicFifo
+package tech.rocksavage.chiselware.dynamicfifo
 
 import chisel3._
 import chisel3.util._
@@ -24,7 +24,7 @@ object GenVerilog extends App {
     val thisExternalRam = paramVec(0).asInstanceOf[Boolean]
     val thisDataWidth   = paramVec(1).asInstanceOf[Int]
     val thisFifoDepth   = paramVec(2).asInstanceOf[Int]
-    val myParams = BaseParams(
+    val myParams = DynamicFifoParams(
       externalRam = thisExternalRam,
       dataWidth = thisDataWidth,
       fifoDepth = thisFifoDepth

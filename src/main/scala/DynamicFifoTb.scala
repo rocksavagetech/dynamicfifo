@@ -1,13 +1,13 @@
 // (c) 2024 Rocksavage Technology, Inc.
 // This code is licensed under the Apache Software License 2.0 (see LICENSE.MD)
 
-package tech.rocksavage.chiselware.DynamicFifo
+package tech.rocksavage.chiselware.dynamicfifo
 
 import chisel3._
 import chisel3.util._
 import _root_.circt.stage.ChiselStage
 
-class DynamicFifoTb(p: BaseParams) extends Module {
+class DynamicFifoTb(p: DynamicFifoParams) extends Module {
   val io = IO(new Bundle {
     val push             = Input(Bool())
     val pop              = Input(Bool())

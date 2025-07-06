@@ -1,13 +1,13 @@
 // See README.md for license details.
 
-ThisBuild / scalaVersion     := "2.13.10"
-ThisBuild / version          := "0.1.0"
+ThisBuild / scalaVersion     := "2.13.13"
+ThisBuild / version          := "0.3.0"
 ThisBuild / organization     := "tech.rocksavage"
 ThisBuild / organizationName := "Rocksavage Technology"
 
 Test / parallelExecution := false
 
-val chiselVersion   = "5.0.0"
+val chiselVersion   = "5.3.0"
 val scalafmtVersion = "2.5.0"
 
 lazy val root = (project in file("."))
@@ -16,7 +16,7 @@ lazy val root = (project in file("."))
     Test / publishArtifact := true,
     libraryDependencies ++= Seq(
       "org.chipsalliance" %% "chisel"     % chiselVersion,
-      "edu.berkeley.cs"   %% "chiseltest" % "5.0.0" % "test"
+      "edu.berkeley.cs"   %% "chiseltest" % "5.0.2" % "test"
     ),
     scalacOptions ++= Seq(
       "-language:reflectiveCalls",
@@ -26,7 +26,7 @@ lazy val root = (project in file("."))
       "-Ymacro-annotations"
     ),
     addCompilerPlugin(
-      "org.chipsalliance" % "chisel-plugin" % "5.0.0" cross CrossVersion.full
+      "org.chipsalliance" % "chisel-plugin" % "5.3.0" cross CrossVersion.full
     )
   )
 
